@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FreeUE-轻松创建更加美观、规范的Web页面</title>
+<link href="../static/css/style.css" rel="stylesheet" type="text/css">
+<script type=text/javascript src="../static/js/jquery-1.7.1.min.js"></script>
+<script type=text/javascript src="../static/js/slides.jquery.js"></script>
+<!-- 解决IE6不缓存背景图片的问题-->
+<!--[if IE 6]>
+<script type="text/javascript">
+document.execCommand("BackgroundImageCache", false, true);
+</script>
+<![endif]-->
+</head>
+<body>
+<div class="header">
+  <div class="inner">
+    <div class="h-logo"><a href="index.html" title="FreeUE">FreeUE</a> </div>
+    <div class="h-account"><img src="images/head-default.jpg" alt="id"/> Hi，红雪！<a href="#">注销</a></div>
+    <ul class="h-nav">
+      <li><a href="index.html" class="active">首页</a></li>
+      <li><a href="template.html">模板库</a></li>
+      <li><a href="widget.html">元素库</a></li>
+      <li><a href="begin.html">起步</a></li>
+      <li><a href="about.html">关于</a></li>
+    </ul>
+  </div>
+</div>
+<div class="banner-bg" id="bannerbox"> 
+  <script>
+	//保证导航栏背景与图片轮播背景一起显示
+	$("#bannerbox").removeClass();
+	$("#bannerbox").addClass("index-bg01");
+</script> 
+  <script>
+	$(function(){
+		//滚动Banner图片的显示
+		$('#slides').slides({
+			preload: false,
+			preloadImage: '/images/loading.gif',
+			effect: 'fade',
+			slideSpeed: 1000,
+			fadeSpeed: 500,
+			play: 5000,
+			pause: 100,
+			hoverPause: true
+		});
+        	$('#js-news').ticker();
+    	});
+	</script> 
+  <!-- 滚动图片 -->
+  <div id="slides" class="banner">
+    <div class="banner-l"><a class="prev" href="#">上一页</a></div>
+    <div class="bannerImg">
+      <div class="slides-container">
+        <div id="banner_pic_1"><a href="#" target="_blank"><img alt="" src="images/banner01.png" width="650" height="600"></a></div>
+        <div style="display: none" id="banner_pic_2"><a href="#" target="_blank"><img alt="" src="images/banner02.png" width="650" height="600"></a></div>
+        <div style="display: none" id="banner_pic_3"><a href="#" target="_blank"><img alt="" src="images/banner03.png" width="650" height="600"></a></div>
+      </div>
+    </div>
+    <div class="banner-r"><a class="next" href="#">下一页</a></div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="gray-box">
+  <div class="inner">
+    <dl class="main01 pt10">
+      <dt>最新模板 <span class="en">TEMPLATE</span></dt>
+      <dd>
+        <ul class="template-3column">
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="template_detail.html"><img src="images/demo-900x600.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-like"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="template_detail.html"><img src="images/demo-900x600.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-liked"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="template_detail.html"><img src="images/demo-900x600.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-like"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <div class="clear"></div>
+        </ul>
+        <div class="more"><a href="#">more</a></div>
+      </dd>
+    </dl>
+  </div>
+</div>
+<div class="white-box">
+  <div class="inner">
+    <dl class="main01 pt30">
+      <dt>通用元素 <span class="en">WIDGET</span></dt>
+      <dd>
+        <ul class="widget-3column">
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interest"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interest"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interested"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interest"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interest"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <li>
+            <div class="item-cont">
+              <div class="i-photo"><a href="#"><img src="images/demo-600x300.jpg" width="900" height="600"  alt=""/></a></div>
+              <div class="i-text"><a class="like"><i class="icon16 icon16-interest"></i> 15</a><a href="#">CMS首页</a></div>
+            </div>
+            <div class="item-info">所属主题：<a href="#">绿色扫描系统</a></div>
+          </li>
+          <div class="clear"></div>
+        </ul>
+        <div class="more"><a href="#">more</a></div>
+      </dd>
+    </dl>
+  </div>
+</div>
+<div class="gray-box">
+  <div class="inner">
+    <dl class="main01 pt30">
+      <dt>如何使用FreeUE创建页面？</dt>
+      <dd>
+        <ul class="help">
+          <li>
+            <div class="i-photo"><i class="icon48 icon48-help1"></i></div>
+            <div class="i-text">
+              <p><b>选择模版</b></p>
+              <p>在模板块中选择符合<br/>
+                您的主题风格</p>
+            </div>
+          </li>
+          <li>
+            <div class="i-photo"><i class="icon48 icon48-help2"></i></div>
+            <div class="i-text">
+              <p><b>下载代码</b></p>
+              <p>下载代码包，包括html、<br/>
+                css、js等</p>
+            </div>
+          </li>
+          <li>
+            <div class="i-photo"><i class="icon48 icon48-help3"></i></div>
+            <div class="i-text">
+              <p><b>添加元素</b></p>
+              <p>根据页面需求添加主<br/>
+                题风格下的元素</p>
+            </div>
+          </li>
+          <li style="padding-right:0; background:none;">
+            <div class="i-photo"><i class="icon48 icon48-help4"></i></div>
+            <div class="i-text">
+              <p><b>搭建成功</b></p>
+              <p>完成规范、美观的<br/>
+                web页面</p>
+            </div>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>
+<div class="footer">
+  <div class="inner">
+    <ul class="f-link">
+      <li class="f-logo"><a href="#"><i></i></a></li>
+      <li>
+        <p><b>关于</b></p>
+        <p><a href="#">关于我们</a></p>
+        <p><a href="#">关于平台</a></p>
+      </li>
+      <li>
+        <p><b>帮助</b></p>
+        <p><a href="#">如何开始</a></p>
+        <p><a href="#">视觉规范</a></p>
+        <p><a href="#">FAQ</a></p>
+        </p>
+      </li>
+      <li>
+        <p><b>互动</b></p>
+        <p><a href="#">意见反馈</a></p>
+        <p><a href="#">我要投稿</a></p>
+      </li>
+      <li>
+        <p><b>联系</b></p>
+        <p>hi群：72353455 </p>
+        <p>邮箱：freeue@baidu.com</p>
+      </li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+  <div class="f-copyright">&copy;2013 QEC & QAUP 版权所有</div>
+</div>
+    <script>
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cdiv style='display:none;' %3E %3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa04bc642fb15cb6b591f8fe5423f1bc2' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+</body>
+</html>
