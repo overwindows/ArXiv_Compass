@@ -205,7 +205,7 @@ input, select, textarea {
 	z-index: 99;
 	margin: 0px auto;
 	width: 970px;
-	height: 600px;
+	height: 400px;
 }
 .banner-l {
 	float: left;
@@ -238,7 +238,7 @@ input, select, textarea {
 .bannerImg {
 	float: left;
 	position: relative;
-	width: 650px;
+	width: 600px;
 }
 .bannerImg .bannerPage {
 	position: absolute;
@@ -254,7 +254,7 @@ input, select, textarea {
 }
 .slides-container {
 	position: relative;
-	width: 650px;
+	width: 600px;
 }
 /*背景色*************************************************/
 .gray-box {
