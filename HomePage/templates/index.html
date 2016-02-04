@@ -30,13 +30,13 @@ document.execCommand("BackgroundImageCache", false, true);
 <div class="banner-bg" id="bannerbox"> 
   <script>
 	//保证导航栏背景与图片轮播背景一起显示
-	$("#bannerbox").removeClass();
-	$("#bannerbox").addClass("index-bg01");
+	$$("#bannerbox").removeClass();
+	$$("#bannerbox").addClass("index-bg01");
 </script> 
   <script>
-	$(function(){
+	$$(function(){
 		//滚动Banner图片的显示
-		$('#slides').slides({
+		$$('#slides').slides({
 			preload: false,
 			preloadImage: '../static/images/loading.gif',
 			effect: 'fade',
@@ -46,7 +46,7 @@ document.execCommand("BackgroundImageCache", false, true);
 			pause: 100,
 			hoverPause: true
 		});
-        	$('#js-news').ticker();
+        	$$('#js-news').ticker();
     	});
 	</script> 
   <!-- 滚动图片 -->
