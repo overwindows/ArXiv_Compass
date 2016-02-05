@@ -17,8 +17,7 @@ import cgi
 import os
 import sys
 
-from weixin import *
-
+# from weixin import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -27,8 +26,9 @@ sys.setdefaultencoding('utf-8')
 cgi.maxlen = 10 * 1024 * 1024
 
 urls = ("/", "index",
+        "/index", "index",
         "/coming_soon", "coming_soon",
-       "/webchat","weixin",
+        "/webchat", "weixin",
         )
 globals_dict={}
 render = web.template.render('templates', globals=globals_dict)

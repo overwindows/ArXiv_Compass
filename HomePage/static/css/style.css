@@ -81,10 +81,10 @@ input, select, textarea {
 }
 .h-logo a {
 	display: block;
-	width: 140px;
+	width: 162px;
 	height: 55px;
 	overflow: hidden;
-	background: url(../images/i-sprites.png) no-repeat 0 0;
+	background: url(../images/logo.png) no-repeat 0 0;
 	line-height: 999;
 }
 /*主导航****/
@@ -170,6 +170,7 @@ input, select, textarea {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
+	background: url(../images/icon.png) no-repeat 0 0;
 }
 .f-logo i {
 	float: right;
@@ -177,8 +178,7 @@ input, select, textarea {
 	width: 64px;
 	height: 15px;
 	overflow: hidden;
-	margin: 65px 10px 0 0;
-	background: url(../images/i-sprites.png) no-repeat 0 -60px;
+	margin: 65px 10px 0 0;	
 }
 .f-copyright {
 	text-align: center;
