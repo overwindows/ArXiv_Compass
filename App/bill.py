@@ -14,7 +14,7 @@ from env import *
 #下单结账
 class bill:
     def GET(self):
-	    return render.bill()
+        return render.bill()
 	'''
         #浏览器回退防御
         if web.ctx.session.webbrowser_backstep == "danger":

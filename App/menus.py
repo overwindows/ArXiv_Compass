@@ -14,7 +14,7 @@ from env import *
 #菜单
 class menus:
     def GET(self):
-	    return render.menus()
+	return render.menus()
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御

@@ -14,7 +14,7 @@ from env import *
 
 class receipt:
     def GET(self):
-	    return render.receipt()
+        return render.receipt()
 	'''
         #i = web.input()
         oid = web.ctx.session.pay_oid

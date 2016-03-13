@@ -15,6 +15,6 @@ from env import render
 
 class sites:
     def GET(self):
-	    offices = model.get_offices_ex()
-		return render.sites()
+	offices = model.get_offices_ex()
+        return render.sites()
 	    #return render.index(offices,uid,msgs,islogin,web.ctx.session.nickname,web.ctx.session.headimgurl)
