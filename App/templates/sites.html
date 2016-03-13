@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
-	<link rel="stylesheet" href="css/common.css" />
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="../static/css/common.css" />
+	<link rel="stylesheet" href="../static/css/style.css" />
 	<!--控制实现页面自适应脚本-->
-            <script type="text/javascript" src="js/font_resize.js" ></script>
+            <script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
 <body class="bg_img1">
 	<section class="sitebox">
@@ -17,13 +16,13 @@
 				<a href="#" class="btn_return hide" data-btnreturn></a>
 			</p>
 			<a href="javascript:void(0)" class="btn_search imgbox" data-sitesearch>
-				<img src="images/img_61.png" />
+				<img src="../static/images/img_61.png" />
 			</a>
 			<div class="inputbox hide" data-inputbox>
 				<div class="iptbor rel">
 					<input class="ipt" type="text" placeholder="输入搜索关键字，如大楼名，路名..." value="" />
 					<a href="javascript:void(0)" class="btn_cancel imgbox" data-clearval>
-						<img src="images/img_47.png" />
+						<img src="../static/images/img_47.png" />
 					</a>
 				</div>
 			</div>
@@ -58,7 +57,13 @@
 					<li class="list">中铁中环时代广场<span>江场西路325号</span></li>
 					<li class="list">数据港大厦<span>江场西路425号</span></li>
 				</ul>
-				
+				<ul class="location hide" data-p="21"  data-level="4">
+					<li class="list">多媒体谷</li>
+					<li class="list">莱赛港<span>江场西路125号</span></li>
+					<li class="list">大润发总部<span>江场西路325号</span></li>
+					<li class="list">中铁中环时代广场<span>江场西路325号</span></li>
+					<li class="list">数据港大厦<span>江场西路425号</span></li>
+				</ul>
 				<ul class="keyword" data-keyword>
 					<li class="list"><em>莱</em>赛港</li>
 					<li class="list"><em>莱</em>赛港B座</li>
@@ -70,31 +75,30 @@
 			
 		</div>
 	</section>
-	<a href="index.html" class="logo_white imgbox">
-		<img src="images/img_09.png" />
+	<a href="/menus" class="logo_white imgbox">
+		<img src="../static/images/img_09.png" />
 	</a>
 </body>
-<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
-<script type="text/javascript" src="js/main.js" ></script>
+<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="../static/js/main.js" ></script>
 <script type="text/javascript">
 //当定位区域滚动到最底部小箭头消失返回有显示
-$("[data-conlists] ul").scroll(function(){
+$$("[data-conlists] ul").scroll(function(){
 	//获取定位滚动区域内容的总高度
-	var allHei=$(this).children().height()*$(this).children("li").length;
+	var allHei=$$(this).children().height()*$$(this).children("li").length;
 	//获取定位滚动区域容器的高度
-	var parentHei=$("[data-conlists]").height();
-	console.log($(this).scrollTop());
-	if($(this).scrollTop()>=allHei-parentHei-20){
-		$("[data-btnmore]").hide();
-		$("[data-btnmoretop]").show();
+	var parentHei=$$("[data-conlists]").height();
+	console.log($$(this).scrollTop());
+	if($$(this).scrollTop()>=allHei-parentHei-20){
+		$$("[data-btnmore]").hide();
+		$$("[data-btnmoretop]").show();
 	}else if($(this).scrollTop()==0){
-		$("[data-btnmore]").show();
-		$("[data-btnmoretop]").hide();
-	}else if($(this).scrollTop()>0&&$(this).scrollTop()<allHei-parentHei-20){
-		$("[data-btnmore]").show();
-		$("[data-btnmoretop]").show();
-	}
-	
+		$$("[data-btnmore]").show();
+		$$("[data-btnmoretop]").hide();
+	}else if($$(this).scrollTop()>0&&$$(this).scrollTop()<allHei-parentHei-20){
+		$$("[data-btnmore]").show();
+		$$("[data-btnmoretop]").show();
+	}	
 });
 </script>
 </html>

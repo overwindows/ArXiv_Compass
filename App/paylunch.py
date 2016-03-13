@@ -1,0 +1,115 @@
+#coding:utf-8
+
+import os
+import web
+import model
+import time
+import datetime
+import json
+import sign
+import urllib
+import random
+
+from env import *
+
+#Pay Launch
+class carte_pay:
+    #def GET(self):
+    #    web.ctx.session.out_trade_no = int(time.time())
+    #    print web.ctx.session.out_trade_no
+    #    return render.carte_pay()
+    def POST(self):        
+        #web.ctx.session.out_trade_no = int(time.time())
+        #print web.ctx.session.out_trade_no
+        # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start
+        ot_ts  = int(time.mktime(time.strptime(str(web.ctx.session.menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
+        cur_ts = int(time.time())
+        if cur_ts > ot_ts:
+            web.ctx.session.failreason="expired"
+            return web.seeother('/carte_failed')
+        # End
+        rand_suffix = random.randint(1000,10000)
+        #结算失败原因
+        web.ctx.session.failreason="pay"        
+        i = web.input()
+        tel = i.get('telephone')
+        contact = i.get('contact')
+        total_num = i.get('total_num')
+        # 2016/01/02 Start
+        unit_address = i.get('unit_address')
+        tminterval_type = i.get('tminterval_type')
+        invoice_type = i.get('invoice_type')
+        invoice = ""
+        if invoice_type == "1":
+            invoice = i.get('invoice')
+        # End
+        officeid  = web.ctx.session.officeid
+        menu_date = web.ctx.session.menu_date
+        
+        routeid = web.cookies().get('routeid')
+        #all_price = web.cookies().get('total_price')
+        price0 = web.ctx.session.price0
+        price1 = web.ctx.session.price1
+        price2 = web.ctx.session.price2		
+        all_price = float(price0)-float(price1)+float(price2)
+        #print total_price
+        all_cnt = 0
+        orderid = int(time.time())*1000+rand_suffix
+		#if failed in next steps, the order should be deleted!!!
+        model.new_order(orderid,tel,contact,officeid,menu_date,float(all_price),float(price0),float(price1),\
+                        float(price2),int(total_num),time.strftime('%Y-%m-%d %X', time.localtime()),\
+                        time.strftime('%Y-%m-%d %X', time.localtime()),web.ctx.session.userid,\
+                        invoice, unit_address, tminterval_type)
+        model.update_username(web.ctx.session.userid,contact,officeid,unit_address)
+        lunches = model.get_menu(routeid,menu_date)
+        
+        lidict = {}
+        for lunch in lunches:
+            num = web.cookies().get(str(lunch.ID))
+            #print num            
+            try:
+                if int(num)>0:                                        
+                    #清除购物车 TODO
+                    #web.setcookie(str(lunch.ID), '', expires=-1)                    
+                    meal_it = model.get_meal_detail(lunch.ID,menu_date)
+                    meal_dtl = list(meal_it)
+                    #print '库存:'+str(meal_dtl[0].stock)
+                    #print '购买:'+str(num)
+                    if int(meal_dtl[0].stock) >= int(num):
+                        #新增订单详情
+                        model.new_detail(orderid,lunch.ID,num)                    
+                        #库存修改
+                        ret = model.upd_meal_sold(lunch.ID,menu_date,num)
+                        #print 'upd_meal_sold return:'+str(ret)
+                        if ret == -1:
+                            web.ctx.session.failreason = "stock"
+                            model.del_order(orderid)
+                            model.del_detail(orderid)                          
+                            for (k,v) in lidict.items():
+                                model.upd_meal_sold(k,menu_date,-int(v))                            
+                            return web.seeother('/carte_failed')
+                        elif ret == 0:
+                            #暂存已更新的库存信息
+                            lidict[lunch.ID] = num
+                    else:
+                        web.ctx.session.failreason="stock"
+                        model.del_order(orderid)
+                        model.del_detail(orderid)
+                        for (k,v) in lidict.items():
+                            model.upd_meal_sold(k,menu_date,-int(v))
+                        return web.seeother('/carte_failed')
+            except ValueError:
+                print "invalid num value"
+            except TypeError:
+                print "invalid num type"
+        #payment = i.get('payment')
+        #if payment=='cash':
+        #    return web.seeother('/success')
+        #elif payment=='wenxinpay':
+        #    return web.seeother('/prepay')         
+        #    oid = web.ctx.session.orderid
+        #    model.del_order(oid)
+        #    model.del_detail(oid)
+        #    return web.seeother('/order_list')
+        logging.info("[pay][uid:%s]", str(web.ctx.session.userid))
+        return web.seeother('/prepay?orderid='+str(orderid))

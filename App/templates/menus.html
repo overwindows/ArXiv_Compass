@@ -4,22 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
-	<link rel="stylesheet" href="css/common.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/swiper.min.css" />
-	<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
-	<script src="js/swiper.min.js"></script>
-	<script type="text/javascript" src="js/main.js" ></script> 
+	<link rel="stylesheet" href="../static/css/common.css" />
+	<link rel="stylesheet" href="../static/css/style.css" />
+	<link rel="stylesheet" href="../static/css/swiper.min.css" />
+	<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
+	<script src="../static/js/swiper.min.js"></script>
+	<script type="text/javascript" src="../static/js/main.js" ></script> 
             <!--控制实现页面自适应脚本-->
-            <script type="text/javascript" src="js/font_resize.js" ></script>
+            <script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
 <body>
 	<div class="hd_location">
 		<div class="ins rel">
-			<span class="icon_loaction imgbox"><img src="images/img_02.png"/></span>
-			<a href="index1.html" class="txt_loaction white_txt">闸北-大宁地区-莱赛港-A座</a>
+			<span class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></span>
+			<a href="/sites" class="txt_loaction white_txt">闸北-大宁地区-莱赛港-A座</a>
 			<a href="#" class="logo imgbox">
-				<img src="images/img_01.png" />
+				<img src="../static/images/img_01.png" />
 			</a>
 		</div>
 	</div>
@@ -30,13 +30,13 @@
 		<div class="swiper-container">
 			  <div class="swiper-wrapper">
 				    <div class="swiper-slide blue-slide imgbox">
-				    	<img src="images/img_10.png" />
+				    	<img src="../static/images/img_10.png" />
 				    </div>
 				    <div class="swiper-slide red-slide imgbox">
-				    	<img src="images/img_10.png" />
+				    	<img src="../static/images/img_10.png" />
 				    </div>
 				    <div class="swiper-slide orange-slide imgbox">
-				    	<img src="images/img_10.png" />
+				    	<img src="../static/images/img_10.png" />
 				    </div>
 			  </div>
 			  <!-- 如果需要分页器 -->
@@ -73,7 +73,7 @@
 		<div class="cooksbox white_bg">
 			<section class="item white_bg m_b_cut">
 				<div class="imgbox cookimg rel">
-					<img src="images/img_12.png" data-cookimg/>
+					<img src="../static/images/img_12.png" data-cookimg/>
 					<a href="javascript:void(0)" class="btn_store" data-store></a>
 					<div class="mark_info abs hide" data-markInfo>
 						<div class="ins white_txt">
@@ -105,7 +105,7 @@
 			</section>
 			<section class="item white_bg m_b_cut">
 				<div class="imgbox cookimg rel">
-					<img src="images/img_13.png" data-cookimg/>
+					<img src="../static/images/img_13.png" data-cookimg/>
 					<a href="javascript:void(0)" class="btn_store" data-store></a>
 					<div class="mark_info abs z_index_10 hide" data-markInfo>
 						<div class="ins white_txt">
@@ -138,11 +138,11 @@
 		</div>
 	</div>
 	<!--底部固定菜单-->
-	<a class="foot_tabs tab_me" href="index2.html">
-		<img src="images/img_18.png" />
+	<a class="foot_tabs tab_me" href="/anonymous">
+		<img src="../static/images/img_18.png" />
 	</a>
-	<a class="foot_tabs tab_car rel" href="index7.html">
-		<img src="images/img_15.png" />
+	<a class="foot_tabs tab_car rel" href="/bill">
+		<img src="../static/images/img_15.png" />
 		<i class="news_num">9</i>
 	</a>
 <script type="text/javascript">
@@ -178,19 +178,19 @@
             $('html,body').scrollTop(_scroll + _y);
          	
 	td = window.setTimeout(function(){ 
-		$(".foot_tabs").fadeOut(100,function(){
+		$$(".foot_tabs").fadeOut(100,function(){
 	      		 $("this").hide();
 		});		
 	},50);
 
 	//页面向下滚动“时间”和“餐别”菜单固定到头部，往回滚动恢复正常
-	var screenBoxTop=$(".screen_box").offset().top-$(window).scrollTop();
-	var cooksBoxTop=$(".cooksbox").offset().top-$(window).scrollTop();
+	var screenBoxTop=$$(".screen_box").offset().top-$$(window).scrollTop();
+	var cooksBoxTop=$$(".cooksbox").offset().top-$$(window).scrollTop();
 	//console.log(screenBoxTop);
 	if(screenBoxTop<0){
-		$(".screen_box").addClass("fixed");
-	}else if(cooksBoxTop>46 && $(".screen_box").hasClass("fixed")){
-		$(".screen_box").removeClass("fixed");
+		$$(".screen_box").addClass("fixed");
+	}else if(cooksBoxTop>46 && $$(".screen_box").hasClass("fixed")){
+		$$(".screen_box").removeClass("fixed");
 	}
           
         }
@@ -198,9 +198,9 @@
         	body.removeEventListener(tapmove,tapmoveBody);
 
 	td = window.setTimeout(function(){ 			
-	              $(".foot_tabs").fadeIn(100,function(){
+	              $$(".foot_tabs").fadeIn(100,function(){
 		       console.info(2);
-		       $("this").show();
+		       $$("this").show();
 	         	
 		});		
 	},1900);
