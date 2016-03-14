@@ -20,6 +20,14 @@ chinese_weekday = {
     6: '周日'
 }
 
+def get_districts():
+    return db.select('districts')
+
+def get_zones():
+    return db.select('zones')
+
+def get_plazas():
+    return db.select('plazas')
 
 # 配合12.1首单营销策略[2015/11/28]
 def get_user_orders_cnt(uid, date):
