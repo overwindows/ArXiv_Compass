@@ -2,7 +2,7 @@ $def with (districts, zones, plazas, offices)
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>准时开饭</title>
     <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
     <link rel="stylesheet" href="../static/css/common.css" />
     <link rel="stylesheet" href="../static/css/style.css" />
@@ -13,10 +13,10 @@ $def with (districts, zones, plazas, offices)
     <section class="sitebox">
         <div class="selecbox rel">
             <p href="javascript:void(0)" class="location_val rel" data-select>
-	        <span class="val">请选择送餐区域</span>
+            <span class="val">请选择送餐区域</span>
                 <a href="#" class="btn_return hide" data-btnreturn></a>
             </p>
-	    <a href="javascript:void(0)" class="btn_search imgbox" data-sitesearch><img src="../static/images/img_61.png" /></a>
+        <a href="javascript:void(0)" class="btn_search imgbox" data-sitesearch><img src="../static/images/img_61.png" /></a>
             <div class="inputbox hide" data-inputbox>
                 <div class="iptbor rel">
                     <input class="ipt" type="text" placeholder="输入搜索关键字，如大楼名，路名..." value="" />
@@ -52,43 +52,44 @@ $def with (districts, zones, plazas, offices)
                 <ul class="location hide" data-p="3_$plaza.id"  data-level="4">
                 $for office in offices:
                     $if office.plazaid == plaza.id:
-		         <li class="list">$office.officename<span>$office.officeaddr</span></li>
+                 <li class="list">$office.officename<span>$office.officeaddr</span></li>
                 </ul>
+        
         <ul class="keyword" data-keyword>
-					<li class="list"><em>莱</em>赛港</li>
-					<li class="list"><em>莱</em>赛港B座</li>
-					<li class="list"><em>莱</em>赛港C座<span>江场西路125号</span></li>
-					<li class="list"><em>莱</em>茵大厦1号楼<span>江场西路125号</span></li>
-					<li class="list"><em>莱</em>茵大厦2号楼<span>江场西路125号</span></li>
-	</ul>
-			</div>
-			
-		</div>
-	</section>
-	<a href="/menus" class="logo_white imgbox">
-		<img src="../static/images/img_09.png" />
-	</a>
+            <li class="list"><em>莱</em>赛港</li>
+            <li class="list"><em>莱</em>赛港B座</li>
+            <li class="list"><em>莱</em>赛港C座<span>江场西路125号</span></li>
+            <li class="list"><em>莱</em>茵大厦1号楼<span>江场西路125号</span></li>
+            <li class="list"><em>莱</em>茵大厦2号楼<span>江场西路125号</span></li>
+        </ul>
+            </div>
+            
+        </div>
+    </section>
+    <a href="/menus" class="logo_white imgbox">
+        <img src="../static/images/img_09.png" />
+    </a>
 </body>
 <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="../static/js/main.js" ></script>
 <script type="text/javascript">
 //当定位区域滚动到最底部小箭头消失返回有显示
 $$("[data-conlists] ul").scroll(function(){
-	//获取定位滚动区域内容的总高度
-	var allHei=$$(this).children().height()*$$(this).children("li").length;
-	//获取定位滚动区域容器的高度
-	var parentHei=$$("[data-conlists]").height();
-	console.log($$(this).scrollTop());
-	if($$(this).scrollTop()>=allHei-parentHei-20){
-		$$("[data-btnmore]").hide();
-		$$("[data-btnmoretop]").show();
-	}else if($$(this).scrollTop()==0){
-		$$("[data-btnmore]").show();
-		$$("[data-btnmoretop]").hide();
-	}else if($$(this).scrollTop()>0&&$$(this).scrollTop()<allHei-parentHei-20){
-		$$("[data-btnmore]").show();
-		$$("[data-btnmoretop]").show();
-	}	
+    //获取定位滚动区域内容的总高度
+    var allHei=$$(this).children().height()*$$(this).children("li").length;
+    //获取定位滚动区域容器的高度
+    var parentHei=$$("[data-conlists]").height();
+    console.log($$(this).scrollTop());
+    if($$(this).scrollTop()>=allHei-parentHei-20){
+        $$("[data-btnmore]").hide();
+        $$("[data-btnmoretop]").show();
+    }else if($$(this).scrollTop()==0){
+        $$("[data-btnmore]").show();
+        $$("[data-btnmoretop]").hide();
+    }else if($$(this).scrollTop()>0&&$$(this).scrollTop()<allHei-parentHei-20){
+        $$("[data-btnmore]").show();
+        $$("[data-btnmoretop]").show();
+    }    
 });
 </script>
 </html>
