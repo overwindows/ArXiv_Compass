@@ -1,4 +1,4 @@
-$def with (districts)
+$def with (districts, zones, plazas, offices)
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -34,20 +34,25 @@ $def with (districts)
 				</ul>
                 $for district in districts:
 				    <ul class="location hide" data-p="1_$district.id"  data-level="2">
-                        $for (zoneid, zonename) in zones[district.id].items():
-					        <li class="list" data-p="2_$zoneid" data-second>$zonename</li>
+                        $for zone in zones:
+                            $if zone.district_id == district.id:
+					            <li class="list" data-p="2_$zone.id" data-second>$zone.name</li>
 				    </ul>
                 $for zone in zones:    
 				    <ul class="location hide" data-p="2_$zone.id"  data-level="2">
-                        $for (plazaid, plazaname) in plazas[zone.id].items():
-					        <li class="list" data-p="3_$plazaid">$plazaname</li>
-                        $for (officeid, officename) in office[zone.id].items():
-                            <li class="list" data-p="3_$officeid">$officename</li>
+                        $for plaza in plazas:
+                            $if plaza.zone_id == zone.id:
+					            <li class="list" data-p="3_$plaza.id">$plaza.name</li>
+                        $for office in offices:
+                            $if office.zoneid == zone.id and office.plazaid == 0:
+                                <li class="list" data-p="3_$office.officeid">$office.officename<span>$office.officeaddr</span></li>
 				    </ul>
-                $for plaza in plazas    
+                $for plaza in plazas:
+                    $if plaza.id > 0:                 
 				    <ul class="location hide" data-p="3_$plaza.id"  data-level="4">
-                        $for (officeid, officename, officeaddress) in 
-					        <li class="list">$officename<span>$officeaddress</span></li>
+                        $for office in offices
+                            $if office.plazaid == plaza.id:
+					            <li class="list">$office.officename<span>$office.officeaddr</span></li>
 				    </ul>
 				<ul class="keyword" data-keyword>
 					<li class="list"><em>莱</em>赛港</li>
