@@ -46,7 +46,7 @@ def get_offices():
 
 def get_offices_ex():
     return db.query('select offices.officeid as officeid, offices.Name as officename, offices.Address as officeaddr, \
-    plazas.name as plazaname, plazas.address as plazaaddr, offices.ID as ID, plazas.id as plazaid, plaza.zone_id as zoneid \
+    plazas.name as plazaname, plazas.address as plazaaddr, offices.ID as ID, plazas.id as plazaid, plazas.zone_id as zoneid \
     from offices left join plazas on offices.plazaid=plazas.id order by plazaname,officename')
 
 

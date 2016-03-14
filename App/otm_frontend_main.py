@@ -37,19 +37,20 @@ from orderfail import *
 from env import render
 
 urls = (
-        '/', 'webchat',
-		'/index', 'index',
+        #'/', 'webchat',
+        '/', 'sites',
+	'/index', 'index',
         '/sites', 'sites',
         '/menus', 'menus',
-		'/member', 'member',
-		'/anonymous', 'anonymous',
-		'/bill', 'bill',
-		'/login', 'login',
-		'/orders', 'orders',
-		'/receipt', 'receipt',
-		'/register', 'register',
-		'/reset', 'reset',
-		'''
+	'/member', 'member',
+	'/anonymous', 'anonymous',
+	'/bill', 'bill',
+	'/login', 'login',
+	'/orders', 'orders',
+	'/receipt', 'receipt',
+	'/register', 'register',
+	'/reset', 'reset',
+	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
         '/carte_failed', 'carte_failed',        
