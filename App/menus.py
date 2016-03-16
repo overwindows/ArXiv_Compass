@@ -14,14 +14,26 @@ from env import *
 #菜单
 class menus:
     def GET(self):
+        i = web.input()
+        office_id = i.get("officeid")        
+        menu_date = i.get("menudate")
+        
         menu_day = datetime.date.today()
         menu_wkday = menu_day.weekday()
-        
+        menu_calendar = {}
         for i in range(7):
+            if i < menu_wkday:
+                _menu_day = menu_day - datetime.timedelta(days=(i + menu_day))                                
+            else:
+                _menu_day = menu_day + datetime.timedelta(days=(i - menu_day))
+            menu_calendar[_menu_day] = model.get_chinese_weekday(_menu_day.weekday())    
+        
+        if menu_date is None:            
+            menu_date = today
             
-        
-        
-        return render.menus()
+        lunches = model.get_menu(int(route_id), menu_date)
+            
+        return render.menus(menu_calendar)
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御
