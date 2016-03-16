@@ -35,20 +35,16 @@ def get_user_orders_cnt(uid, date):
         'SELECT count(*) as cnt FROM orders WHERE orders.orderdate>=$date AND orders.uid=$uid AND orders.status<>2',
         vars=locals())
 
-
 def get_chinese_weekday(i):
     return chinese_weekday[i]
 
-
 def get_offices():
     return db.select('offices')
-
 
 def get_offices_ex():
     return db.query('select offices.officeid as officeid, offices.Name as officename, offices.Address as officeaddr, \
     plazas.name as plazaname, plazas.address as plazaaddr, offices.ID as ID, plazas.id as plazaid, plazas.zone_id as zoneid \
     from offices left join plazas on offices.plazaid=plazas.id order by plazaname,officename')
-
 
 def get_office(office_id):
     return db.select('offices', where='officeid=$office_id', vars=locals())

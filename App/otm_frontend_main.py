@@ -38,8 +38,8 @@ from env import render
 
 urls = (
         #'/', 'webchat',
-        '/', 'sites',
-	'/index', 'index',
+        '/', 'index',
+        '/index', 'index ',
         '/sites', 'sites',
         '/menus', 'menus',
 	'/member', 'member',

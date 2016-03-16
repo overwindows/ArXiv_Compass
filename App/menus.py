@@ -14,7 +14,14 @@ from env import *
 #菜单
 class menus:
     def GET(self):
-	return render.menus()
+        menu_day = datetime.date.today()
+        menu_wkday = menu_day.weekday()
+        
+        for i in range(7):
+            
+        
+        
+        return render.menus()
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御

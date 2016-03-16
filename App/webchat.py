@@ -11,7 +11,7 @@ import urllib
 
 class webchat:
     def GET(self):
-	    #跳转首页地址
+        #跳转首页地址
         url='http://w.zhunshikaifan.com/index'
         encode_url=urllib.urlencode({'redirect_uri':url})
         weixin_url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9e8d00301079061b' + \
