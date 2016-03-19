@@ -20,6 +20,9 @@ chinese_weekday = {
     6: '周日'
 }
 
+def get_menu_dates(_date):
+    return db.query('SELECT distinct sche_date FROM schedule WHERE sche_date >= $_date ORDER BY sche_date DESC limit 6 ', vars=locals())
+
 def get_districts():
     return db.select('districts')
 

@@ -1,4 +1,4 @@
-$def with (menu_calendar, lunches, office, menu_date)
+$def with (menu_calendar, lunches, office, menu_date, lunches_info)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,15 +48,13 @@ $def with (menu_calendar, lunches, office, menu_date)
                 <a href="javascript:void(0)" class="time_val rel" data-select >
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v</span>
+                            <span>$v(k)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
                     $for k,v in menu_calendar.items():
-                        $if k < menu_date:
-                            <li class="list prev">$v</li>
-                        $else:
-                            <li class="list">$v</li>
+                        <!--li class="list prev">$v(k)</li-->
+                        <li class="list">$v(k)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -100,7 +98,10 @@ $def with (menu_calendar, lunches, office, menu_date)
                     <div class="num_wrap c_f">
                         <a href="javascript:void(0)" class="btn_minus" data-minus="">
                         </a>
-                        <span class="count" data-count="">0</span>
+                        $if lunches_info.haskey(lunch.ID):
+                            <span class="count" data-count="">$lunches_info[lunch.ID]["Count"]</span>
+                        $else:
+                            <span class="count" data-count="">0</span>
                         <a href="javascript:void(0)" class="btn_add" data-add="">
                         </a>
                     </div>

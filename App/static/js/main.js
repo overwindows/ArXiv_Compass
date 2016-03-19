@@ -380,10 +380,10 @@ function aBtnMoreShow(){
         var allHei=$(this).children().height()*$(this).children("li").length;
         var parentHei=$(this).height();
         var aBtnMore=$('<a href="javascript:void(0)" class="btn_more imgbox" data-btnmore>');
-        var ImgBtnMore=$('<img src="images/img_03.png" />').appendTo(aBtnMore);
+        var ImgBtnMore=$('<img src="../static/images/img_03.png" />').appendTo(aBtnMore);
         //创建向上箭头
         var aBtnMoreTop=$('<a href="javascript:void(0)" class="btn_moretop imgbox" data-btnmoretop>');
-        var ImgBtnMoreTop=$('<img src="images/img_03_2.png" />').appendTo(aBtnMoreTop);
+        var ImgBtnMoreTop=$('<img src="../static/images/img_03_2.png" />').appendTo(aBtnMoreTop);
         if(allHei>parentHei){
             aBtnMore.appendTo($(this));
             aBtnMoreTop.appendTo($(this));

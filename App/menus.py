@@ -17,20 +17,14 @@ class menus:
         i = web.input()
         office_id = i.get("officeid")        
         menu_date = i.get("menudate")
-        route_id  = i.get("routeid")
+        route_id  = i.get("routeid")  
+        lunch_info = {}
+        menu_calendar = web.ctx.session.menucalendar
         
-        menu_day = datetime.date.today()
-        menu_wkday = int(menu_day.weekday())
-        menu_calendar = {}
-        for i in range(7):
-            if i < menu_wkday:
-                _menu_day=menu_day-datetime.timedelta(days=(i+menu_wkday))                                
-            else:
-                _menu_day=menu_day+datetime.timedelta(days=(i-menu_wkday))
-            menu_calendar[_menu_day] = model.get_chinese_weekday(_menu_day.weekday())    
-        
+        # guard code
         if menu_date is None:            
-            menu_date = menu_day
+            key_list = menu_calendar.keys()
+            menu_date = key_list[0]
 
         if route_id is None:
             route_id = 0
@@ -42,8 +36,11 @@ class menus:
 
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
+        
+        if menu_calendar.has_key(menu_date):
+            lunches_info = menu_calendar[menu_date]
             
-        return render.menus(menu_calendar, lunches, offices[0], menu_date)
+        return render.menus(menu_calendar, lunches, offices[0], menu_date, lunches_info)
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御
@@ -67,8 +64,6 @@ class menus:
                 islogin = 0
                 uid=""                
         
-
-
         web.setcookie('menudate',menu_date, 3600)
         web.setcookie('url','/carte_detail?menu_date='+menu_date, 3600)
         web.setcookie('routeid',route_id, 3600)
