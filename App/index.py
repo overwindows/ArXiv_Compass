@@ -15,6 +15,20 @@ class index:
     def GET(self):
         # 初始化送餐楼宇编号
         web.ctx.session.officeid = 0
+        
+        # initialize menu dates
+        current_day = datetime.date.today()
+        current_wkday = int(current_day.weekday())
+        menu_dates = list(model.get_menu_dates(current_day))
+        menu_calendar = {}        
+        for menu_date in menu_dates:
+            menu_calendar[menu_date] = model.get_chinese_weekday(menu_date.weekday())         
+        web.ctx.session.menucalendar = menu_calendar
+        
+        # initialize shopping basket
+        shopping_basket={}
+        web.ctx.session.shoppingbasket = shopping_basket
+        
         i = web.input()
         # CODE from WebChat
         #print "[DEBUG] Get Code:"+CODE
