@@ -18,8 +18,9 @@ class menus:
         office_id = i.get("officeid")        
         menu_date = i.get("menudate")
         route_id  = i.get("routeid")  
-        lunch_info = {}
+        lunches_info = {}
         menu_calendar = web.ctx.session.menucalendar
+        shopping_basket = web.ctx.session.shoppingbasket
         
         # guard code
         if menu_date is None:            
@@ -37,8 +38,8 @@ class menus:
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
         
-        if menu_calendar.has_key(menu_date):
-            lunches_info = menu_calendar[menu_date]
+        if shopping_basket.has_key(menu_date):
+            lunches_info = shoppingbasket[menu_date]
             
         return render.menus(menu_calendar, lunches, offices[0], menu_date, lunches_info)
 	'''

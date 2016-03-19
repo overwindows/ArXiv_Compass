@@ -23,7 +23,7 @@ class index:
         menu_calendar = {}        
         for menu_date in menu_dates:
             _date = datetime.datetime.strptime(str(menu_date.sche_date), "%Y-%m-%d").date()
-            menu_calendar[menu_date.sche_date] = model.get_chinese_weekday(_date.weekday())         
+            menu_calendar[str(menu_date.sche_date)] = model.get_chinese_weekday(_date.weekday())         
         web.ctx.session.menucalendar = menu_calendar
         
         # initialize shopping basket

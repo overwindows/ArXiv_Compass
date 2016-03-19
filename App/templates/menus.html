@@ -48,13 +48,13 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                 <a href="javascript:void(0)" class="time_val rel" data-select >
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v(k)</span>
+                            <span>$v</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
                     $for k,v in menu_calendar.items():
-                        <!--li class="list prev">$v(k)</li-->
-                        <li class="list">$v(k)</li>
+                        <!--li class="list prev"></li-->
+                        <li class="list">$v</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -88,6 +88,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                     </div>    
                 </div>
                 <div class="cook_info rel">
+                    <input type=hidden name="pid" value="$lunch.ID"/>
                     <h2 class="tit">$lunch.Meal</h2>
                     <p class="txt">
                         <span>$lunch.Restaurant</span>
@@ -98,8 +99,8 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                     <div class="num_wrap c_f">
                         <a href="javascript:void(0)" class="btn_minus" data-minus="">
                         </a>
-                        $if lunches_info.haskey(lunch.ID):
-                            <span class="count" data-count="">$lunches_info[lunch.ID]["Count"]</span>
+                        $if lunches_info and lunches_info.haskey(lunch.ID):
+                            <span class="count" data-count="">$(lunches_info[lunch.ID]["Count"])</span>
                         $else:
                             <span class="count" data-count="">0</span>
                         <a href="javascript:void(0)" class="btn_add" data-add="">
@@ -153,9 +154,12 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
 $$(".tab_car").click(function(){
     param="";
     $$(".cook_info").each(function(){
-      output = $$(this).text() + "#" + output;
+      cnt = $$(this).find('.count').html();
+      id = $$(this).children("input").val();
+      if(cnt > 0)
+      param = id+"="+cnt+"&"+param;
       });
-    alert(output);
+    alert(param);
     windows.location.href = "/bill?"
   });
 
