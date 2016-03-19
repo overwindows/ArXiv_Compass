@@ -45,17 +45,17 @@ $def with (menu_calendar, lunches, office, menu_date)
         <div class="screen_box c_f">
             <div class="selecbox f_l">
                 <a href="javascript:void(0)" class="time_val rel" data-select >
-                    $for (k,v) in menu_calendar.items():
+                     $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v($k)</span>
+                            <span>$v</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
-                    $for (k,v) in menu_calendar.items():
+                    $for k,v in menu_calendar.items():
                         $if k < menu_date:
-                            <li class="list prev">$v( $k )</li>
+                            <li class="list prev">$v</li>
                         $else:
-                            <li class="list">$v($k)</li>
+                            <li class="list">$v</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -151,7 +151,7 @@ $def with (menu_calendar, lunches, office, menu_date)
 $$(".tab_car").click(function(){
     param="";
     $$(".cook_info").each(function(){
-      output = $(this).text() + "#" + output;
+      output = $$(this).text() + "#" + output;
       });
     alert(output);
     windows.location.href = "/bill?"
@@ -185,12 +185,12 @@ $$(".tab_car").click(function(){
             event.preventDefault(); //阻止默认事件
             var y = hastouch?event.targetTouches[0].pageY:event.pageY;
             var _y = yBody - y;
-            var _scroll = $(window).scrollTop();
-            $('html,body').scrollTop(_scroll + _y);
+            var _scroll = $$(window).scrollTop();
+            $$('html,body').scrollTop(_scroll + _y);
              
     td = window.setTimeout(function(){ 
         $$(".foot_tabs").fadeOut(100,function(){
-                   $("this").hide();
+                   $$("this").hide();
         });        
     },50);
 
