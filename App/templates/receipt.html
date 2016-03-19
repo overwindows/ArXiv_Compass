@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+$def with (shoppingbasket)
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -11,12 +11,13 @@
 	<script src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="../static/js/main.js" ></script>
 	<!--控制实现页面自适应脚本-->
-            <script type="text/javascript" src="../static/js/font_resize.js" ></script>
+	<script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
 <body class="bg2 white_txt">
 	<div class="tipbox" data-tips><span>下单成功！</span></div>
 	<div class="swiper-container">
 		  <div class="swiper-wrapper">
+            $for d_0 in shoppingbasket:
 			    <div class="swiper-slide blue-slide">
 			    	<div class="m-order-detail">
 			    		<h3 class="tit">1订单详情</h3>
@@ -54,20 +55,21 @@
 				    				<span class="icon"></span>
 				    				<span class="tit">订单内容</span>
 				    				<span class="txt detail">本帮爆鱼1份本帮爆鱼1份</span>
-				    				<ul class="detailbox hide">
-				    					<li class="list3 c_f">
-				    						<span class="f_l">本帮爆鱼1份</span>
-				    						<span class="f_r">¥25</span>
-				    					</li>
-				    					<li class="list3 c_f">
-				    						<span class="f_l">本帮爆鱼1份</span>
-				    						<span class="f_r">¥25</span>
-				    					</li>
-				    					<li class="list3 c_f">
-				    						<span class="f_l">本帮爆鱼1份</span>
-				    						<span class="f_r">¥25</span>
-				    					</li>
-				    				</ul>
+                                    $for d_1 in shoppingbasket[d_0]:
+                                        <ul class="detailbox hide">
+                                            <li class="list3 c_f">
+                                                <span class="f_l">本帮爆鱼1份</span>
+                                                <span class="f_r">¥25</span>
+                                            </li>
+                                            <li class="list3 c_f">
+                                                <span class="f_l">本帮爆鱼1份</span>
+                                                <span class="f_r">¥25</span>
+                                            </li>
+                                            <li class="list3 c_f">
+                                                <span class="f_l">本帮爆鱼1份</span>
+                                                <span class="f_r">¥25</span>
+                                            </li>
+                                        </ul>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">订单总价</span>
@@ -81,7 +83,7 @@
 			    		</div>
 			    	</div>
 			    </div>
-			    <div class="swiper-slide red-slide">
+			    <!--div class="swiper-slide red-slide">
 			    	<div class="m-order-detail">
 			    		<h3 class="tit">2订单详情</h3>
 			    		<div class="ins">
@@ -209,7 +211,7 @@
 			    		</div>
 			    	</div>
 			    </div>
-		  </div>
+		  </div-->
 		  <!-- 如果需要分页器 -->
 		  <div class="swiper-pagination my-pagination-point"></div>
 	</div>

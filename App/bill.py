@@ -14,7 +14,21 @@ from env import *
 #下单结账
 class bill:
     def GET(self):
-        return render.bill()
+        i = web.input()
+        shopping_basket = web.ctx.session.shoppingbasket
+        user_info = web.ctx.session.userinfo
+        menu_date = web.ctx.session.menudate
+        route_id = web.ctx.session.routeid
+
+        lunches = list(model.get_menu(int(route_id), menu_date))
+        for lunch in lunches:
+            cnt = i.get(lunch.ID)
+            if cnt:
+                shopping_basket[menu_date][lunch.ID]["Count"] = cnt
+                shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
+                shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+
+        return render.bill(user_info, shopping_basket)
 	'''
         #浏览器回退防御
         if web.ctx.session.webbrowser_backstep == "danger":

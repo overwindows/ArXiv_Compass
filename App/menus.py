@@ -17,6 +17,7 @@ class menus:
         i = web.input()
         office_id = i.get("officeid")        
         menu_date = i.get("menudate")
+        route_id  = i.get("routeid")
         
         menu_day = datetime.date.today()
         menu_wkday = menu_day.weekday()
@@ -29,11 +30,20 @@ class menus:
             menu_calendar[_menu_day] = model.get_chinese_weekday(_menu_day.weekday())    
         
         if menu_date is None:            
-            menu_date = today
+            menu_date = menu_day
+
+        if route_id is None:
+            route_id = 0
             
         lunches = model.get_menu(int(route_id), menu_date)
+
+        web.ctx.session.officeid = office_id
+        web.ctx.session.menudate = menu_date
+
+        offices_iter = model.get_office(int(office_id))
+        offices = list(offices_iter)
             
-        return render.menus(menu_calendar)
+        return render.menus(menu_calendar, lunches, offices[0], menu_date)
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御
@@ -41,11 +51,7 @@ class menus:
         print "[DEBUG] Get Menu Date"  
         today = web.ctx.session.today
         tomorrow = web.ctx.session.tomorrow
-        
-        i = web.input()
-        office_id = i.get("office_id")        
-        menu_date = i.get("menu_date")
-        
+
         islogin=0
         msgs = [] 
         try:
@@ -61,15 +67,8 @@ class menus:
                 islogin = 0
                 uid=""                
         
-        if menu_date is None:
-            lunches = model.get_menu(int(route_id), today)
-            menu_date = today
-        else:
-            lunches = model.get_menu(int(route_id), menu_date)
-        
-        web.ctx.session.officeid = office_id
-        office_iter = model.get_office(int(office_id))        
-        office = list(office_iter)
+
+
         web.setcookie('menudate',menu_date, 3600)
         web.setcookie('url','/carte_detail?menu_date='+menu_date, 3600)
         web.setcookie('routeid',route_id, 3600)

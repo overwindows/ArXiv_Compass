@@ -14,7 +14,12 @@ from env import *
 
 class receipt:
     def GET(self):
-        return render.receipt()
+        shopping_basket = web.ctx.session.shoppingbasket
+        user_info = web.ctx.session.userinfo
+        #menu_date = web.ctx.session.menudate
+        #route_id = web.ctx.session.routeid
+
+        return render.receipt(user_info, shopping_basket)
 	'''
         #i = web.input()
         oid = web.ctx.session.pay_oid

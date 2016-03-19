@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+$def with (userinfo, shoppingbasket)
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -26,23 +26,75 @@
 					<img src="../static/images/img_04.png" />
 				</a>
 				<span class="tit2">姓名</span>
-				<span class="txt2">饭饭</span>
+				<span class="txt2">$userinfo["Name"]</span>
 			</li>
 			<li class="list">
 				<span class="tit2">手机</span>
-				<a class="txt2 gray_txt" href="#">13812345678</a>
+				<a class="txt2 gray_txt" href="#">$userinfo["Tel"]</a>
 			</li>
 			<li class="list">
 				<span class="tit2">送餐地址</span>
-				<span class="txt2">莱赛港 A座 飞牛网总部</span>
+				<span class="txt2">$userinfo["OfficeAddr"]</span>
 			</li>
 			<li class="list bor_b_none">
 				<span class="tit2">取餐地点</span>
-				<span class="txt2">一楼大堂</span>
+				<span class="txt2">$userinfo["UnitAddr"]</span>
 			</li>
 		</ul>
 	</div>
-	<div class="m-orderlists rel cur">
+
+    $for d_0 in shoppingbasket:
+        <div class="m-orderlists rel cur">
+            <ul>
+                <li class="list frist_list rel bor_b_bold">
+                    <span class="icon imgbox">
+                                    <img src="../static/images/img_05.png">
+                                </span>
+                    <div class="agree_txt rel">
+                        <a href="javascript:void(0)" class="btn_agree on">
+                            <span></span>
+                        </a>
+                        <span class="tit font_big">订单1.</span>
+                        <span class="txt">星期四（$d_0）</span>
+                        <span class="f_r">午餐</span>
+                    </div>
+                </li>
+            $for d_1 in shoppingbasket[d_0]:
+                <li class="list">
+                    <span class="tit">$shoppingbasket[d_0][d_1]["Name"]</span>
+                    <span class="f_r">¥$shoppingbasket[d_0][d_1]["Price"]<em class="grey_txt">X$shoppingbasket[d_0][d_1]["Count"]</em></span>
+                </li>
+                <li class="list bor_b_bold">
+                    <span class="tit">合计</span>
+                    <span class="f_r">¥120</span>
+                </li>
+                <li class="list">
+                    <span class="tit">餐盒费&nbsp<em class="red_txt">(免餐盒费)</em></span>
+                    <span class="f_r">¥0</span>
+                </li>
+                <li class="list">
+                    <span class="tit">共计<em class="red_txt">4</em>&nbsp份</span>
+                    <span class="f_r red_txt">¥125</span>
+                </li>
+                <li class="list bor_b_none">
+                    <span class="tit">期望到餐时间</span>
+                </li>
+                <li class="selecbox">
+                    <a href="javascript:void(0)" class="time_val rel" data-selecttime="">
+                        <span>请选择到餐时间</span>
+                        <i class="icon"></i>
+                    </a>
+                    <ul class="hide">
+                        <li>15:00～15:20</li>
+                        <li>15:20～15:40</li>
+                        <li>15:40～16:00</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <hr class="hr_gray">
+        <div class="cut_line"></div>
+	<!--div class="m-orderlists rel cur">
 		<ul>
 			<li class="list frist_list rel bor_b_bold">
 				<span class="icon imgbox">
@@ -98,64 +150,7 @@
 		</ul>
 	</div>
 	<hr class="hr_gray">
-	<div class="cut_line"></div>
-	<div class="m-orderlists rel cur">
-		<ul>
-			<li class="list frist_list rel bor_b_bold">
-				<span class="icon imgbox">
-	                 			<img src="../static/images/img_05.png">
-	                 		</span>
-				<div class="agree_txt rel">
-					<a href="javascript:void(0)" class="btn_agree on">
-						<span></span>
-					</a>
-					<span class="tit font_big">订单1.</span>
-					<span class="txt">星期四（12月25日）</span>
-					<span class="f_r">午餐</span>
-				</div>
-			</li>
-			<li class="list">
-				<span class="tit">本帮鲍鱼</span>
-				<span class="f_r">¥25<em class="grey_txt">X1</em></span>
-			</li>
-			<li class="list">
-				<span class="tit">泰式冬阴功汤</span>
-				<span class="f_r">¥35<em class="grey_txt">X2</em></span>
-			</li>
-			<li class="list">
-				<span class="tit">清炒虾仁</span>
-				<span class="f_r">¥25<em class="grey_txt">X1</em></span>
-			</li>
-			<li class="list bor_b_bold">
-				<span class="tit">合计</span>
-				<span class="f_r">¥120</span>
-			</li>
-			<li class="list">
-				<span class="tit">餐盒费&nbsp<em class="red_txt">(免餐盒费)</em></span>
-				<span class="f_r">¥0</span>
-			</li>
-			<li class="list">
-				<span class="tit">共计<em class="red_txt">4</em>&nbsp份</span>
-				<span class="f_r red_txt">¥125</span>
-			</li>
-			<li class="list bor_b_none">
-				<span class="tit">期望到餐时间</span>
-			</li>
-			<li class="selecbox">
-				<a href="javascript:void(0)" class="time_val rel" data-selecttime="">
-					<span>请选择到餐时间</span>
-					<i class="icon"></i>
-				</a>
-				<ul class="hide">
-					<li>15:00～15:20</li>
-					<li>15:20～15:40</li>
-					<li>15:40～16:00</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<hr class="hr_gray">
-	<div class="cut_line"></div>
+	<div class="cut_line"></div-->
 	<div class=" p_b_2">
 		<a href="javascript:void(0)" class="btn_red_wrap cur rel" data-getgray="" data-showmarkbox="txt1">
 			确定下单

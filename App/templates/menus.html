@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+$def with (menu_calendar, lunches, office, menu_date)
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>准时开饭</title>
     <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
     <link rel="stylesheet" href="../static/css/common.css" />
     <link rel="stylesheet" href="../static/css/style.css" />
@@ -10,14 +10,14 @@
     <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
     <script src="../static/js/swiper.min.js"></script>
     <script type="text/javascript" src="../static/js/main.js" ></script> 
-            <!--控制实现页面自适应脚本-->
-            <script type="text/javascript" src="../static/js/font_resize.js" ></script>
+    <!--控制实现页面自适应脚本-->
+    <script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
 <body>
     <div class="hd_location">
         <div class="ins rel">
             <span class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></span>
-            <a href="/sites" class="txt_loaction white_txt">闸北-大宁地区-莱赛港-A座</a>
+            <a href="/sites" class="txt_loaction white_txt">$office.Name</a>
             <a href="#" class="logo imgbox">
                 <img src="../static/images/img_01.png" />
             </a>
@@ -45,16 +45,17 @@
         <div class="screen_box c_f">
             <div class="selecbox f_l">
                 <a href="javascript:void(0)" class="time_val rel" data-select >
-                    <span>星期四(12月25日)</span>
+                    $for (k,v) in menu_calendar.items():
+                        $if k == menu_date:
+                            <span>$v($k)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
-                    <li class="list prev">星期一(12月25日)</li>
-                    <li class="list prev">星期二(12月26日)</li>
-                    <li class="list prev">星期三(12月25日)</li>
-                    <li class="list">星期四(12月26日)</li>
-                    <li class="list">星期五(12月25日)</li>
-                    <li class="list">星期六(12月26日)</li>
+                    $for (k,v) in menu_calendar.items():
+                        $if k < menu_date:
+                            <li class="list prev">$v($k)</li>
+                        $else:
+                            <li class="list">$v($k)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -71,28 +72,29 @@
             </div>
         </div>
         <div class="cooksbox white_bg">
+        $for lunch in lunches:
             <section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">
                     <img src="../static/images/img_12.png" data-cookimg/>
                     <a href="javascript:void(0)" class="btn_store" data-store></a>
                     <div class="mark_info abs hide" data-markInfo>
                         <div class="ins white_txt">
-                            <h3 class="tit">泰式冬阴功汤</h3>
+                            <h3 class="tit">$lunch.Meal</h3>
                             <div class="txt">
-                                <p><span>主菜</span>鲜虾，鱿鱼，青口贝</p>
-                                <p><span>配菜</span>鲜蘑菇、柠檬叶、香茅、辣椒</p>
-                                <p><span>主食</span>泰国香米</p>
+                                <p><span>主菜</span>$lunch.entree</p>
+                                <p><span>配菜</span>$lunch.garnish</p>
+                                <p><span>主食</span>$lunch.staple</p>
                             </div>
                         </div>
                     </div>    
                 </div>
                 <div class="cook_info rel">
-                    <h2 class="tit">本帮黑鱼</h2>
+                    <h2 class="tit">$lunch.Meal</h2>
                     <p class="txt">
-                        <span>海金兹</span>
+                        <span>$lunch.Restaurant</span>
                         <span>30年本帮菜老字号</span>
                     </p>
-                    <h2 class="price"><em>￥</em>25</h2>
+                    <h2 class="price"><em>￥</em>$lunch.Price</h2>
                     <hr class="hr_gray"/>
                     <div class="num_wrap c_f">
                         <a href="javascript:void(0)" class="btn_minus" data-minus="">
@@ -103,7 +105,7 @@
                     </div>
                 </div>
             </section>
-            <section class="item white_bg m_b_cut">
+            <!--section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">
                     <img src="../static/images/img_13.png" data-cookimg/>
                     <a href="javascript:void(0)" class="btn_store" data-store></a>
@@ -134,18 +136,27 @@
                         </a>
                     </div>
                 </div>
-            </section>
+            </section-->
         </div>
     </div>
     <!--底部固定菜单-->
     <a class="foot_tabs tab_me" href="/anonymous">
         <img src="../static/images/img_18.png" />
     </a>
-    <a class="foot_tabs tab_car rel" href="/bill">
+    <a class="foot_tabs tab_car rel">
         <img src="../static/images/img_15.png" />
         <i class="news_num">9</i>
     </a>
 <script type="text/javascript">
+$$(".tab_car").click(function(){
+    param="";
+    $$(".cook_info").each(function(){
+      output = $(this).text() + "#" + output;
+      });
+    alert(output);
+    windows.location.href = "/bill?"
+  });
+
   var mySwiper = new Swiper('.swiper-container',{
         loop: true,
     autoplay: 3000,

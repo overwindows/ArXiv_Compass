@@ -13,7 +13,7 @@ import random
 from env import *
 
 #Pay Launch
-class carte_pay:
+class defray:
     #def GET(self):
     #    web.ctx.session.out_trade_no = int(time.time())
     #    print web.ctx.session.out_trade_no
