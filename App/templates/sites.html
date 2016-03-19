@@ -52,7 +52,7 @@ $def with (districts, zones, plazas, offices)
                 <ul class="location hide" data-p="3_$plaza.id"  data-level="4">
                 $for office in offices:
                     $if office.plazaid == plaza.id:
-                 <li class="list" data-link="/menus?office_id=$(office.officeid)" >$office.officename<span>$office.officeaddr</span></li>
+                        <li class="list" data-link="/menus?officeid=$(office.officeid)" >$office.officename<span>$office.officeaddr</span></li>
                 </ul>
         
         <ul class="keyword" data-keyword>

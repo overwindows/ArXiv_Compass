@@ -53,7 +53,7 @@ $def with (menu_calendar, lunches, office, menu_date)
                 <ul>
                     $for (k,v) in menu_calendar.items():
                         $if k < menu_date:
-                            <li class="list prev">$v($k)</li>
+                            <li class="list prev">$v( $k )</li>
                         $else:
                             <li class="list">$v($k)</li>
                 </ul>

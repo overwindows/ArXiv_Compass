@@ -91,10 +91,9 @@ function siteed(){
                                        $(allUl[i]).hide();
                                    }
                                }
-
-            if($(this).parent("ul").data("link")){
-                           //$("[data-conlists]").children("ul").hide();
-                        windows.location.href = $(this).parent("ul").data("link");   
+            if($(this).data("link")){
+                        $("[data-conlists]").children("ul").hide();
+                        location.href = $(this).data("link");   
                        }
                    aBtnMoreShow();
                        });

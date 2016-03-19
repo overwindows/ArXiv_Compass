@@ -17,8 +17,8 @@ class index:
         web.ctx.session.officeid = 0
         i = web.input()
         # CODE from WebChat
-        webchat_code = i.code
         #print "[DEBUG] Get Code:"+CODE
+        webchat_code = i.get("code")
         if webchat_code:           
             web.ctx.session.code = webchat_code
             #print "[DEBUG] Get AccessToken and OpenID"			
@@ -92,7 +92,7 @@ class index:
                 islogin = 0
         except AttributeError:
                 islogin = 0
-        logging.info("[office][uid:%s]", uid)
+        #logging.info("[office][uid:%s]", uid)
         if int(web.ctx.session.officeid)==0:
             return web.seeother("/sites")
         else:

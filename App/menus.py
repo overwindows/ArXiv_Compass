@@ -20,13 +20,13 @@ class menus:
         route_id  = i.get("routeid")
         
         menu_day = datetime.date.today()
-        menu_wkday = menu_day.weekday()
+        menu_wkday = int(menu_day.weekday())
         menu_calendar = {}
         for i in range(7):
             if i < menu_wkday:
-                _menu_day = menu_day - datetime.timedelta(days=(i + menu_day))                                
+                _menu_day=menu_day-datetime.timedelta(days=(i+menu_wkday))                                
             else:
-                _menu_day = menu_day + datetime.timedelta(days=(i - menu_day))
+                _menu_day=menu_day+datetime.timedelta(days=(i-menu_wkday))
             menu_calendar[_menu_day] = model.get_chinese_weekday(_menu_day.weekday())    
         
         if menu_date is None:            

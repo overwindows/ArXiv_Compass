@@ -8,7 +8,7 @@ body{
 	position:relative;
 }
 .bg_img1{
-	background:url(../static/images/img_53.png) 0 0 no-repeat;
+	background:url(../images/img_53.png) 0 0 no-repeat;
 	background-size: cover;
 }
 .logo_white{
@@ -129,7 +129,7 @@ a{font-size: 0.65rem;}
 	width:0.7rem;
 	height:0.7rem;
 	margin-top:-0.35rem;
-	background:url(../static/images/img_25.png) 0 0 no-repeat;
+	background:url(../images/img_25.png) 0 0 no-repeat;
 	background-size: contain;
 }
 .sitebox .location_val .val{
@@ -213,7 +213,7 @@ a{font-size: 0.65rem;}
 	height:1.8rem;
 	margin-top:0.35rem;
 	width:70%;
-	background:#fff url(../static/images/img_61_2.png) 0.3rem 0.3rem no-repeat;
+	background:#fff url(../images/img_61_2.png) 0.3rem 0.3rem no-repeat;
 	background-size:10%;
 }
 .sitebox .inputbox .ipt{
@@ -299,13 +299,13 @@ a{font-size: 0.65rem;}
 	width:1rem;
 	height:1rem;
 	display:block;
-	background:url(../static/images/img_58.png) center center no-repeat;
+	background:url(../images/img_58.png) center center no-repeat;
 	background-size: 46%;
 	z-index: 50;
 	padding: 0.8rem;
 }
 .cooksbox .cookimg .btn_store.on{
-	background:url(../static/images/img_55.png) center center no-repeat;
+	background:url(../images/img_55.png) center center no-repeat;
 	background-size: 46%;
 }
 /*购物车加减数字 start*/
@@ -334,20 +334,20 @@ a{font-size: 0.65rem;}
 	padding:0.4rem;
 }
 .num_wrap a.btn_minus{
-	background:url(../static/images/img_38_2.png) center center no-repeat;
+	background:url(../images/img_38_2.png) center center no-repeat;
 	background-size: 55%;
 	display:none;
 }
 .num_wrap a.btn_minus.on{
-	background:url(../static/images/img_38.png) center center no-repeat;
+	background:url(../images/img_38.png) center center no-repeat;
 	background-size:  55%;
 }
 .num_wrap a.btn_add{
-	background:url(../static/images/img_36.png) center center no-repeat;
+	background:url(../images/img_36.png) center center no-repeat;
 	background-size: 55%;
 }
 .num_wrap a.btn_add.no{
-	background:url(../static/images/img_36_2.png) center center no-repeat;
+	background:url(../images/img_36_2.png) center center no-repeat;
 	background-size: 55%;
 }
 /*购物车加减数字 end*/
@@ -426,7 +426,7 @@ a{font-size: 0.65rem;}
 	width:0.6rem;
 	height:0.4rem;
 	margin-top:-0.2rem;
-	background:url(../static/images/img_28.png) 0 0 no-repeat;
+	background:url(../images/img_28.png) 0 0 no-repeat;
 	background-size: contain;
 }
 .menusbox .list.last-child .txt{
@@ -639,7 +639,7 @@ a{font-size: 0.65rem;}
 	display:inline-block;
 	width:1rem;
 	height:1rem;
-	background:url(../static/images/img_20.png) 0 0 no-repeat;
+	background:url(../images/img_20.png) 0 0 no-repeat;
 	background-size:contain;
 	position:absolute;
 	left:0;
