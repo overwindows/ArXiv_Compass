@@ -157,10 +157,10 @@ $$(".tab_car").click(function(){
       cnt = $$(this).find('.count').html();
       id = $$(this).children("input").val();
       if(cnt > 0)
-      param = id+"="+cnt+"&"+param;
+      param = id+"_"+cnt+"|"+param;
       });
-    alert(param);
-    windows.location.href = "/bill?"
+    //alert(param);
+    windows.location.href = "/bill?param="+param;
   });
 
   var mySwiper = new Swiper('.swiper-container',{

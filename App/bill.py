@@ -15,6 +15,15 @@ from env import *
 class bill:
     def GET(self):
         i = web.input()
+        
+        param = i.get("param")
+        order_info = {}
+        order_list = param.split("|")
+        for order in order_list:
+            if order:
+                id,cnt = order.split("_")
+                order_info[id] = cnt                
+        
         shopping_basket = web.ctx.session.shoppingbasket
         user_info = web.ctx.session.userinfo
         menu_date = web.ctx.session.menudate
@@ -22,11 +31,11 @@ class bill:
 
         lunches = list(model.get_menu(int(route_id), menu_date))
         for lunch in lunches:
-            cnt = i.get(lunch.ID)
-            if cnt:
-                shopping_basket[menu_date][lunch.ID]["Count"] = cnt
-                shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
-                shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+            if order_info.has_key(lunch.ID):
+            cnt = order_info[lunch.ID]
+            shopping_basket[menu_date][lunch.ID]["Count"] = cnt
+            shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
+            shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
 
         return render.bill(user_info, shopping_basket)
 	'''
