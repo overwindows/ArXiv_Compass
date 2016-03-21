@@ -21,6 +21,7 @@ class menus:
         lunches_info = {}
         menu_calendar = web.ctx.session.menucalendar
         shopping_basket = web.ctx.session.shoppingbasket
+        user_info = web.ctx.session.userinfo
         
         # guard code
         if menu_date is None:            
@@ -37,10 +38,14 @@ class menus:
 
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
+        user_info["OfficeAddr"] = offices[0].Name
         
         if shopping_basket.has_key(menu_date):
-            lunches_info = shoppingbasket[menu_date]
-            
+            lunches_info = shopping_basket[menu_date]
+
+
+        web.ctx.session.userinfo = user_info
+
         return render.menus(menu_calendar, lunches, offices[0], menu_date, lunches_info)
 	'''
         #backstep = int(web.cookies().get('backstep')) 

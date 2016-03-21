@@ -12,15 +12,17 @@
             <script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
 <body>
+    <form method="post" action="login">
 	<div class="m-loginbox">
 		<h3 class="tit">使用手机账号登录</h3>
-		<input class="ipt" type="text" placeholder="请输入手机号" />
-		<input class="ipt" type="text" placeholder="创建密码" />
+		<input id="userid" class="ipt" type="text" placeholder="请输入手机号" />
+		<input id="password" class="ipt" type="text" placeholder="创建密码" />
 		<a href="index5.html" class="m_t_cut f_r">忘记密码?</a>
 		<div class="btn_p_b t_c">
-			<a href="/member" class="btn_red_wrap">登录</a>
+            <input type="submit" class="btn_red_wrap" value="登录" />
 			<a href="/register" class="btn_go rel">新用户注册</a>
 		</div>
 	</div>
+	</form>
 </body>
 </html>

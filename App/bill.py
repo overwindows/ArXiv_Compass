@@ -14,32 +14,33 @@ from env import *
 #下单结账
 class bill:
     def GET(self):
-        i = web.input()
-        param = i.get("param")
-
-        order_info = {}
-        order_list = param.split("|")
-        for order in order_list:
-            if order:
-                id,cnt = order.split("_")
-                order_info[id] = cnt                
-        
         shopping_basket = web.ctx.session.shoppingbasket
         user_info = web.ctx.session.userinfo
         menu_date = web.ctx.session.menudate
         route_id = web.ctx.session.routeid
 
-        lunches = list(model.get_menu(int(route_id), menu_date))
-        for lunch in lunches:
-            if order_info.has_key(lunch.ID):
-                cnt = order_info[lunch.ID]
-                shopping_basket[menu_date][lunch.ID]["Count"] = cnt
-                shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
-                shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+        i = web.input()
+        param = i.get("param")
+        if param:
+            order_info = {}
+            order_list = param.split("|")
+            for order in order_list:
+                if order:
+                    id,cnt = order.split("_")
+                    order_info[id] = cnt
+            lunches = list(model.get_menu(int(route_id), menu_date))
+            for lunch in lunches:
+                if order_info.has_key(lunch.ID):
+                    cnt = order_info[lunch.ID]
+                    shopping_basket[menu_date][lunch.ID]["Count"] = cnt
+                    shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
+                    shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+            web.ctx.session.shoppingbasket = shopping_basket
 
-        if user_info:       
+        if user_info:
             return render.bill(user_info, shopping_basket)
         else:
+            web.ctx.session.redirecturl = "/bill"
             web.seeother('/login')   
 	'''
         #浏览器回退防御
