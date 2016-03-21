@@ -30,6 +30,9 @@ class menus:
 
         if route_id is None:
             route_id = 0
+        
+        if office_id is None:
+           office_id = web.ctx.session.officeid
             
         lunches = model.get_menu(int(route_id), menu_date)
 

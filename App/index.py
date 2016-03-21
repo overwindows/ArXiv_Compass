@@ -32,9 +32,13 @@ class index:
         web.ctx.session.shoppingbasket = shopping_basket
         
         # initialize user info
-        if web.ctx.session.userinfo:
-            user_info = web.ctx.session.userinfo
-        else:
+        try:
+            if web.ctx.session.userinfo:
+                user_info = web.ctx.session.userinfo
+            else:
+                user_info = {}
+                web.ctx.session.userinfo = user_info
+        except AttributeError:
             user_info = {}
             web.ctx.session.userinfo = user_info
 
