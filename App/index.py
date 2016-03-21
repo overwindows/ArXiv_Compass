@@ -32,8 +32,9 @@ class index:
         web.ctx.session.shoppingbasket = shopping_basket
         
         # initialize user info
-        user_info = {}
-        web.ctx.session.userinfo = user_info
+        if web.ctx.session.userinfo:
+            user_info = {}
+            web.ctx.session.userinfo = user_info
 
         
         i = web.input()

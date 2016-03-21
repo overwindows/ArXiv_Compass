@@ -22,6 +22,7 @@ class login:
         i = web.input()
         uid = i.get('userid')
         pwd = i.get('password')
+        
         user_iter=model.get_user(uid,pwd)
         user = list(user_iter)
         user_info = web.ctx.session.userinfo
@@ -41,4 +42,4 @@ class login:
         else:
             msg="用户名或密码不正确"
             web.setcookie('login_id',uid,3600)
-            return render.login_index(msg)
+            return render.login()

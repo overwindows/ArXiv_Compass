@@ -16,11 +16,12 @@ from env import *
 class defray:
     def GET(self):
         shopping_basket = web.ctx.session.shoppingbasket
+        user_info = web.ctx.session.userinfo
         for _date in shopping_basket:
             rand_suffix = random.randint(1000,10000)
             orderid = int(time.time())*1000 + rand_suffix
             #if failed in next steps, the order should be deleted!!!
-            model.new_order(orderid,tel,contact,officeid,menu_date,float(all_price),float(price0),float(price1),\
+            model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"],menu_date,float(all_price),float(price0),float(price1),\
                         float(price2),int(total_num),time.strftime('%Y-%m-%d %X', time.localtime()),\
                         time.strftime('%Y-%m-%d %X', time.localtime()),web.ctx.session.userid,\
                         invoice, unit_address, tminterval_type)

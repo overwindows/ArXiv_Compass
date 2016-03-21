@@ -32,12 +32,18 @@ class bill:
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
                     cnt = order_info[lunch.ID]
+                    if not shopping_basket.has_key(menu_date):
+                        shopping_basket[menu_date] = {}
+                    if not shopping_basket[menu_date].has_key(lunch.ID):
+                        shopping_basket[menu_date][lunch.ID] = {}
                     shopping_basket[menu_date][lunch.ID]["Count"] = cnt
                     shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
                     shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
             web.ctx.session.shoppingbasket = shopping_basket
 
-        if user_info:
+        print shopping_basket.keys()
+
+        if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket)
         else:
             web.ctx.session.redirecturl = "/bill"
