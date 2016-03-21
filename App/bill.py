@@ -15,6 +15,7 @@ from env import *
 class bill:
     def GET(self):
         shopping_basket = web.ctx.session.shoppingbasket
+        shopping_cost  = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
         menu_date = web.ctx.session.menudate
         route_id = web.ctx.session.routeid
@@ -39,7 +40,16 @@ class bill:
                     shopping_basket[menu_date][lunch.ID]["Count"] = cnt
                     shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
                     shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+
+                    if not shopping_cost.has_key(menu_date):
+                        shopping_cost[menu_date] = {}
+                    shopping_cost[menu_date]["price0"] = float(lunch.Price) * cnt
+                    shopping_cost[menu_date]["price1"] = 0
+                    shopping_cost[menu_date]["price2"] = 0
+                    shopping_cost[menu_date]["total_price"] = shopping_cost[menu_date]["price0"] + shopping_cost[menu_date]["price1"] + shopping_cost[menu_date]["price2"]
+
             web.ctx.session.shoppingbasket = shopping_basket
+            web.ctx.session.shoppingcost = shopping_cost
 
         print shopping_basket.keys()
 

@@ -28,15 +28,20 @@ class index:
         web.ctx.session.menucalendar = menu_calendar
         
         # initialize shopping basket
-        shopping_basket={}
+        shopping_basket = {}
         web.ctx.session.shoppingbasket = shopping_basket
         
         # initialize user info
         if web.ctx.session.userinfo:
+            user_info = web.ctx.session.userinfo
+        else:
             user_info = {}
             web.ctx.session.userinfo = user_info
 
-        
+        # initialize price
+        shopping_cost = {}
+        web.ctx.session.ordercost = shopping_cost
+
         i = web.input()
         # CODE from WebChat
         #print "[DEBUG] Get Code:"+CODE
