@@ -27,8 +27,8 @@ class defray:
             orderid = int(time.time())*1000 + rand_suffix
             #if failed in next steps, the order should be deleted!!!
             model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
-                        float(shopping_cost["total_price"]), float(shopping_cost["price0"]),float(shopping_cost["price1"]),\
-                        float(shopping_cost["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
+                        float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
+                        float(shopping_cost[_date]["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
                         time.strftime('%Y-%m-%d %X', time.localtime()),user_info["ID"],\
                         invoice, user_info["UnitAddr"], tminterval_type)
             lidict = {}

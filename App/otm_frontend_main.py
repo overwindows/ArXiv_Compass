@@ -22,9 +22,9 @@ from receipt import *
 from register import *
 from reset import *
 from defray import *
+from prepay import *
 '''
 from cancelorder import *
-from prepay import *
 from succeed import *
 from paylunch import *
 from sms import *
@@ -52,6 +52,7 @@ urls = (
 	'/receipt', 'receipt',
 	'/register', 'register',
 	'/reset', 'reset',
+        '/prepay', 'prepay',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
@@ -61,7 +62,6 @@ urls = (
         '/order_detail', 'order_detail',
         '/order_over', 'order_over',
         '/order_index', 'order_index',
-        '/prepay', 'prepay',
         '/payment', 'payment',
         '/order_list', 'order_list',
         '/success', 'success',

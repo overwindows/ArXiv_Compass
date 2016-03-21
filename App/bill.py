@@ -43,10 +43,10 @@ class bill:
 
                     if not shopping_cost.has_key(menu_date):
                         shopping_cost[menu_date] = {}
-                    shopping_cost[menu_date]["price0"] = float(lunch.Price) * cnt
+                    shopping_cost[menu_date]["price0"] = float(lunch.Price) * float(cnt)
                     shopping_cost[menu_date]["price1"] = 0
                     shopping_cost[menu_date]["price2"] = 0
-                    shopping_cost[menu_date]["total_price"] = shopping_cost[menu_date]["price0"] + shopping_cost[menu_date]["price1"] + shopping_cost[menu_date]["price2"]
+                    shopping_cost[menu_date]["price"] = shopping_cost[menu_date]["price0"]
 
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost = shopping_cost

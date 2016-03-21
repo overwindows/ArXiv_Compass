@@ -40,7 +40,7 @@ class index:
 
         # initialize price
         shopping_cost = {}
-        web.ctx.session.ordercost = shopping_cost
+        web.ctx.session.shoppingcost = shopping_cost
 
         i = web.input()
         # CODE from WebChat

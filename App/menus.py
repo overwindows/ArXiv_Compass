@@ -39,7 +39,7 @@ class menus:
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
         user_info["OfficeAddr"] = offices[0].Name
-        user_info["OfficeID"] = office_id
+        user_info["OfficeId"] = office_id
         
         if shopping_basket.has_key(menu_date):
             lunches_info = shopping_basket[menu_date]
