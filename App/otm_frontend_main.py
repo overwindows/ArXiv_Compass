@@ -21,6 +21,7 @@ from orders import *
 from receipt import *
 from register import *
 from reset import *
+from defray import *
 '''
 from cancelorder import *
 from prepay import *
@@ -42,6 +43,7 @@ urls = (
         '/index', 'index ',
         '/sites', 'sites',
         '/menus', 'menus',
+        '/defray', 'defray',
 	'/member', 'member',
 	'/anonymous', 'anonymous',
 	'/bill', 'bill',

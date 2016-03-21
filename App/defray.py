@@ -14,11 +14,49 @@ from env import *
 
 #Pay Launch
 class defray:
-    #def GET(self):
-    #    web.ctx.session.out_trade_no = int(time.time())
-    #    print web.ctx.session.out_trade_no
-    #    return render.carte_pay()
-    def POST(self):        
+    def GET(self):
+        shopping_basket = web.ctx.session.shoppingbasket
+        for _date in shopping_basket:
+            rand_suffix = random.randint(1000,10000)
+            orderid = int(time.time())*1000 + rand_suffix
+            #if failed in next steps, the order should be deleted!!!
+            model.new_order(orderid,tel,contact,officeid,menu_date,float(all_price),float(price0),float(price1),\
+                        float(price2),int(total_num),time.strftime('%Y-%m-%d %X', time.localtime()),\
+                        time.strftime('%Y-%m-%d %X', time.localtime()),web.ctx.session.userid,\
+                        invoice, unit_address, tminterval_type)
+            lidict = {}
+            for _lunchid in shopping_basket[_date]:
+                cnt = shopping_basket[_date][_lunchid]["Count"]
+                meal_it = model.get_meal_detail(_lunchid, _date)
+                meal_dtl = list(meal_it)
+
+                if int(meal_dtl[0].stock) >= int(cnt):
+                        #新增订单详情
+                        model.new_detail(orderid, _lunchid, cnt)
+                        #库存修改
+                        ret = model.upd_meal_sold(_lunchid,_date,cnt)
+                        #print 'upd_meal_sold return:'+str(ret)
+                        if ret == -1:
+                            web.ctx.session.failreason = "stock"
+                            model.del_order(orderid)
+                            model.del_detail(orderid)
+                            for (k,v) in lidict.items():
+                                model.upd_meal_sold(k,_date,-int(v))
+                            return web.seeother('/carte_failed')
+                        elif ret == 0:
+                            #暂存已更新的库存信息
+                            lidict[_lunchid] = cnt
+                    else:
+                        web.ctx.session.failreason="stock"
+                        model.del_order(orderid)
+                        model.del_detail(orderid)
+                        for (k,v) in lidict.items():
+                            model.upd_meal_sold(k,_date,-int(v))
+                        return web.seeother('/carte_failed')
+
+        return web.seeother('/prepay?orderid='+str(orderid))
+
+'''
         #web.ctx.session.out_trade_no = int(time.time())
         #print web.ctx.session.out_trade_no
         # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start
@@ -28,7 +66,7 @@ class defray:
             web.ctx.session.failreason="expired"
             return web.seeother('/carte_failed')
         # End
-        rand_suffix = random.randint(1000,10000)
+
         #结算失败原因
         web.ctx.session.failreason="pay"        
         i = web.input()
@@ -54,16 +92,11 @@ class defray:
         all_price = float(price0)-float(price1)+float(price2)
         #print total_price
         all_cnt = 0
-        orderid = int(time.time())*1000+rand_suffix
-		#if failed in next steps, the order should be deleted!!!
-        model.new_order(orderid,tel,contact,officeid,menu_date,float(all_price),float(price0),float(price1),\
-                        float(price2),int(total_num),time.strftime('%Y-%m-%d %X', time.localtime()),\
-                        time.strftime('%Y-%m-%d %X', time.localtime()),web.ctx.session.userid,\
-                        invoice, unit_address, tminterval_type)
+
+
         model.update_username(web.ctx.session.userid,contact,officeid,unit_address)
         lunches = model.get_menu(routeid,menu_date)
         
-        lidict = {}
         for lunch in lunches:
             num = web.cookies().get(str(lunch.ID))
             #print num            
@@ -113,3 +146,4 @@ class defray:
         #    return web.seeother('/order_list')
         logging.info("[pay][uid:%s]", str(web.ctx.session.userid))
         return web.seeother('/prepay?orderid='+str(orderid))
+'''
