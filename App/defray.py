@@ -32,27 +32,27 @@ class defray:
 
                 if int(meal_dtl[0].stock) >= int(cnt):
                         #新增订单详情
-                        model.new_detail(orderid, _lunchid, cnt)
+                    model.new_detail(orderid, _lunchid, cnt)
                         #库存修改
-                        ret = model.upd_meal_sold(_lunchid,_date,cnt)
+                    ret = model.upd_meal_sold(_lunchid,_date,cnt)
                         #print 'upd_meal_sold return:'+str(ret)
-                        if ret == -1:
-                            web.ctx.session.failreason = "stock"
-                            model.del_order(orderid)
-                            model.del_detail(orderid)
-                            for (k,v) in lidict.items():
-                                model.upd_meal_sold(k,_date,-int(v))
-                            return web.seeother('/carte_failed')
-                        elif ret == 0:
-                            #暂存已更新的库存信息
-                            lidict[_lunchid] = cnt
-                    else:
-                        web.ctx.session.failreason="stock"
+                    if ret == -1:
+                        web.ctx.session.failreason = "stock"
                         model.del_order(orderid)
                         model.del_detail(orderid)
                         for (k,v) in lidict.items():
                             model.upd_meal_sold(k,_date,-int(v))
                         return web.seeother('/carte_failed')
+                    elif ret == 0:
+                            #暂存已更新的库存信息
+                        lidict[_lunchid] = cnt
+                else:
+                    web.ctx.session.failreason="stock"
+                    model.del_order(orderid)
+                    model.del_detail(orderid)
+                    for (k,v) in lidict.items():
+                        model.upd_meal_sold(k,_date,-int(v))
+                    return web.seeother('/carte_failed')
 
         return web.seeother('/prepay?orderid='+str(orderid))
 

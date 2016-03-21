@@ -14,6 +14,7 @@ from env import render
 class index:
     def GET(self):
         # 初始化送餐楼宇编号
+        web.ctx.session.routeid = 0
         web.ctx.session.officeid = 0
         
         # initialize menu dates
@@ -29,6 +30,11 @@ class index:
         # initialize shopping basket
         shopping_basket={}
         web.ctx.session.shoppingbasket = shopping_basket
+        
+        # initialize user info
+        user_info = {}
+        web.ctx.session.userinfo = user_info
+
         
         i = web.input()
         # CODE from WebChat

@@ -37,7 +37,10 @@ class bill:
                 shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
                 shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
 
-        return render.bill(user_info, shopping_basket)
+        if user_info:       
+            return render.bill(user_info, shopping_basket)
+        else:
+            web.seeother('/login')   
 	'''
         #浏览器回退防御
         if web.ctx.session.webbrowser_backstep == "danger":
