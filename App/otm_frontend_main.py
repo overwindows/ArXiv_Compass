@@ -53,6 +53,7 @@ urls = (
 	'/register', 'register',
 	'/reset', 'reset',
         '/prepay', 'prepay',
+        '/member', 'member',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
@@ -70,7 +71,6 @@ urls = (
         '/order_rollback', 'order_rollback',
         '/sms_valid', 'sms_valid',
         '/terms', 'terms',
-        '/', 'home_page'
 		'''
         )
 
