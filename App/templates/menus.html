@@ -3,7 +3,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>准时开饭</title>
+    <title>准时开饭-点餐页</title>
     <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
     <link rel="stylesheet" href="../static/css/common.css" />
     <link rel="stylesheet" href="../static/css/style.css" />
@@ -19,9 +19,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
         <div class="ins rel">
             <span class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></span>
             <a href="/sites" class="txt_loaction white_txt">$office.Name</a>
-            <a href="#" class="logo imgbox">
-                <img src="../static/images/img_01.png" />
-            </a>
+            <a href="#" class="logo imgbox"><img src="../static/images/img_01.png" /></a>
         </div>
     </div>
     <div class="g-content">
@@ -48,13 +46,13 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                 <a href="javascript:void(0)" class="time_val rel" data-select >
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v</span>
+                            <span>$v($k)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
                     $for k,v in menu_calendar.items():
                         <!--li class="list prev"></li-->
-                        <li class="list">$v</li>
+                        <li class="list">$v($k)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -80,9 +78,9 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                         <div class="ins white_txt">
                             <h3 class="tit">$lunch.Meal</h3>
                             <div class="txt">
-                                <p><span>主菜</span>$lunch.entree</p>
-                                <p><span>配菜</span>$lunch.garnish</p>
-                                <p><span>主食</span>$lunch.staple</p>
+                                <p><span>主菜:</span>$lunch.entree</p>
+                                <p><span>配菜:</span>$lunch.garnish</p>
+                                <p><span>主食:</span>$lunch.staple</p>
                             </div>
                         </div>
                     </div>    
@@ -92,7 +90,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                     <h2 class="tit">$lunch.Meal</h2>
                     <p class="txt">
                         <span>$lunch.Restaurant</span>
-                        <span>30年本帮菜老字号</span>
+                        <span>$lunch.desc</span>
                     </p>
                     <h2 class="price"><em>￥</em>$lunch.Price</h2>
                     <hr class="hr_gray"/>

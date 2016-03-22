@@ -48,6 +48,8 @@ function showSelectBox(){
                                $(this).click(function(){
                                    span.html($(this).html());
                                    selectCon.hide();
+                                   alert($(this).html());
+                                   location.href = "/menu";
                                });
                            });  
                                                

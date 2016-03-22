@@ -56,7 +56,7 @@ def get_office(office_id):
 # 按路线，日期获取套餐列表
 def get_menu(route_id, date):
     return db.query('select lunches.ID as ID, lunches.Restaurant as Restaurant, lunches.Meal as Meal, lunches.entree as entree,\
-                            lunches.Price as Price, lunches.discount as Discount, lunches.price_0 as price_0, \
+                            lunches.Price as Price, lunches.discount as Discount, lunches.price_0 as price_0, lunches.desc as desc,\
                             schedule.stock as Stock, schedule.sold as Sold, lunches.type as Type, lunches.staple, lunches.garnish  \
                      from schedule,lunches \
                      where schedule.meal_id=lunches.ID AND schedule.sche_date=$date \
