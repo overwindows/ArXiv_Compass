@@ -30,6 +30,8 @@ class index:
         # initialize shopping basket
         shopping_basket = {}
         web.ctx.session.shoppingbasket = shopping_basket
+
+        web.ctx.session.redirecturl = None
         
         # initialize user info
         try:

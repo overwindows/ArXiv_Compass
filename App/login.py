@@ -37,8 +37,10 @@ class login:
             #print next_page
             web.ctx.session.logged_in = True
             web.setcookie('backstep',-2,3600)
-            
-            return web.seeother(redirect_url)
+            if redirect_url:
+                return web.seeother(redirect_url)
+            else: #default
+                return web.seeother('/member')
         else:
             msg="用户名或密码不正确"
             web.setcookie('login_id',uid,3600)

@@ -47,7 +47,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
                             $ d = k.split('-')
-                            $ t_d = str(int(d[0]))+"月"+str(d[1])+"日"
+                            $ t_d = d[1]+"月"+d[2]+"日"
                             <span>$v ($t_d)</span>
                     <i class="icon"></i>
                 </a>
@@ -55,7 +55,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                     $for k,v in menu_calendar.items():
                         <!--li class="list prev"></li-->
                         $ d = k.split('-')
-                        $ t_d = str(int(d[0]))+"月"+str(d[1])+"日"
+                        $ t_d = d[1]+"月"+d[2]+"日"
                         <li class="list" menudate="$k" >$v ($t_d)</li>
                 </ul>
             </div>
