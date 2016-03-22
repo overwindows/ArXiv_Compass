@@ -46,13 +46,13 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                 <a href="javascript:void(0)" class="time_val rel" data-select >
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v($k)</span>
+                            <span>$v ($k)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
                     $for k,v in menu_calendar.items():
                         <!--li class="list prev"></li-->
-                        <li class="list">$v($k)</li>
+                        <li class="list" menudate="$k" >$v ($k)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">

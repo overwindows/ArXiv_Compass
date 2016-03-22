@@ -47,9 +47,10 @@ function showSelectBox(){
                            selectCon.children("li").each(function(){
                                $(this).click(function(){
                                    span.html($(this).html());
+                                   menudate = $(this).attr("menudate");
                                    selectCon.hide();
-                                   alert($(this).html());
-                                   location.href = "/menu";
+                                   location.href = "/menus?menudate="+menudate;
+                                   
                                });
                            });  
                                                
