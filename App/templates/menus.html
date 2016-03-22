@@ -46,13 +46,17 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                 <a href="javascript:void(0)" class="time_val rel" data-select >
                      $for k,v in menu_calendar.items():
                         $if k == menu_date:
-                            <span>$v ($k)</span>
+                            $ d = k.split('-')
+                            $ t_d = str(int(d[0]))+"月"+str(d[1])+"日"
+                            <span>$v ($t_d)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
                     $for k,v in menu_calendar.items():
                         <!--li class="list prev"></li-->
-                        <li class="list" menudate="$k" >$v ($k)</li>
+                        $ d = k.split('-')
+                        $ t_d = str(int(d[0]))+"月"+str(d[1])+"日"
+                        <li class="list" menudate="$k" >$v ($t_d)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
@@ -70,9 +74,11 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
         </div>
         <div class="cooksbox white_bg">
         $for lunch in lunches:
+            $ total_cnt = 0
+            $ total_cost = 0.0
             <section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">
-                    <img src="../static/images/img_12.png" data-cookimg/>
+                    <img src="../static/prod_img/$(lunch.ID).jpg" data-cookimg/>
                     <a href="javascript:void(0)" class="btn_store" data-store></a>
                     <div class="mark_info abs hide" data-markInfo>
                         <div class="ins white_txt">
@@ -99,6 +105,8 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
                         </a>
                         $if lunches_info and lunches_info.haskey(lunch.ID):
                             <span class="count" data-count="">$(lunches_info[lunch.ID]["Count"])</span>
+                            $ total_cnt = int(total_cnt) + int(lunches_info[lunch.ID]["Count"])
+                            $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)
                         $else:
                             <span class="count" data-count="">0</span>
                         <a href="javascript:void(0)" class="btn_add" data-add="">
@@ -146,7 +154,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
     </a>
     <a class="foot_tabs tab_car rel">
         <img src="../static/images/img_15.png" />
-        <i class="news_num">9</i>
+        <i class="news_num">$total_cnt</i>
     </a>
 <script type="text/javascript">
 $$(".tab_car").click(function(){

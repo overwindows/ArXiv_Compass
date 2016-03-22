@@ -47,9 +47,12 @@ function showSelectBox(){
                            selectCon.children("li").each(function(){
                                $(this).click(function(){
                                    span.html($(this).html());
-                                   menudate = $(this).attr("menudate");
                                    selectCon.hide();
-                                   location.href = "/menus?menudate="+menudate;
+
+                                   if ($(this).attr("menudate") != "undefined"){
+                                       menudate = $(this).attr("menudate");
+                                       location.href = "/menus?menudate="+menudate;
+                                   }
                                    
                                });
                            });  
@@ -156,7 +159,6 @@ function add (numSpan,o){
         numSpan.html(parseInt(numSpan.html())+1);
             o.siblings("a[data-minus]").addClass("on");
             o.siblings().show();
-
             if(parseInt(numSpan.html())==max){
                 o.addClass("no");
                 o.unbind("click");
@@ -168,6 +170,8 @@ function controlCount(){
         $(this).click(function(){    
             var numSpan = $(this).siblings("span[data-count]");        
             add(numSpan,$(this));
+
+            $(".news_num").html(parseInt($(".news_num").html())+1);
         });    
     });
 
@@ -175,7 +179,9 @@ function controlCount(){
         $(this).click(function(){
             var numSpan = $(this).siblings("span[data-count]");    
             numSpan.html(parseInt(numSpan.html())-1);
-            
+
+            $(".news_num").html(parseInt($(".news_num").html())-1);
+
             if(numSpan.html()==0){
                 numSpan.html("0");
                 $(this).hide();

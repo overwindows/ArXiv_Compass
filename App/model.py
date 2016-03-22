@@ -11,13 +11,13 @@ db = web.database(dbn='mysql', port=3307, host='127.0.0.1', db='ontime_meal', us
 # print sae.const.MYSQL_PASS
 
 chinese_weekday = {
-    0: '周一',
-    1: '周二',
-    2: '周三',
-    3: '周四',
-    4: '周五',
-    5: '周六',
-    6: '周日'
+    0: '星期一',
+    1: '星期二',
+    2: '星期三',
+    3: '星期四',
+    4: '星期五',
+    5: '星期六',
+    6: '星期日'
 }
 
 def get_menu_dates(_date):
