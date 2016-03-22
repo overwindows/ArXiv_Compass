@@ -14,9 +14,13 @@ from env import *
 #Login Page
 class member:
     def GET(self):
-        msg = None
-        web.ctx.session.logged_in = True
-        return render.member()
+        user_info = web.ctx.session.userinfo
+        if user_info.has_key("ID"):
+            msg = None
+            web.ctx.session.logged_in = True
+            return render.member(user_info)
+        else:
+            return web.seeother('/anonymous')
 	'''	
     def POST(self):
         msg = None

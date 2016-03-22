@@ -14,7 +14,12 @@ from env import *
 # 订单页
 class orders:
     def GET(self):
-        return render.orders()
+        user_info = web.ctx.session.userinfo
+        uid = user_info["ID"]
+        orders_0 = model.get_orders(int(uid), 0)
+        orders_1 = model.get_orders(int(uid), 1)
+        orders_2 = model.get_orders(int(uid), 2)
+        return render.orders(orders_0, orders_1, orders_2)
 	'''
         islogin = False
         try:
