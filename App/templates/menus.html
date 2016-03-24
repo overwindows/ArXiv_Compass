@@ -124,6 +124,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
         <img src="../static/images/img_15.png" />
         <i class="news_num">$total_cnt</i>
     </a>
+<script src="../static/js/touch-0.2.14.min.js"></script>
 <script type="text/javascript">
 $$(".tab_car").click(function(){
     param="";
@@ -138,65 +139,37 @@ $$(".tab_car").click(function(){
   });
 
   var mySwiper = new Swiper('.swiper-container',{
-        loop: true,
-    autoplay: 3000,
-    pagination: '.swiper-pagination',
-    paginationClickable :true,
+    	loop: true,
+	autoplay: 3000,
+	pagination: '.swiper-pagination',
+	paginationClickable :true,
   });
-    /*兼容pc & mobile滚动事件*/
-    var hastouch = "ontouchstart" in window?true:false,
-        tapstart = hastouch?"touchstart":"mousedown",
-        tapmove  = hastouch?"touchmove":"mousemove",
-        tapend   = hastouch?"touchend":"mouseup";
-        var a = document.getElementById('a');
-        var body = document.getElementsByTagName('body')[0];
-        var xSlide = 0;
-        var yBody = 0;
-        /*body*/
-        body.addEventListener(tapstart,tapdownBody);
-        function tapdownBody(event){
-            yBody = hastouch?event.targetTouches[0].pageY:event.pageY;
-            body.addEventListener(tapmove,tapmoveBody);
-            body.addEventListener(tapend,tapendBody);
-        }
 
-        var td = false;
-        function tapmoveBody(event){
-            event.preventDefault(); //阻止默认事件
-            var y = hastouch?event.targetTouches[0].pageY:event.pageY;
-            var _y = yBody - y;
-            var _scroll = $$(window).scrollTop();
-            $$('html,body').scrollTop(_scroll + _y);
-             
-    td = window.setTimeout(function(){ 
-        $$(".foot_tabs").fadeOut(100,function(){
-                   $$("this").hide();
-        });        
-    },50);
+touch.on('body', 'touchstart', function(ev){
+    $(".foot_tabs").fadeOut(0,function(){
+	       $("this").hide();
+	});
+});
+touch.on('body', 'touchend', function(ev){
+    $(".foot_tabs").fadeIn(1000,function(){
+	       $("this").show();
+	});
+});
 
-    //页面向下滚动“时间”和“餐别”菜单固定到头部，往回滚动恢复正常
-    var screenBoxTop=$$(".screen_box").offset().top-$$(window).scrollTop();
-    var cooksBoxTop=$$(".cooksbox").offset().top-$$(window).scrollTop();
-    //console.log(screenBoxTop);
-    if(screenBoxTop<0){
-        $$(".screen_box").addClass("fixed");
-    }else if(cooksBoxTop>46 && $$(".screen_box").hasClass("fixed")){
-        $$(".screen_box").removeClass("fixed");
-    }
-          
-        }
-        function tapendBody(event){
-            body.removeEventListener(tapmove,tapmoveBody);
 
-    td = window.setTimeout(function(){             
-                  $$(".foot_tabs").fadeIn(100,function(){
-               console.info(2);
-               $$("this").show();
-                 
-        });        
-    },1900);
+$$(window).scroll( function(event) { 
+	var top = $(document).scrollTop();
 
-        }
+	//页面向下滚动“时间”和“餐别”菜单固定到头部，往回滚动恢复正常
+	var screenBoxTop=$(".screen_box").offset().top-$(window).scrollTop();
+	var cooksBoxTop=$(".cooksbox").offset().top-$(window).scrollTop();
+	//console.log(screenBoxTop);
+	if(screenBoxTop<0){
+		$(".screen_box").addClass("fixed");
+	}else if(cooksBoxTop>46 && $(".screen_box").hasClass("fixed")){
+		$(".screen_box").removeClass("fixed");
+	}	
+ } );
 
 </script>
 </body>
