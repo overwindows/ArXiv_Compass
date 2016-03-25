@@ -146,28 +146,28 @@ $$(".tab_car").click(function(){
   });
 
 touch.on('body', 'touchstart', function(ev){
-    $(".foot_tabs").fadeOut(0,function(){
-	       $("this").hide();
+    $$(".foot_tabs").fadeOut(0,function(){
+	       $$("this").hide();
 	});
 });
 touch.on('body', 'touchend', function(ev){
-    $(".foot_tabs").fadeIn(1000,function(){
-	       $("this").show();
+    $$(".foot_tabs").fadeIn(1000,function(){
+	       $$("this").show();
 	});
 });
 
 
 $$(window).scroll( function(event) { 
-	var top = $(document).scrollTop();
+	var top = $$(document).scrollTop();
 
 	//页面向下滚动“时间”和“餐别”菜单固定到头部，往回滚动恢复正常
-	var screenBoxTop=$(".screen_box").offset().top-$(window).scrollTop();
-	var cooksBoxTop=$(".cooksbox").offset().top-$(window).scrollTop();
+	var screenBoxTop=$$(".screen_box").offset().top-$$(window).scrollTop();
+	var cooksBoxTop=$$(".cooksbox").offset().top-$$(window).scrollTop();
 	//console.log(screenBoxTop);
 	if(screenBoxTop<0){
-		$(".screen_box").addClass("fixed");
-	}else if(cooksBoxTop>46 && $(".screen_box").hasClass("fixed")){
-		$(".screen_box").removeClass("fixed");
+		$$(".screen_box").addClass("fixed");
+	}else if(cooksBoxTop>46 && $$(".screen_box").hasClass("fixed")){
+		$$(".screen_box").removeClass("fixed");
 	}	
  } );
 
