@@ -23,6 +23,7 @@ from register import *
 from reset import *
 from defray import *
 from prepay import *
+from delivery import *
 '''
 from cancelorder import *
 from succeed import *
@@ -44,16 +45,17 @@ urls = (
         '/sites', 'sites',
         '/menus', 'menus',
         '/defray', 'defray',
-	'/member', 'member',
-	'/anonymous', 'anonymous',
-	'/bill', 'bill',
-	'/login', 'login',
-	'/orders', 'orders',
-	'/receipt', 'receipt',
-	'/register', 'register',
-	'/reset', 'reset',
+        '/member', 'member',
+        '/anonymous', 'anonymous',
+        '/bill', 'bill',
+        '/login', 'login',
+        '/orders', 'orders',
+        '/receipt', 'receipt',
+        '/register', 'register',
+        '/reset', 'reset',
         '/prepay', 'prepay',
         '/member', 'member',
+        '/delivery','delivery',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',

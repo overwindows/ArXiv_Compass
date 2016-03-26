@@ -19,6 +19,7 @@ class bill:
         user_info = web.ctx.session.userinfo
         menu_date = web.ctx.session.menudate
         route_id = web.ctx.session.routeid
+        menu_calendar = web.ctx.session.menucalendar
 
         i = web.input()
         param = i.get("param")
@@ -54,7 +55,7 @@ class bill:
         print shopping_basket.keys()
 
         if user_info.has_key("ID"):
-            return render.bill(user_info, shopping_basket)
+            return render.bill(user_info, shopping_basket, menu_calendar)
         else:
             web.ctx.session.redirecturl = "/bill"
             web.seeother('/login')   

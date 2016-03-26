@@ -28,19 +28,26 @@ $def with (orders_0, orders_1, orders_2)
                     <ul>
                         <li class="list">
                             <span class="tit">订单编号</span>
-                            <span class="txt">201612250001</span>
+                            <span class="txt">$order.id</span>
                         </li>
                         <li class="list">
                             <span class="tit">到餐时间</span>
-                            <span class="txt">星期四(12/25)/12:00-12:20</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
                         </li>
                         <li class="list">
                             <span class="tit">取餐地点</span>
-                            <span class="txt">莱赛港 A座 飞牛网总部/一楼大堂</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单数量</span>
-                            <span class="txt">5份 (¥125)</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单状态</span>
@@ -51,71 +58,6 @@ $def with (orders_0, orders_1, orders_2)
                     </div>
                     <hr class="hr_gray"/>
                     <div class="cut_line"></div>
-                    <a href="#" class="btn_info imgbox">
-                        <img src="../static/images/img_44.png" />
-                    </a>
-                    <ul>
-                        <li class="list">
-                            <span class="tit">订单编号</span>
-                            <span class="txt">201612250001</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">到餐时间</span>
-                            <span class="txt">星期四(12/25)/12:00-12:20</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">取餐地点</span>
-                            <span class="txt">莱赛港 A座 飞牛网总部/一楼大堂</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">订单数量</span>
-                            <span class="txt">5份 (¥125)</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">订单状态</span>
-                            <span class="txt">订单已确认</span>
-                        </li>
-                    </ul>
-                    <a href="javascript:void(0)" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">
-                        取消订单
-                        <span class="txt">订单在10:30前可取消</span>
-                    </a>
-                </div>
-                <hr class="hr_gray"/>
-                <div class="cut_line"></div>
-                <div class="m-orderlists cur2 rel">
-                    <a href="#" class="btn_info imgbox">
-                        <img src="../static/images/img_44.png" />
-                    </a>
-                    <ul>
-                        <li class="list">
-                            <span class="tit">订单编号</span>
-                            <span class="txt">201612250001</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">到餐时间</span>
-                            <span class="txt">星期四(12/25)/12:00-12:20</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">取餐地点</span>
-                            <span class="txt">莱赛港 A座 飞牛网总部/一楼大堂</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">订单数量</span>
-                            <span class="txt">5份 (¥125)</span>
-                        </li>
-                        <li class="list">
-                            <span class="tit">订单状态</span>
-                            <span class="txt">订单已确认</span>
-                        </li>
-                    </ul>
-                    <a href="javascript:void(0)" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">
-                        取消订单
-                        <span class="txt">订单在10:30前可取消</span>
-                    </a>
-                </div>
-                <hr class="hr_gray"/>
-                <div class="cut_line"></div-->
                 </div>
                 <div class="swiper-slide red-slide">
                 $for order in orders_1:
@@ -126,11 +68,18 @@ $def with (orders_0, orders_1, orders_2)
                     <ul>
                         <li class="list">
                             <span class="tit">订单编号</span>
-                            <span class="txt">201612250001</span>
+                            <span class="txt">$order.id</span>
                         </li>
                         <li class="list">
                             <span class="tit">到餐时间</span>
-                            <span class="txt">星期四(12/25)/12:00-12:20</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
                         </li>
                         <li class="list">
                             <span class="tit">取餐地点</span>
@@ -158,11 +107,18 @@ $def with (orders_0, orders_1, orders_2)
                     <ul>
                         <li class="list">
                             <span class="tit">订单编号</span>
-                            <span class="txt">201612250001</span>
+                            <span class="txt">$order.id</span>
                         </li>
                         <li class="list">
                             <span class="tit">到餐时间</span>
-                            <span class="txt">星期四(12/25)/12:00-12:20</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
                         </li>
                         <li class="list">
                             <span class="tit">取餐地点</span>

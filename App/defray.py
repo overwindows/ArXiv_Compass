@@ -76,12 +76,10 @@ class defray:
 
         #结算失败原因
         web.ctx.session.failreason="pay"        
-        i = web.input()
-        tel = i.get('telephone')
-        contact = i.get('contact')
+
         total_num = i.get('total_num')
         # 2016/01/02 Start
-        unit_address = i.get('unit_address')
+
         tminterval_type = i.get('tminterval_type')
         invoice_type = i.get('invoice_type')
         invoice = ""
@@ -101,7 +99,6 @@ class defray:
         all_cnt = 0
 
 
-        model.update_username(web.ctx.session.userid,contact,officeid,unit_address)
         lunches = model.get_menu(routeid,menu_date)
         
         for lunch in lunches:
