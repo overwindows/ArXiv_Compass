@@ -20,14 +20,20 @@ class index:
         # initialize menu dates
         current_day = datetime.date.today()
         #current_wkday = int(current_day.weekday())
-        menu_dates = list(model.get_menu_dates(current_day))
+        ot_ts  = int(time.mktime(time.strptime(str(current_day) + " 10:30:00", "%Y-%m-%d %H:%M:%S")))
+        cur_ts = int(time.time())
+        if cur_ts > ot_ts:
+            current_day = current_day + datetime.timedelta(days=1)
+            menu_dates = list(model.get_menu_dates(current_day))
+        else:
+            menu_dates = list(model.get_menu_dates(current_day))
+
         menu_calendar = {}        
         for menu_date in menu_dates:
             _date = datetime.datetime.strptime(str(menu_date.sche_date), "%Y-%m-%d").date()
             menu_calendar[str(menu_date.sche_date)] = model.get_chinese_weekday(_date.weekday())         
         web.ctx.session.menucalendar = menu_calendar
-        web.ctx.session.basedate = current_day
-        
+
         # initialize shopping basket
         shopping_basket = {}
         web.ctx.session.shoppingbasket = shopping_basket
