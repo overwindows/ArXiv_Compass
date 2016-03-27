@@ -20,6 +20,7 @@ class index:
         # initialize menu dates
         current_day = datetime.date.today()
         #current_wkday = int(current_day.weekday())
+        
         ot_ts  = int(time.mktime(time.strptime(str(current_day) + " 10:30:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
         if cur_ts > ot_ts:
@@ -37,6 +38,9 @@ class index:
         # initialize shopping basket
         shopping_basket = {}
         web.ctx.session.shoppingbasket = shopping_basket
+
+        shopping_cost = {}
+        web.ctx.session.shoppingcost = shopping_cost
 
         web.ctx.session.redirecturl = None
         

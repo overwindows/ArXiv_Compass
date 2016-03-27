@@ -56,20 +56,20 @@ $def with (userinfo, shoppingbasket, menucalendar)
                         </a>
                         $ i = i + 1
                         <span class="tit font_big">订单$i.</span>
-                        $ d = $d_0.split('-')
+                        $ d = d_0.split('-')
                         $ t_d = d[1]+"月"+d[2]+"日"
-                        <span class="txt"> $menucalendar[$d_0]（$t_d）</span>
+                        <span class="txt"> $menucalendar[d_0]（$t_d）</span>
                         <span class="f_r">午餐</span>
                     </div>
                 </li>
                 $ amount_1 = 0.0
-                $ cnt_1 = 0
+                $ cnt = 0
                 $for d_1 in shoppingbasket[d_0]:
                     <li class="list">
                         <span class="tit">$shoppingbasket[d_0][d_1]["Name"]</span>
                         <span class="f_r">¥$shoppingbasket[d_0][d_1]["Price"]<em class="grey_txt">X$shoppingbasket[d_0][d_1]["Count"]</em></span>
                     </li>
-                    $ amount_1 = amount_1 + float($shoppingbasket[d_0][d_1]["Price"])*int(shoppingbasket[d_0][d_1]["Count"])
+                    $ amount_1 = amount_1 + float(shoppingbasket[d_0][d_1]["Price"])*int(shoppingbasket[d_0][d_1]["Count"])
                     $ cnt = cnt + int(shoppingbasket[d_0][d_1]["Count"])
                 <li class="list bor_b_bold">
                     <span class="tit">合计</span>
@@ -81,7 +81,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
                     <span class="f_r">¥0</span>
                 </li>
                 <li class="list">
-                    <span class="tit">共计<em class="red_txt">$ cnt</em>&nbsp份</span>
+                    <span class="tit">共计<em class="red_txt">$cnt</em>&nbsp份</span>
                     <span class="f_r red_txt">$amount_1</span>
                 </li>
                 <li class="list bor_b_none">
