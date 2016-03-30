@@ -145,15 +145,25 @@ $$(".tab_car").click(function(){
 	paginationClickable :true,
   });
 
-touch.on('body', 'touchstart', function(ev){
+touch.on('body', 'touchmove', function(ev){
+//touch.on('body', 'touchstart', function(ev){
     $$(".foot_tabs").fadeOut(0,function(){
 	       $$("this").hide();
 	});
 });
 touch.on('body', 'touchend', function(ev){
+    
+    window.setTimeout(function(){ 			
+         $$(".foot_tabs").fadeIn(300,function(){
+	       $$(this).show();
+		});	
+	},500);
+    
+    /*
     $$(".foot_tabs").fadeIn(1000,function(){
 	       $$("this").show();
 	});
+    */
 });
 
 

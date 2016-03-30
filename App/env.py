@@ -16,6 +16,7 @@ t_globals = {
 }
 render = web.template.render('templates', globals=t_globals)
 web.config.debug = False
+web.config.session_parameters['timeout'] = 86400, #24 * 60 * 60, # 24 hours   in seconds
 # print "[DEBUG][env.py]"
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
