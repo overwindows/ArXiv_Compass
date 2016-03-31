@@ -20,7 +20,8 @@ class index:
         # initialize menu dates
         current_day = datetime.date.today()
         #current_wkday = int(current_day.weekday())
-        
+
+        # check if today's menu overtime
         ot_ts  = int(time.mktime(time.strptime(str(current_day) + " 10:30:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
         if cur_ts > ot_ts:
@@ -33,6 +34,8 @@ class index:
         for menu_date in menu_dates:
             _date = datetime.datetime.strptime(str(menu_date.sche_date), "%Y-%m-%d").date()
             menu_calendar[str(menu_date.sche_date)] = model.get_chinese_weekday(_date.weekday())         
+
+        sorted(menu_calendar.items(),key=lambda menu_calendar:menu_calendar[0],reverse=True)
         web.ctx.session.menucalendar = menu_calendar
 
         # initialize shopping basket

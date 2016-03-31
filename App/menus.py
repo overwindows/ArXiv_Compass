@@ -47,7 +47,6 @@ class menus:
         if shopping_basket.has_key(menu_date):
             lunches_info = shopping_basket[menu_date]
 
-
         web.ctx.session.userinfo = user_info
 
         return render.menus(menu_calendar, lunches, offices[0], menu_date, lunches_info)
@@ -81,14 +80,7 @@ class menus:
         web.setcookie('officeaddress',office[0].Address,3600)
         web.setcookie('officename' , office[0].Name , 3600)
         web.setcookie('backstep',-1,3600)
-        
-        ot_ts  = int(time.mktime(time.strptime(str(menu_date)+" 10:30:00", "%Y-%m-%d %H:%M:%S")))
-        cur_ts = int(time.time())
-        if cur_ts > ot_ts:
-            OT=True
-        else:
-            OT=False
-        
+
         lunches_list = list(lunches)
         #清空原有购物车内容(本日)
         for lunch in lunches_list:            
