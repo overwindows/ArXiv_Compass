@@ -18,7 +18,7 @@ class prepay:
         #pay_id = i.payid
         #web.ctx.session.payid = pay_id 
         #print pay_id       
-        redir_url='http%3a%2f%2fm.zhunshikaifan.com%2fpayment'
+        redir_url='http%3a%2f%2fx.zhunshikaifan.com%2fpayment'
         js_api = JsApi_pub()
         prepay_url = js_api.createOauthUrlForCode(redir_url)
         print prepay_url

@@ -72,6 +72,7 @@ urls = (
         '/prepay', 'prepay',
         '/member', 'member',
         '/delivery','delivery',
+        '/payment', 'payment',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
@@ -81,7 +82,6 @@ urls = (
         '/order_detail', 'order_detail',
         '/order_over', 'order_over',
         '/order_index', 'order_index',
-        '/payment', 'payment',
         '/order_list', 'order_list',
         '/success', 'success',
         '/logout', 'logout',
