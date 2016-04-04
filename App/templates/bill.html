@@ -12,9 +12,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
 </head>
 <body>
     <header class="m-hd rel">
-        <a href="index6.html" class="btn_prevpage imgbox">
-            <img src="../static/images/img_23.png" />
-        </a>
+        <a href="/orders" class="btn_prevpage imgbox"><img src="../static/images/img_23.png" /></a>
         <h3 class="tit">订单确认</h3>
     </header>
     <div class="m-orderlists rel cur bg2 box_shadow">
@@ -51,7 +49,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
                                     <img src="../static/images/img_05.png">
                                 </span>
                     <div class="agree_txt rel">
-                        <a href="javascript:void(0)" class="btn_agree on">
+                        <a href="javascript:void(0)" class="btn_agree on" oid="$i">
                             <span></span>
                         </a>
                         $ i = i + 1
@@ -130,9 +128,14 @@ $def with (userinfo, shoppingbasket, menucalendar)
 <script type="text/javascript" src="../static/js/main.js" ></script>
 <script type="text/javascript">
 $$(".w_p_80").click(function(){
-    param="";
+    chk="";
+    $$(".agree_txt").each(function(){
+        if($$(this).children("a").hasClass("on")){
+            param = $$(this).children("a").attr("oid");
+            param += "_";
+        }});
     //alert(param);
-    location.href = "/defray?param="+param;
+    location.href = "/defray?chk="+param;
   });
 </script>
 </html>

@@ -6,7 +6,7 @@ $(function(){
     siteSearch();
     showCookMark();
     btnUnbind();
-    agreeed();
+    agreed();
     showCook();
     tipsDelay();
     /*controlPosition();*/
@@ -257,7 +257,7 @@ function btnUnbind(){
         });
     });
 }
-function agreeed(){
+function agreed(){
     $(".agree_txt").click(function(){
         if($(this).children("a").hasClass("on")){
             $(this).children("a").removeClass("on");

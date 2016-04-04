@@ -1,4 +1,4 @@
-$def with (shoppingbasket)
+$def with (shoppingbasket, userinfo)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +26,15 @@ $def with (shoppingbasket)
 			    			<ul>
 				    			<li class="list c_f">
 				    				<span class="tit">姓名</span>
-				    				<span class="txt">饭饭</span>
+				    				<span class="txt">$userinfo['Contact']</span>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">手机</span>
-				    				<a class="txt" href="#">13812345678</a>
+				    				<a class="txt" href="#">$userinfo['Tel']</a>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">送餐地址</span>
-				    				<span class="txt">莱赛港 A座 飞牛网总部</span>
+				    				<span class="txt">$userinfo["OfficeAddr"]</span>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">取餐地点</span>
@@ -56,19 +56,11 @@ $def with (shoppingbasket)
 				    				<span class="icon"></span>
 				    				<span class="tit">订单内容</span>
 				    				<span class="txt detail">本帮爆鱼1份本帮爆鱼1份</span>
-                                    $for d_1 in shoppingbasket[d_0]:
                                         <ul class="detailbox hide">
+										$for d_1 in shoppingbasket[d_0]:
                                             <li class="list3 c_f">
-                                                <span class="f_l">本帮爆鱼1份</span>
-                                                <span class="f_r">¥25</span>
-                                            </li>
-                                            <li class="list3 c_f">
-                                                <span class="f_l">本帮爆鱼1份</span>
-                                                <span class="f_r">¥25</span>
-                                            </li>
-                                            <li class="list3 c_f">
-                                                <span class="f_l">本帮爆鱼1份</span>
-                                                <span class="f_r">¥25</span>
+                                                <span class="f_l">$shoppingbasket[d_0][d_1]["Name"] $shoppingbasket[d_0][d_1]["Count"]份</span>
+                                                <span class="f_r">¥$shoppingbasket[d_0][d_1]["Price"]</span>
                                             </li>
                                         </ul>
 				    			</li>

@@ -15,11 +15,15 @@ from env import *
 class orders:
     def GET(self):
         user_info = web.ctx.session.userinfo
-        uid = user_info["ID"]
-        orders_0 = model.get_orders(int(uid), 0)
-        orders_1 = model.get_orders(int(uid), 1)
-        orders_2 = model.get_orders(int(uid), 2)
-        return render.orders(orders_0, orders_1, orders_2)
+        if user_info.has_key("ID"):
+            uid = user_info["ID"]
+            orders_0 = model.get_orders(int(uid), 0)
+            orders_1 = model.get_orders(int(uid), 1)
+            orders_2 = model.get_orders(int(uid), 2)
+            return render.orders(orders_0, orders_1, orders_2)
+        else:
+            web.ctx.session.redirecturl = "/orders"
+            web.seeother('/login')
 	'''
         islogin = False
         try:
