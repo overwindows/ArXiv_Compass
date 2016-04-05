@@ -55,6 +55,7 @@ class MemCacheStore(web.session.Store):
         pass # Not needed as we assigned the timeout to memcache
 
 urls = (
+        '/favicon.ico','icon',
         #'/', 'webchat',
         '/', 'index',
         '/index', 'index ',
@@ -107,6 +108,11 @@ def session_hook():
     web.ctx.session = session
     web.template.Template.globals['session'] = session
 app.add_processor(web.loadhook(session_hook))
+
+class icon:
+    def GET(self): 
+        raise web.seeother("/static/images/favicon.ico")
+
 
 # Order Detail
 class order_detail:

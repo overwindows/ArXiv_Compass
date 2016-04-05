@@ -19,9 +19,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
         <ul class="c_f">
             <li class="list frist_list rel bor_b_bold">
                 <span class="icon imgbox"><img src="../static/images/img_06_2.png"></span>
-                <a href="/delivery" class="btn_edit imgbox">
-                    <img src="../static/images/img_04.png" />
-                </a>
+                <a href="/delivery" class="btn_edit imgbox"><img src="../static/images/img_04.png" /></a>
                 <span class="tit2">姓名</span>
                 <span class="txt2">$userinfo["Contact"]</span>
             </li>
@@ -45,13 +43,9 @@ $def with (userinfo, shoppingbasket, menucalendar)
         <div class="m-orderlists rel cur">
             <ul>
                 <li class="list frist_list rel bor_b_bold">
-                    <span class="icon imgbox">
-                                    <img src="../static/images/img_05.png">
-                                </span>
+                    <span class="icon imgbox"><img src="../static/images/img_05.png"></span>
                     <div class="agree_txt rel">
-                        <a href="javascript:void(0)" class="btn_agree on" oid="$i">
-                            <span></span>
-                        </a>
+                        <a href="javascript:void(0)" class="btn_agree on" oid="$i"><span></span></a>
                         $ i = i + 1
                         <span class="tit font_big">订单$i.</span>
                         $ d = d_0.split('-')
@@ -86,10 +80,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
                     <span class="tit">期望到餐时间</span>
                 </li>
                 <li class="selecbox">
-                    <a href="javascript:void(0)" class="time_val rel" data-selecttime="">
-                        <span>请选择到餐时间</span>
-                        <i class="icon"></i>
-                    </a>
+                    <a href="javascript:void(0)" class="time_val rel" data-selecttime=""><span oid="$i">请选择到餐时间</span><i class="icon"></i> </a>
                     <ul class="hide">
                         <li>15:00～15:20</li>
                         <li>15:20～15:40</li>
@@ -101,25 +92,18 @@ $def with (userinfo, shoppingbasket, menucalendar)
         <hr class="hr_gray">
         <div class="cut_line"></div>
     <div class=" p_b_2">
-        <a href="javascript:void(0)" class="btn_red_wrap cur rel" data-getgray="" data-showmarkbox="txt1">
-            确定下单
-            <span class="txt2">¥$amount_0</span>
-        </a>
+        <a href="javascript:void(0)" class="btn_red_wrap cur rel" data-getgray="" data-showmarkbox="txt1">确定下单<span class="txt2">¥$amount_0</span></a>
     </div>
     <div class="mark_info hide z_index_200">
         <div class="con  white_bg" data-markbox="txt1">
             <div class="hd rel">
                 <span>抱歉...</span>
-                <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox>
-                    <img src="../static/images/img_47.png">
-                </a>
+                <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
             </div>
             <div class="ins m_t_1">
                 <p class="txt">当日10:30之后的订单，不可取消</p>
                 <p class="txt">按“确定”继续下单</p>
-                <a href="/defray" class="btn_red_wrap w_p_80 rel" data-closemarkbox>
-                    确定
-                </a>
+                <a href="/defray" class="btn_red_wrap w_p_80 rel" data-closemarkbox>确定</a>
             </div>
         </div>
     </div>
@@ -128,6 +112,11 @@ $def with (userinfo, shoppingbasket, menucalendar)
 <script type="text/javascript" src="../static/js/main.js" ></script>
 <script type="text/javascript">
 $$(".w_p_80").click(function(){
+    $$(".time_val").each(function(){
+         tm = $$(this).children("span").html();
+         //alert(tm); 
+    });    
+
     chk="";
     $$(".agree_txt").each(function(){
         if($$(this).children("a").hasClass("on")){

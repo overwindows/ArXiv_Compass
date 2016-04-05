@@ -39,7 +39,7 @@ $def with (districts, zones, plazas, offices)
             </ul>
            
         $for zone in zones:    
-            <ul class="location hide" data-p="2_$zone.id"  data-level="2">
+            <ul class="location hide" data-p="2_$zone.id"  data-level="3">
             $for plaza in plazas:
                 $if plaza.zone_id == zone.id:
                     <li class="list" data-p="3_$plaza.id">$plaza.name</li>

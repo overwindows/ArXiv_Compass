@@ -46,14 +46,15 @@ function showSelectBox(){
                            selectConNext.hide();
                            selectCon.children("li").each(function(){
                                $(this).click(function(){
+                               if(!$(this).hasClass("prev")){
                                    span.html($(this).html());
                                    selectCon.hide();
-
-                                   if ($(this).attr("menudate") != "undefined"){
+                                   //alert($(this).attr("menudate"));
+                                   if (typeof($(this).attr("menudate")) != "undefined"){
                                        menudate = $(this).attr("menudate");
                                        location.href = "/menus?menudate="+menudate;
                                    }
-                                   
+                               }    
                                });
                            });  
                                                

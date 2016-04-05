@@ -21,7 +21,7 @@ chinese_weekday = {
 }
 
 def get_menu_dates(_date):
-    return db.query('SELECT distinct sche_date FROM schedule WHERE sche_date >= $_date ORDER BY sche_date DESC limit 6 ', vars=locals())
+    return db.query('SELECT distinct sche_date FROM schedule WHERE sche_date >= $_date ORDER BY sche_date ASC limit 6 ', vars=locals())
 
 def get_districts():
     return db.select('districts')
@@ -46,7 +46,7 @@ def get_offices():
 
 def get_offices_ex():
     return db.query('select offices.officeid as officeid, offices.Name as officename, offices.Address as officeaddr, \
-    plazas.name as plazaname, plazas.address as plazaaddr, offices.ID as ID, plazas.id as plazaid, plazas.zone_id as zoneid \
+    plazas.name as plazaname, plazas.address as plazaaddr, offices.ID as ID, offices.plazaid as plazaid, offices.zoneid as zoneid \
     from offices left join plazas on offices.plazaid=plazas.id order by plazaname,officename')
 
 def get_office(office_id):

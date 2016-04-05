@@ -17,7 +17,8 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
 <body>
     <div class="hd_location">
         <div class="ins rel">
-            <span class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></span>
+            <!--span class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></span-->
+            <a href="/sites" class="icon_loaction imgbox"><img src="../static/images/img_02.png"/></a>
             <a href="/sites" class="txt_loaction white_txt">$office.Name</a>
             <a href="#" class="logo imgbox"><img src="../static/images/img_01.png" /></a>
         </div>
@@ -131,11 +132,14 @@ $$(".tab_car").click(function(){
     $$(".cook_info").each(function(){
       cnt = $$(this).find('.count').html();
       id = $$(this).children("input").val();
-      if(cnt > 0)
-      param = id+"_"+cnt+"|"+param;
+      if(cnt > 0){
+          param = id+"_"+cnt+"|"+param;
+      }
       });
     //alert(param);
-    location.href = "/bill?param="+param;
+    if(param!=""){
+       location.href = "/bill?param="+param;
+    }
   });
 
   var mySwiper = new Swiper('.swiper-container',{

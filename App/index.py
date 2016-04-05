@@ -35,7 +35,6 @@ class index:
             _date = datetime.datetime.strptime(str(menu_date.sche_date), "%Y-%m-%d").date()
             menu_calendar[str(menu_date.sche_date)] = model.get_chinese_weekday(_date.weekday())         
 
-        sorted(menu_calendar.items(),key=lambda menu_calendar:menu_calendar[0],reverse=True)
         web.ctx.session.menucalendar = menu_calendar
 
         # initialize shopping basket
