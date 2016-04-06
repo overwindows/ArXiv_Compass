@@ -113,7 +113,6 @@ class icon:
     def GET(self): 
         raise web.seeother("/static/images/favicon.ico")
 
-
 # Order Detail
 class order_detail:
     def GET(self):
