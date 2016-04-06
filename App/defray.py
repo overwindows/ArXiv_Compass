@@ -60,8 +60,8 @@ class defray:
                     for (k,v) in lidict.items():
                         model.upd_meal_sold(k,_date,-int(v))
                     return web.seeother('/carte_failed')
-
-        return web.seeother('/prepay?payid='+str(orderid))
+        return web.seeother('/webchatpay')
+        #return web.seeother('/prepay?payid='+str(orderid))
 
 '''
         #web.ctx.session.out_trade_no = int(time.time())
