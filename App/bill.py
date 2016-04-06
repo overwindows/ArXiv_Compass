@@ -15,7 +15,7 @@ from env import *
 class bill:
     def GET(self):
         shopping_basket = web.ctx.session.shoppingbasket
-        shopping_cost  = web.ctx.session.shoppingcost
+        shopping_cost = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
         menu_date = web.ctx.session.menudate
         route_id = web.ctx.session.routeid

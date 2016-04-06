@@ -25,14 +25,14 @@ from reset import *
 from defray import *
 from prepay import *
 from delivery import *
+from sign import Sign
+from pay import *
 '''
 from cancelorder import *
 from succeed import *
 from paylunch import *
 from sms import *
 from register import *
-from sign import Sign
-from pay import *
 from terms import *
 from order_ongoing import *
 from orderfail import *
@@ -73,7 +73,7 @@ urls = (
         '/prepay', 'prepay',
         '/member', 'member',
         '/delivery','delivery',
-        '/payment', 'payment',
+        '/webchatpay', 'webchatpay',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
@@ -173,7 +173,7 @@ class logout:
             pass
         return web.seeother('/index?code=Fake')
 
-class payment:
+class webchatpay:
     def GET(self):
         global access_token
         global jsapi_ticket
@@ -181,7 +181,7 @@ class payment:
         
         i = web.input()
         code = i.get('code')
-        #print code
+        print code
         js_api = JsApi_pub()
         js_api.setCode(code)
         openid = js_api.getOpenid()
@@ -191,10 +191,10 @@ class payment:
             jsapi_ticket = sign.get_ticket(access_token)
             token_timestamp = int(time.time())
         
-        oid = session.pay_oid
+        #oid = session.pay_oid
         #print oid
-        order_it = model.get_order(oid)
-        order = list(order_it)
+        #order_it = model.get_order(oid)
+        #order = list(order_it)
         
         js_sign = Sign(jsapi_ticket, web.ctx.home+web.ctx.fullpath) 
         sign_data = js_sign.sign()
@@ -204,14 +204,14 @@ class payment:
         url = sign_data['url']
         #print url
         #total_fee = web.cookies().get('total_price')
-        total_fee = str(int(order[0].Price)*100)  #TODO:dup orderid
+        #total_fee = str(int(order[0].Price)*100)  #TODO:dup orderid
         unify_pay = UnifiedOrder_pub()
         #print oid
         #print total_fee
         #print openid        
-        unify_pay.setParameter('out_trade_no',str(oid))
+        unify_pay.setParameter('out_trade_no','13774258979')
         unify_pay.setParameter('body','准时开饭 套餐')
-        unify_pay.setParameter('total_fee',str(total_fee))
+        unify_pay.setParameter('total_fee','1')
         unify_pay.setParameter('notify_url','http://m.zhunshikaifan.com/carte_succeed')
         unify_pay.setParameter('trade_type','JSAPI')
         unify_pay.setParameter('openid',openid)
@@ -221,7 +221,7 @@ class payment:
         js_api.setPrepayId(prepay_id)
         pay_data = js_api.getParameters()		        
         
-        return render.payment(signature,nonceStr,timestamp,json.loads(pay_data))
+        return render.webchatpay(signature,nonceStr,timestamp,json.loads(pay_data))
 
 if __name__ == '__main__':
     app.run()
