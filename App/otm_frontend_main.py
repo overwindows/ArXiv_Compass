@@ -176,7 +176,7 @@ class webchatpay:
         global access_token
         global jsapi_ticket
         global token_timestamp
-
+        js_api = JsApi_pub()
         openid = "oTb7Zs6117TYsKwBccbut4UaFAhs"
         #print openid
         if (not access_token.strip()) or (int(time.time())-token_timestamp > 7200):
