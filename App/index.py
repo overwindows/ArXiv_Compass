@@ -13,6 +13,11 @@ from env import render
 
 class index:
     def GET(self):
+        i = web.input()
+        web.ctx.session.openid = i.openid
+        web.ctx.session.nickname = i.nickname
+        web.ctx.session.headimgurl = i.headimgurl
+
         # 初始化送餐楼宇编号
         web.ctx.session.routeid = 0
         web.ctx.session.officeid = 0
