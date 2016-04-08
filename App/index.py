@@ -11,6 +11,7 @@ import urllib
 
 from env import render
 
+
 class index:
     def GET(self):
         i = web.input()
@@ -65,7 +66,7 @@ class index:
         # initialize price
         shopping_cost = {}
         web.ctx.session.shoppingcost = shopping_cost
-
+        '''
         i = web.input()
         # CODE from WebChat
         #print "[DEBUG] Get Code:"+CODE
@@ -92,7 +93,8 @@ class index:
             web.ctx.session.nickname=json.loads(data)['nickname']
             web.ctx.session.headimgurl=json.loads(data)['headimgurl']            
         #print session.openid
-        #print session.nickname                
+        #print session.nickname
+        '''
         try:
             user_iter=model.get_user_1(web.ctx.session.openid)
             user = list(user_iter)
