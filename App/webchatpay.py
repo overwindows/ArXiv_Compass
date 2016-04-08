@@ -11,6 +11,7 @@ import urllib
 
 from env import *
 from pay import *
+from sign import Sign
 
 class webchatpay:
     def GET(self):
@@ -19,7 +20,7 @@ class webchatpay:
         global token_timestamp
 
         js_api = JsApi_pub()
-        openid = "oTb7Zs6117TYsKwBccbut4UaFAhs"
+        openid = web.ctx.session.openid
         #print openid
         if (not access_token.strip()) or (int(time.time())-token_timestamp > 7200):
             access_token = sign.get_token()
@@ -44,7 +45,7 @@ class webchatpay:
         #print oid
         #print total_fee
         #print openid
-        unify_pay.setParameter('out_trade_no', web.ctx.session.out_trade_no)
+        unify_pay.setParameter('out_trade_no', str(web.ctx.session.out_trade_no))
         unify_pay.setParameter('body','准时开饭 套餐')
         unify_pay.setParameter('total_fee','1')
         unify_pay.setParameter('notify_url','http://m.zhunshikaifan.com/carte_succeed')
