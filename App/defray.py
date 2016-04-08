@@ -18,13 +18,14 @@ class defray:
         shopping_basket = web.ctx.session.shoppingbasket
         user_info = web.ctx.session.userinfo
         shopping_cost = web.ctx.session.shoppingcost
+        web.ctx.session.out_trade_no = int(time.time())
 
         invoice = ""
         tminterval_type = 0
 
         for _date in shopping_basket:
             rand_suffix = random.randint(1000,10000)
-            orderid = int(time.time())*1000 + rand_suffix
+            orderid = web.ctx.session.out_trade_no * 1000 + rand_suffix
             #if failed in next steps, the order should be deleted!!!
             model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
                         float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
@@ -64,8 +65,6 @@ class defray:
         #return web.seeother('/prepay?payid='+str(orderid))
 
 '''
-        #web.ctx.session.out_trade_no = int(time.time())
-        #print web.ctx.session.out_trade_no
         # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start
         ot_ts  = int(time.mktime(time.strptime(str(web.ctx.session.menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
