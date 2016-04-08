@@ -15,10 +15,11 @@ from env import *
 class member:
     def GET(self):
         user_info = web.ctx.session.userinfo
+        nick_name = web.ctx.session.nickname
+        headimg_url = web.ctx.session.headimgurl
+
         if user_info.has_key("ID"):
-            msg = None
-            web.ctx.session.logged_in = True
-            return render.member(user_info)
+            return render.member(user_info, nick_name, headimg_url)
         else:
             return web.seeother('/anonymous')
 	'''	

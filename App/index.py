@@ -11,7 +11,6 @@ import urllib
 
 from env import render
 
-
 class index:
     def GET(self):
         i = web.input()
@@ -51,7 +50,7 @@ class index:
         web.ctx.session.shoppingcost = shopping_cost
 
         web.ctx.session.redirecturl = None
-        
+
         # initialize user info
         try:
             if web.ctx.session.userinfo:
@@ -95,59 +94,26 @@ class index:
         #print session.openid
         #print session.nickname
         '''
-        try:
-            user_iter=model.get_user_1(web.ctx.session.openid)
-            user = list(user_iter)
-        except AttributeError:
-            web.ctx.session.nickname = "亲"
-            web.ctx.session.headimgurl = "../static/img/img_18.png"
-            user = None
-        msgs = []
-        # print "[DEBUG] Get UserInfo in OnTimeReal"
+        user_iter=model.get_user_1(web.ctx.session.openid)
+        user = list(user_iter)
+
         if user:
-            web.ctx.session.userid = user[0].id
-            web.setcookie('userid', user[0].id, 3600)
-            # 用于在点餐页结算时判断是否登录
-            web.setcookie('username', user[0].username, 3600)
-            web.setcookie('contactname', user[0].contactname, 3600)
-            web.setcookie('unitaddress', user[0].unitaddress, 3600)
-            msgs_it = model.ongoing_orders_cnt(user[0].id)
-            msgs = list(msgs_it)
+            user_info['ID'] = user[0].id
+            user_info['Name'] = user[0].username
+            user_info['Contact'] = user[0].contactname
+            user_info['Tel'] = user[0].tel
+            user_info['UnitAddr'] = user[0].unitaddress
+            user_info['Tel'] = user[0].tel
+
             web.ctx.session.officeid = user[0].officeid
+            #msgs_it = model.ongoing_orders_cnt(user[0].id)
+            #msgs = list(msgs_it)
             #session.msgs = msgs
-        # print "[DEBUG] Prepare Date"        
-        today = datetime.date.today()
-        weekday_today = today.weekday()
-        # print weekday_today
-        tomorrow = today + datetime.timedelta(days=1)
-        weekday_tomorrow = tomorrow.weekday()
-        # print weekday_tomorrow
+
         # print os.getcwd()
         # offices = model.get_offices()
-        # web.setcookie('url', "/index?code=Fake", 3600)
-        
-        #日期初始化
-        web.ctx.session.today = str(today)
-        web.ctx.session.tomorrow = str(tomorrow)
-        web.ctx.session.weekday_today = int(weekday_today)
-        web.ctx.session.weekday_tomorrow = int(weekday_tomorrow)
-        
-        islogin = 0        
-        #username = ""
-        uid = ""
-        try:
-            #if session.username:
-            if web.ctx.session.userid:
-                islogin = 1
-                #username = session.username
-                uid = web.ctx.session.userid
-            else:
-                islogin = 0
-        except AttributeError:
-                islogin = 0
         #logging.info("[office][uid:%s]", uid)
-        if int(web.ctx.session.officeid)==0:
-            return web.seeother("/sites")
-        else:
-            #return web.seeother("carte_index/0?office_id=" + str(web.ctx.session.officeid))
+        if web.ctx.session.officeid:
             return web.seeother("/menus")
+        else:
+            return web.seeother("/sites")
