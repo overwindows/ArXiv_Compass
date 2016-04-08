@@ -97,10 +97,6 @@ sessions_store = MemCacheStore()
 #session = web.session.Session(app,sessions_store)
 session = web.session.Session(app,sessions_store)
 
-access_token = ""
-jsapi_ticket = ""
-token_timestamp=int(time.time())
-
 # http://webpy.org/cookbook/sessions_with_subapp
 def session_hook():
     web.ctx.session = session

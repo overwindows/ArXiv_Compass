@@ -23,4 +23,9 @@ logging.basicConfig(level=logging.DEBUG,
                     datefmt='%a, %d %b %Y %H:%M:%S',
                     filename="../../logs/" + str(os.getpid()) + ".log",
                     filemode='w')
+
+access_token = ""
+jsapi_ticket = ""
+token_timestamp=int(time.time())
+
 logging.info('initialize runtime environment.')
