@@ -43,7 +43,7 @@ $def with (signature,nonceStr,timestamp,pay_data)
               paySign: '$pay_data["paySign"]', // 支付签名
               success: function (res) {
                     // 支付成功后的回调函数
-                  self.location='carte_succeed'
+                  self.location='receipt'
                },
               cancel: function(res) {
                   //alert("cancel");
