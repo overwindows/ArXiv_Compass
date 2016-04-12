@@ -23,9 +23,10 @@ class defray:
         invoice = ""
 
         i = web.input()
-        checked = i.get("chk")
+        param = i.get("param")
+        print param
         order_info = {}
-        order_list = checked.split("|")
+        order_list = param.split("|")
         for order in order_list:
             if order:
                 id,tm = order.split("_")
