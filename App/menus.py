@@ -21,6 +21,7 @@ class menus:
         lunches_info = {}
         menu_calendar = web.ctx.session.menucalendar
         shopping_basket = web.ctx.session.shoppingbasket
+        shopping_cost = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
 
         param = i.get("param")

@@ -16,51 +16,63 @@ from env import *
 class defray:
     def GET(self):
         shopping_basket = web.ctx.session.shoppingbasket
+        shopping_list = web.ctx.session.shoppinglist
         user_info = web.ctx.session.userinfo
         shopping_cost = web.ctx.session.shoppingcost
         web.ctx.session.out_trade_no = int(time.time())
-
         invoice = ""
-        tminterval_type = 0
+
+        i = web.input()
+        checked = i.get("chk")
+        order_info = {}
+        order_list = checked.split("|")
+        for order in order_list:
+            if order:
+                id,tm = order.split("_")
+                order_info[id] = tm
+        id = 0
 
         for _date in shopping_basket:
-            rand_suffix = random.randint(1000,10000)
-            orderid = web.ctx.session.out_trade_no * 1000 + rand_suffix
-            #if failed in next steps, the order should be deleted!!!
-            model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
-                        float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
-                        float(shopping_cost[_date]["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
-                        time.strftime('%Y-%m-%d %X', time.localtime()),user_info["ID"],\
-                        invoice, user_info["UnitAddr"], tminterval_type)
-            lidict = {}
-            for _lunchid in shopping_basket[_date]:
-                cnt = shopping_basket[_date][_lunchid]["Count"]
-                meal_it = model.get_meal_detail(_lunchid, _date)
-                meal_dtl = list(meal_it)
+            id = id + 1
+            if order_info.has_key(id):
+                rand_suffix = random.randint(1000,10000)
+                orderid = web.ctx.session.out_trade_no * 1000 + rand_suffix
+                shopping_list.append(orderid)
+                #if failed in next steps, the order should be deleted!!!
+                model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
+                            float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
+                            float(shopping_cost[_date]["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
+                            time.strftime('%Y-%m-%d %X', time.localtime()),user_info["ID"],\
+                            invoice, user_info["UnitAddr"], order_info[id])
+                lidict = {}
+                for _lunchid in shopping_basket[_date]:
+                    cnt = shopping_basket[_date][_lunchid]["Count"]
+                    meal_it = model.get_meal_detail(_lunchid, _date)
+                    meal_dtl = list(meal_it)
 
-                if int(meal_dtl[0].stock) >= int(cnt):
-                        #新增订单详情
-                    model.new_detail(orderid, _lunchid, cnt)
-                        #库存修改
-                    ret = model.upd_meal_sold(_lunchid,_date,cnt)
-                        #print 'upd_meal_sold return:'+str(ret)
-                    if ret == -1:
-                        web.ctx.session.failreason = "stock"
+                    if int(meal_dtl[0].stock) >= int(cnt):
+                            #新增订单详情
+                        model.new_detail(orderid, _lunchid, cnt)
+                            #库存修改
+                        ret = model.upd_meal_sold(_lunchid,_date,cnt)
+                            #print 'upd_meal_sold return:'+str(ret)
+                        if ret == -1:
+                            web.ctx.session.failreason = "stock"
+                            model.del_order(orderid)
+                            model.del_detail(orderid)
+                            for (k,v) in lidict.items():
+                                model.upd_meal_sold(k,_date,-int(v))
+                            return web.seeother('/fail')
+                        elif ret == 0:
+                                #暂存已更新的库存信息
+                            lidict[_lunchid] = cnt
+                    else:
+                        web.ctx.session.failreason="stock"
                         model.del_order(orderid)
                         model.del_detail(orderid)
                         for (k,v) in lidict.items():
                             model.upd_meal_sold(k,_date,-int(v))
-                        return web.seeother('/carte_failed')
-                    elif ret == 0:
-                            #暂存已更新的库存信息
-                        lidict[_lunchid] = cnt
-                else:
-                    web.ctx.session.failreason="stock"
-                    model.del_order(orderid)
-                    model.del_detail(orderid)
-                    for (k,v) in lidict.items():
-                        model.upd_meal_sold(k,_date,-int(v))
-                    return web.seeother('/carte_failed')
+                        return web.seeother('/fail')
         return web.seeother('/webchatpay')
         #return web.seeother('/prepay?payid='+str(orderid))
 

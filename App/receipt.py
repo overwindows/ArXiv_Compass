@@ -14,38 +14,41 @@ from env import *
 
 class receipt:
     def GET(self):
-        #shopping_basket = web.ctx.session.shoppingbasket
+        shopping_list = web.ctx.session.shoppinglist
         user_info = web.ctx.session.userinfo
         #menu_date = web.ctx.session.menudate
         #route_id = web.ctx.session.routeid
+        order_list = {}
+        for oid in shopping_list:
+            #i = web.input()
+            model.update_order_1(oid,1)
+            order = list(model.get_order(oid))
 
-        return render.receipt(user_info)
-	'''
-        #i = web.input()
-        oid = web.ctx.session.pay_oid
-        model.update_order_1(oid,1)
-        order = list(model.get_order(oid))
-        #print order[0].OrderDate
-        date_time = datetime.datetime.strptime(str(order[0].OrderDate), '%Y-%m-%d')
-        weekday = model.get_chinese_weekday(date_time.weekday())
-        # Notice-Start
-        lunch_info = list(model.get_details_1(oid))
-        meal_str = '\n'
-        for l in lunch_info:
-            meal_str += l.Meal
-            meal_str += str(l.num)
-            meal_str += u'份'
-            meal_str += '\n'
-        meal_str_0 = meal_str.rstrip('\n')
-        
-        disp_tm = ""
-        if str(order[0].tminterval) == "0":
-            disp_tm = "12:00-12:20"
-        elif str(order[0].tminterval) == "1":
-            disp_tm = "12:20-12:40"
-        elif str(order[0].tminterval) == "2":
-            disp_tm = "12:40-13:00"
+            date_time = datetime.datetime.strptime(str(order[0].OrderDate), '%Y-%m-%d')
+            order_list[date_time] = {}
+            weekday = model.get_chinese_weekday(date_time.weekday())
+            # Notice-Start
+            lunch_info = list(model.get_details_1(oid))
+            meal_str = '\n'
+            for l in lunch_info:
+                if  not order_list[date_time].haskey(l.ID):
+                    order_list[date_time][l.ID] = {}
+                order_list[date_time][l.ID]["Name"] = l.Meal
+                order_list[date_time][l.ID]["Price"] = l.Price
+                meal_str += l.Meal
+                meal_str += str(l.num)
+                meal_str += u'份'
+                meal_str += '\n'
+            meal_str_0 = meal_str.rstrip('\n')
 
+            disp_tm = ""
+            if str(order[0].tminterval) == "0":
+                disp_tm = "12:00-12:20"
+            elif str(order[0].tminterval) == "1":
+                disp_tm = "12:20-12:40"
+            elif str(order[0].tminterval) == "2":
+                disp_tm = "12:40-13:00"
+        '''
         weixin_url = 'https://api.weixin.qq.com/cgi-bin/token'
         weixin_payload = 'grant_type=client_credential&appid=wx9e8d00301079061b&secret=6021e0985185092b430c4182db3b3f62'
         data=urllib2.urlopen(weixin_url, weixin_payload).read()
@@ -74,10 +77,7 @@ class receipt:
         json_data = json.dumps(urlObj)
         data = urllib.quote_plus(str(json_data))
         res = urllib2.urlopen(send_url,data=json_data).read()
+       '''
+        return render.receipt(user_info, order_list)
         # Notice-End
-        return render.carte_succeed(order[0], weekday)    
-    def POST(self):
-        print "POST"
-        return "success"
-        #return render.carte_succeed()
-    '''
+        # return render.carte_succeed(order[0], weekday)

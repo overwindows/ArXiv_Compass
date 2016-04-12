@@ -1,4 +1,4 @@
-$def with (userinfo)
+$def with (userinfo, order_list)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +18,7 @@ $def with (userinfo)
 	<div class="tipbox" data-tips><span>下单成功！</span></div>
 	<div class="swiper-container">
 		  <div class="swiper-wrapper">
-            
+          $for d_0 in order_list:
 			    <div class="swiper-slide blue-slide">
 			    	<div class="m-order-detail">
 			    		<h3 class="tit">1订单详情</h3>
@@ -38,11 +38,13 @@ $def with (userinfo)
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">取餐地点</span>
-				    				<span class="txt">一楼大堂</span>
+				    				<span class="txt">$userinfo["UnitAddr"]</span>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">到餐日期</span>
-				    				<span class="txt">星期四（12月25日）</span>
+									$ d = d_0.split('-')
+                        			$ t_d = d[1]+"月"+d[2]+"日"
+				    				<span class="txt">$t_d</span>
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">期望到餐时间</span>
@@ -50,16 +52,17 @@ $def with (userinfo)
 				    			</li>
 				    			<li class="list c_f">
 				    				<span class="tit">发票</span>
-				    				<span class="txt">康成投资（中国）有限公司</span>
+				    				<span class="txt">$userinfo["Invoice"]</span>
 				    			</li>
 				    			<li class="list c_f rel arr_down" data-detail>
 				    				<span class="icon"></span>
 				    				<span class="tit">订单内容</span>
 				    				<span class="txt detail">本帮爆鱼1份本帮爆鱼1份</span>
                                         <ul class="detailbox hide">
+											$for d_1 in order_list[d_0]:
                                             <li class="list3 c_f">
-                                                <span class="f_l">份</span>
-                                                <span class="f_r">¥</span>
+                                                <span class="f_l">$order_list[d_0][d_1]["Name"] 份</span>
+                                                <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
                                             </li>
                                         </ul>
 				    			</li>
