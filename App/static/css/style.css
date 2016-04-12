@@ -368,9 +368,9 @@ a{font-size: 0.65rem;}
 	    height: 2.8rem;
 	    line-height: 1.7rem;
 	    border-radius: 50%;
-	    padding: 0.4rem;
+	    /*padding: 0.4rem;
 	    box-sizing: border-box;
-	    box-shadow: 4px 5px 6px #3C3C3C;
+	    box-shadow: 4px 5px 6px #3C3C3C;*/
 	    margin:0 auto;
 	    margin-bottom: 0.8rem;
 }
