@@ -1,4 +1,4 @@
-$def with (menu_calendar, lunches, office, menu_date, lunches_info)
+$def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_count)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +75,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info)
         </div>
         <div class="cooksbox white_bg">
         $for lunch in lunches:
-            $ total_cnt = 0
+            $ total_cnt = shopping_count
             $ total_cost = 0.0
             <section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">

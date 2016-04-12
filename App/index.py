@@ -21,7 +21,7 @@ class index:
         # 初始化送餐楼宇编号
         web.ctx.session.routeid = 0
         web.ctx.session.officeid = 0
-        
+
         # initialize menu dates
         current_day = datetime.date.today()
         #current_wkday = int(current_day.weekday())

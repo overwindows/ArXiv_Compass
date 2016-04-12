@@ -50,9 +50,25 @@ function showSelectBox(){
                                    span.html($(this).html());
                                    selectCon.hide();
                                    //alert($(this).attr("menudate"));
+
+                                   //save shopping basket 2016/04/12
+                                    param="";
+                                    $(".cook_info").each(function(){
+                                      cnt = $(this).find('.count').html();
+                                      id = $(this).children("input").val();
+                                      if(cnt > 0){
+                                          param = id+"_"+cnt+"|"+param;
+                                      }
+                                    });
+
                                    if (typeof($(this).attr("menudate")) != "undefined"){
                                        menudate = $(this).attr("menudate");
-                                       location.href = "/menus?menudate="+menudate;
+                                       if(param!=""){
+                                           location.href = "/menus?menudate="+menudate+"&param="+param;
+                                        }
+                                        else{
+                                           location.href = "/menus?menudate="+menudate;
+                                        }
                                    }
                                }    
                                });
