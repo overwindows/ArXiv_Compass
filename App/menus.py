@@ -18,6 +18,7 @@ class menus:
         office_id = i.get("officeid")        
         menu_date = i.get("menudate")
         route_id  = i.get("routeid")  
+
         lunches_info = {}
         menu_calendar = web.ctx.session.menucalendar
         shopping_basket = web.ctx.session.shoppingbasket
@@ -61,9 +62,9 @@ class menus:
             web.ctx.session.shoppingcost = shopping_cost
 
         # guard code
-        if menu_date is None:            
-            key_list = menu_calendar.keys()
-            menu_date = key_list[0]
+        menu_calender_sorted = sorted(menu_calendar.items, key=lambda menu_calendar:menu_calendar[0])
+        if menu_date is None:
+            menu_date = menu_calender_sorted[0][0]
 
         if route_id is None:
             route_id = 0
@@ -91,7 +92,7 @@ class menus:
         for _d in shopping_cost:
             shopping_count += shopping_cost[_d]["count"]
 
-        return render.menus(menu_calendar, lunches, offices[0], menu_date, lunches_info, shopping_count)
+        return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''
         #backstep = int(web.cookies().get('backstep')) 
         #浏览器回退防御

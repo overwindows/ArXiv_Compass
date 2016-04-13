@@ -72,10 +72,11 @@ urls = (
         '/webchatpay', 'webchatpay',
         '/member', 'member',
         '/delivery','delivery',
+        '/fail', 'fail',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
-        '/carte_failed', 'carte_failed',        
+
         '/register_index', 'register_index',
         '/order_cancel', 'order_cancel',
         '/order_detail', 'order_detail',

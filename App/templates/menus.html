@@ -45,19 +45,19 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
         <div class="screen_box c_f">
             <div class="selecbox f_l">
                 <a href="javascript:void(0)" class="time_val rel" data-select >
-                     $for k,v in menu_calendar.items():
-                        $if k == menu_date:
-                            $ d = k.split('-')
+                     $for tup in menu_calendar:
+                        $if tup[0] == menu_date:
+                            $ d = tup[0].split('-')
                             $ t_d = d[1]+"月"+d[2]+"日"
                             <span>$v ($t_d)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
-                    $for k,v in menu_calendar.items():
+                    $for tup in menu_calendar.items():
                         <!--li class="list prev"></li-->
-                        $ d = k.split('-')
+                        $ d = tup[0].split('-')
                         $ t_d = d[1]+"月"+d[2]+"日"
-                        <li class="list" menudate="$k" >$v ($t_d)</li>
+                        <li class="list" menudate="$k" >$tup[1] ($t_d)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
