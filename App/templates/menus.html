@@ -49,22 +49,19 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                         $if tup[0] == menu_date:
                             $ d = tup[0].split('-')
                             $ t_d = d[1]+"月"+d[2]+"日"
-                            <span>$v ($t_d)</span>
+                            <span>$tup[1] ($t_d)</span>
                     <i class="icon"></i>
                 </a>
                 <ul>
-                    $for tup in menu_calendar.items():
+                    $for tup in menu_calendar:
                         <!--li class="list prev"></li-->
                         $ d = tup[0].split('-')
                         $ t_d = d[1]+"月"+d[2]+"日"
-                        <li class="list" menudate="$k" >$tup[1] ($t_d)</li>
+                        <li class="list" menudate="$tup[0]" >$tup[1] ($t_d)</li>
                 </ul>
             </div>
             <div class="selecbox f_r break">
-                <a href="javascript:void(0)" class="time_val rel" data-select>
-                    <span>美味午餐</span>
-                    <i class="icon"></i>
-                </a>
+                <a href="javascript:void(0)" class="time_val rel" data-select><span>美味午餐</span><i class="icon"></i></a>
                 <ul>
                     <li class="list prev">营养早餐</li>
                     <li class="list">美味午餐</li>
@@ -104,7 +101,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                     <div class="num_wrap c_f">
                         <a href="javascript:void(0)" class="btn_minus" data-minus="">
                         </a>
-                        $if lunches_info and lunches_info.haskey(lunch.ID):
+                        $if lunches_info and lunches_info.has_key(lunch.ID):
                             <span class="count" data-count="">$(lunches_info[lunch.ID]["Count"])</span>
                             $ total_cnt = int(total_cnt) + int(lunches_info[lunch.ID]["Count"])
                             $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)

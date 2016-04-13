@@ -30,12 +30,14 @@ class defray:
         for order in order_list:
             if order:
                 id,tm = order.split("_")
-                order_info[id] = tm
-        id = 0
+                order_info[str(id)] = tm
+        print order_info.keys()
 
+        id = 0
         for _date in shopping_basket:
             id = id + 1
-            if order_info.has_key(id):
+            _id = str(id) 
+            if order_info.has_key(_id):
                 rand_suffix = random.randint(1000,10000)
                 orderid = web.ctx.session.out_trade_no * 1000 + rand_suffix
                 shopping_list.append(orderid)
@@ -44,7 +46,7 @@ class defray:
                             float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
                             float(shopping_cost[_date]["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
                             time.strftime('%Y-%m-%d %X', time.localtime()),user_info["ID"],\
-                            invoice, user_info["UnitAddr"], order_info[id])
+                            invoice, user_info["UnitAddr"], order_info[_id])
                 lidict = {}
                 for _lunchid in shopping_basket[_date]:
                     cnt = shopping_basket[_date][_lunchid]["Count"]
@@ -74,6 +76,8 @@ class defray:
                         for (k,v) in lidict.items():
                             model.upd_meal_sold(k,_date,-int(v))
                         return web.seeother('/fail')
+        print shopping_list
+        web.ctx.session.shoppinglist = shopping_list
         return web.seeother('/webchatpay')
         #return web.seeother('/prepay?payid='+str(orderid))
 

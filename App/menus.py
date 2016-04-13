@@ -19,21 +19,27 @@ class menus:
         menu_date = i.get("menudate")
         route_id  = i.get("routeid")  
 
+        if route_id is None:
+            route_id = 0
+        
         lunches_info = {}
         menu_calendar = web.ctx.session.menucalendar
         shopping_basket = web.ctx.session.shoppingbasket
         shopping_cost = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
-
+        
+        #if parameters
         param = i.get("param")
         if param:
+            _menudate = web.ctx.session.menudate
             order_info = {}
+            
             order_list = param.split("|")
             for order in order_list:
                 if order:
                     id,cnt = order.split("_")
                     order_info[id] = cnt
-            lunches = list(model.get_menu(int(route_id), menu_date))
+            lunches = list(model.get_menu(int(route_id), _menudate))
 
             _count = 0
             _price0 = 0.0
@@ -41,33 +47,31 @@ class menus:
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
                     cnt = order_info[lunch.ID]
-                    if not shopping_basket.has_key(menu_date):
-                        shopping_basket[menu_date] = {}
-                    if not shopping_basket[menu_date].has_key(lunch.ID):
-                        shopping_basket[menu_date][lunch.ID] = {}
-                    shopping_basket[menu_date][lunch.ID]["Count"] = cnt
-                    shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
-                    shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
+                    if not shopping_basket.has_key(_menudate):
+                        shopping_basket[_menudate] = {}
+                    if not shopping_basket[_menudate].has_key(lunch.ID):
+                        shopping_basket[_menudate][lunch.ID] = {}
+                    shopping_basket[_menudate][lunch.ID]["Count"] = cnt
+                    shopping_basket[_menudate][lunch.ID]["Price"] = lunch.Price
+                    shopping_basket[_menudate][lunch.ID]["Name"] = lunch.Meal
 
-                    if not shopping_cost.has_key(menu_date):
-                        shopping_cost[menu_date] = {}
                     _price0 += float(lunch.Price) * float(cnt)
-                    _count  += cnt
+                    _count  += int(cnt)
 
-            shopping_cost[menu_date]["price0"] = _price0
-            shopping_cost[menu_date]["price"] = _price0
-            shopping_cost[menu_date]["count"] = _count
+            if not shopping_cost.has_key(_menudate):
+                shopping_cost[_menudate] = {}
+            shopping_cost[_menudate]["price0"] = _price0
+            shopping_cost[_menudate]["price"] = _price0
+            shopping_cost[_menudate]["count"] = _count
 
             web.ctx.session.shoppingbasket = shopping_basket
-            web.ctx.session.shoppingcost = shopping_cost
+            web.ctx.session.shoppingcost   = shopping_cost
 
         # guard code
-        menu_calender_sorted = sorted(menu_calendar.items, key=lambda menu_calendar:menu_calendar[0])
+        menu_calender_sorted = sorted(menu_calendar.items(), key=lambda menu_calendar:menu_calendar[0])
         if menu_date is None:
             menu_date = menu_calender_sorted[0][0]
-
-        if route_id is None:
-            route_id = 0
+        print menu_date
         
         if office_id is None:
            office_id = web.ctx.session.officeid
@@ -91,6 +95,8 @@ class menus:
         shopping_count = 0
         for _d in shopping_cost:
             shopping_count += shopping_cost[_d]["count"]
+
+        web.ctx.session.menudate = str(menu_date)        
 
         return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''

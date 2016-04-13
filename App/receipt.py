@@ -31,7 +31,7 @@ class receipt:
             lunch_info = list(model.get_details_1(oid))
             meal_str = '\n'
             for l in lunch_info:
-                if  not order_list[date_time].haskey(l.ID):
+                if  not order_list[date_time].has_key(l.ID):
                     order_list[date_time][l.ID] = {}
                 order_list[date_time][l.ID]["Name"] = l.Meal
                 order_list[date_time][l.ID]["Price"] = l.Price

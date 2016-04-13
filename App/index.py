@@ -24,6 +24,7 @@ class index:
 
         # initialize menu dates
         current_day = datetime.date.today()
+        web.ctx.session.menudate = str(current_day)
         #current_wkday = int(current_day.weekday())
 
         # check if today's menu overtime

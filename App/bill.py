@@ -52,7 +52,7 @@ class bill:
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost = shopping_cost
 
-        # print shopping_basket.keys()
+        print shopping_basket.keys()
 
         if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket, menu_calendar)
