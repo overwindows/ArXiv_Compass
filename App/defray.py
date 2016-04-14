@@ -20,7 +20,7 @@ class defray:
         user_info = web.ctx.session.userinfo
         shopping_cost = web.ctx.session.shoppingcost
         web.ctx.session.out_trade_no = int(time.time())
-        invoice = ""
+        invoice = user_info['Inovice']
 
         i = web.input()
         param = i.get("param")

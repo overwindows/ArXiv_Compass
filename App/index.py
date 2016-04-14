@@ -108,6 +108,7 @@ class index:
             user_info['Tel'] = user[0].tel
             user_info['UnitAddr'] = user[0].unitaddress
             user_info['Tel'] = user[0].tel
+            user_info['Invoice'] = ""
 
             web.ctx.session.officeid = user[0].officeid
             #msgs_it = model.ongoing_orders_cnt(user[0].id)

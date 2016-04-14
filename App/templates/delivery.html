@@ -38,19 +38,19 @@ $def with (userinfo)
 			</li>
 			<li class="list list2">
 				<span class="tit">取餐地址</span>
-				<input class="ipt2" type="text" placeholder="请输入具体取餐地点，如1202室" value=""/>
+				<input name="unitaddress" class="ipt2" type="text" placeholder="请输入具体取餐地点，如1202室" value="$userinfo['UnitAddr']"/>
 			</li>
 			<li class="list list2">
 				<span class="tit">发票</span>
 				<div class="btns_agree c_f">
 					<span class="agree_txt rel f_l cur">
-						<a href="javascript:void(0)" class="btn_agree" data-agreeRadio>
+						<a href="javascript:void(0)" class="btn_agree on" data-agreeRadio>
 							<span></span>
 						</a>
 						不需要
 					</span>
 					<span class="agree_txt rel f_r cur">
-						<a href="javascript:void(0)" class="btn_agree on" data-agreeRadio id="btnNeed">
+						<a href="javascript:void(0)" class="btn_agree" data-agreeRadio id="btnNeed">
 							<span></span>
 						</a>
 						需要
@@ -62,7 +62,7 @@ $def with (userinfo)
 				<div class="btns_agree c_f hide">
 					<span class="agree_txt rel f_l cur" style="float: inherit;"><a href="javascript:void(0)" class="btn_agree" data-agreeRadio2><span></span></a>公司</span>
 					<!-- <span class="bortxt"></span> -->
-					<input class="ipt3" type="text" placeholder="请输入公司名称" />
+					<input name="invoice" class="ipt3" type="text" placeholder="请输入公司名称" value="$userinfo['Invoice']"/>
 				</div>
 			</li>
 			<li class="list list2">

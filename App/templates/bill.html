@@ -80,7 +80,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
                     <span class="tit">期望到餐时间</span>
                 </li>
                 <li class="selecbox">
-                    <a href="javascript:void(0)" class="time_val rel" data-selecttime=""><span oid="$i">请选择到餐时间</span><i class="icon"></i> </a>
+                    <a href="javascript:void(0)" class="time_val rel" data-selecttime=""><span oid="$i">12:00～12:20</span><i class="icon"></i> </a>
                     <ul class="hide">
                         <li>12:00～12:20</li>
                         <li>12:20～12:40</li>
@@ -97,7 +97,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
     <div class="mark_info hide z_index_200">
         <div class="con  white_bg" data-markbox="txt1">
             <div class="hd rel">
-                <span>抱歉...</span>
+                <span>温馨提示</span>
                 <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
             </div>
             <div class="ins m_t_1">
@@ -126,6 +126,10 @@ $$(".w_p_80").click(function(){
          }
          else if(tm == "12:40～13:00"){
              dict[oid] = 2;
+         }
+         else
+         {
+             dict[oid] = -1;
          }
     });
     $$(".agree_txt").each(function(){
