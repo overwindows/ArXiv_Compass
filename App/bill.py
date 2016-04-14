@@ -31,6 +31,10 @@ class bill:
                     id,cnt = order.split("_")
                     order_info[id] = cnt
             lunches = list(model.get_menu(int(route_id), menu_date))
+
+            _count = 0
+            _price0 = 0
+
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
                     cnt = order_info[lunch.ID]
@@ -42,17 +46,19 @@ class bill:
                     shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
                     shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
 
-                    if not shopping_cost.has_key(menu_date):
-                        shopping_cost[menu_date] = {}
-                    shopping_cost[menu_date]["price0"] = float(lunch.Price) * float(cnt)
-                    shopping_cost[menu_date]["price1"] = 0
-                    shopping_cost[menu_date]["price2"] = 0
-                    shopping_cost[menu_date]["price"] = shopping_cost[menu_date]["price0"]
+                    _price0 += float(lunch.Price) * float(cnt)
+                    _count += int(cnt)
+
+            if not shopping_cost.has_key(menu_date):
+                shopping_cost[menu_date] = {}
+            shopping_cost[menu_date]["price0"] = _price0
+            shopping_cost[menu_date]["price1"] = 0
+            shopping_cost[menu_date]["price2"] = 0
+            shopping_cost[menu_date]["price"] = _price0
+            shopping_cost[menu_date]["count"] = _count
 
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost = shopping_cost
-
-        #print shopping_basket.keys()
 
         if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket, menu_calendar)

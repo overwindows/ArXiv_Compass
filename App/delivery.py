@@ -23,7 +23,7 @@ class delivery:
         unitaddress = i.get('unitaddress')
         invoice = i.get('invoice')
 
-        model.update_username(user_info["ID"], contact, web.ctx.session.officeid, unitaddress)
+        model.update_username(user_info["ID"], contact, web.ctx.session.officeid, unitaddress, tel)
         user_info["Contact"] = contact
         user_info["Tel"] = tel
         user_info["Invoice"] = invoice

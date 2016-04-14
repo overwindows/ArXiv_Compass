@@ -71,7 +71,7 @@ class menus:
         menu_calender_sorted = sorted(menu_calendar.items(), key=lambda menu_calendar:menu_calendar[0])
         if menu_date is None:
             menu_date = menu_calender_sorted[0][0]
-        print menu_date
+        # print menu_date
         
         if office_id is None:
            office_id = web.ctx.session.officeid

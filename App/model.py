@@ -67,8 +67,8 @@ def new_user(telephone, name, pwd, opid, regtm):
 
 
 # 更新订餐联系人
-def update_username(uid, name, offid, unitaddr):
-    return db.update('users', where='id=$uid', contactname=name, officeid=offid, unitaddress=unitaddr, vars=locals())
+def update_username(uid, name, offid, unitaddr, telephone):
+    return db.update('users', where='id=$uid', contactname=name, officeid=offid, unitaddress=unitaddr, tel=telephone, vars=locals())
 
 
 def get_user(userid, password):
