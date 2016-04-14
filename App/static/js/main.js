@@ -280,6 +280,7 @@ function agreed(){
             $(this).children("a").removeClass("on");
             $(this).parent("li").parent("ul").siblings(".btn_red_wrap").addClass('no');
             hideAgreeMore();
+            alert($this.html());
         }else{
             $(this).children("a").addClass("on");
             showAgreeMore();

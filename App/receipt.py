@@ -81,6 +81,13 @@ class receipt:
         data = urllib.quote_plus(str(json_data))
         res = urllib2.urlopen(send_url,data=json_data).read()
        '''
+        if web.ctx.session.shoppingbasket:
+            web.ctx.session.shoppingbasket.clear()
+        if web.ctx.session.shoppingcost:
+            web.ctx.session.shoppingcost.clear()
+        if web.ctx.session.shoppinglist:
+            del web.ctx.session.shoppinglist[:]
+
         return render.receipt(user_info, order_list)
         # Notice-End
         # return render.carte_succeed(order[0], weekday)

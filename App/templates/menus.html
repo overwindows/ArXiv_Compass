@@ -77,7 +77,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
             <section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">
                     <img src="../static/prod_img/$(lunch.ID).jpg" data-cookimg/>
-                    <a href="javascript:void(0)" class="btn_store" data-store></a>
+                    <!--a href="javascript:void(0)" class="btn_store" data-store></a-->
                     <div class="mark_info abs hide" data-markInfo>
                         <div class="ins white_txt">
                             <h3 class="tit">$lunch.Meal</h3>
@@ -99,16 +99,16 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                     <h2 class="price"><em>￥</em>$lunch.Price</h2>
                     <hr class="hr_gray"/>
                     <div class="num_wrap c_f">
-                        <a href="javascript:void(0)" class="btn_minus" data-minus="">
-                        </a>
                         $if lunches_info and lunches_info.has_key(lunch.ID):
-                            <span class="count" data-count="">$(lunches_info[lunch.ID]["Count"])</span>
+                            <a href="javascript:void(0)" class="btn_minus on" data-minus="" style="display: inline;"></a>
+                            <span class="count" data-count="" style="display: inline;">$(lunches_info[lunch.ID]["Count"])</span>
+                            <a href="javascript:void(0)" class="btn_add" data-add=""></a> 
                             $ total_cnt = int(total_cnt) + int(lunches_info[lunch.ID]["Count"])
                             $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)
                         $else:
+                            <a href="javascript:void(0)" class="btn_minus" data-minus=""></a>
                             <span class="count" data-count="">0</span>
-                        <a href="javascript:void(0)" class="btn_add" data-add="">
-                        </a>
+                            <a href="javascript:void(0)" class="btn_add" data-add=""></a>
                     </div>
                 </div>
             </section>

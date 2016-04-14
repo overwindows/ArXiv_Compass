@@ -23,9 +23,9 @@ class sites:
         offices = list(model.get_offices_ex())
 
         # clear shopping_basket and shopping cost
-        if not web.ctx.session.shoppingbasket:
+        if web.ctx.session.shoppingbasket:
             web.ctx.session.shoppingbasket.clear()
-        if not web.ctx.session.shoppingcost:
+        if web.ctx.session.shoppingcost:
             web.ctx.session.shoppingcost.clear()
            
         return render.sites(districts, zones, plazas, offices)
