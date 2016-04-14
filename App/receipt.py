@@ -25,16 +25,18 @@ class receipt:
             order = list(model.get_order(oid))
 
             date_time = datetime.datetime.strptime(str(order[0].OrderDate), '%Y-%m-%d')
-            order_list[date_time] = {}
+            _date_time = str(order[0].OrderDate)
+            order_list[_date_time] = {}
             weekday = model.get_chinese_weekday(date_time.weekday())
             # Notice-Start
             lunch_info = list(model.get_details_1(oid))
             meal_str = '\n'
             for l in lunch_info:
-                if  not order_list[date_time].has_key(l.ID):
-                    order_list[date_time][l.ID] = {}
-                order_list[date_time][l.ID]["Name"] = l.Meal
-                order_list[date_time][l.ID]["Price"] = l.Price
+                if not order_list[_date_time].has_key(l.ID):
+                    order_list[_date_time][l.ID] = {}
+                order_list[_date_time][l.ID]["Name"] = l.Meal
+                order_list[_date_time][l.ID]["Price"] = l.Price
+                order_list[_date_time][l.ID]["Count"] = l.num   
                 meal_str += l.Meal
                 meal_str += str(l.num)
                 meal_str += u'份'

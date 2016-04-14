@@ -57,11 +57,11 @@ $def with (userinfo, order_list)
                                 <li class="list c_f rel arr_down" data-detail>
                                     <span class="icon"></span>
                                     <span class="tit">订单内容</span>
-                                    <span class="txt detail">本帮爆鱼1份本帮爆鱼1份</span>
+                                    <span class="txt detail">...</span>
                                         <ul class="detailbox hide">
                                         $for d_1 in order_list[d_0]:
                                             <li class="list3 c_f">
-                                                <span class="f_l">$order_list[d_0][d_1]["Name"] 份</span>
+                                                <span class="f_l">$order_list[d_0][d_1]["Name"] $order_list[d_0][d_1]["Count"] 份</span>
                                                 <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
                                             </li>
                                         </ul>
@@ -216,9 +216,7 @@ $def with (userinfo, order_list)
         <p class="txt">如有变动，请于当日10:30 前操作</p>
         <p class="txt">超时订单将无法取消，敬请谅解！</p>
         <div class="m_t_1">
-            <a href="/menu" class="btn_red_wrap" data-getgray>
-                确定
-            </a>
+            <a href="/menus" class="btn_red_wrap" data-getgray>确定</a>
         </div>
     </div>
 <script type="text/javascript">

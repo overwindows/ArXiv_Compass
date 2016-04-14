@@ -107,7 +107,6 @@ class index:
             user_info['Contact'] = user[0].contactname
             user_info['Tel'] = user[0].tel
             user_info['UnitAddr'] = user[0].unitaddress
-            user_info['Tel'] = user[0].tel
             user_info['Invoice'] = ""
 
             web.ctx.session.officeid = user[0].officeid
