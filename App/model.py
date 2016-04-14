@@ -128,7 +128,7 @@ def get_orders(uid, stat):
     #   return db.select('orders',where = 'tel=$uid AND status=$stat',vars=locals())
     return db.query('SELECT orders.id as id, orders.tel as tel, orders.contact as contact, orders.orderdate as orderdate,\
                    orders.cnt as cnt, orders.price as price, offices.Name as officename, offices.Address as officeaddress,\
-                   orders.modifytime as ModTime, orders.pay, orders.dispatch,\
+                   orders.modifytime as ModTime, orders.pay, orders.dispatch, orders.status,\
                    orders.tminterval, orders.address \
                    FROM orders, offices \
                    WHERE orders.uid=$uid AND orders.status=$stat AND orders.officeid=offices.officeid \

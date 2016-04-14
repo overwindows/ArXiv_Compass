@@ -94,7 +94,8 @@ class menus:
         # calculate shopping counts
         shopping_count = 0
         for _d in shopping_cost:
-            shopping_count += shopping_cost[_d]["count"]
+            if shopping_cost[_d].has_key("count"):
+                shopping_count += shopping_cost[_d]["count"]
 
         web.ctx.session.menudate = str(menu_date)        
 

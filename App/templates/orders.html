@@ -54,7 +54,7 @@ $def with (orders_0, orders_1, orders_2)
                             $elif int(order.pay) == 1:
                                 $if int(order.dispatch)==1:
                                     <span class="txt red_txt">配送中</span>
-                                $else
+                                $else:
                                     <span class="txt red_txt">已下单</span>
                             <!--span class="txt red_txt">未支付</span-->
                         </li>
