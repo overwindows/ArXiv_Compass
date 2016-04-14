@@ -2,13 +2,7 @@
 
 import web
 
-# db = web.database(dbn='mysql', port=int(sae.const.MYSQL_PORT), host=sae.const.MYSQL_HOST, db=sae.const.MYSQL_DB, user=sae.const.MYSQL_USER, pw=sae.const.MYSQL_PASS)
 db = web.database(dbn='mysql', port=3307, host='127.0.0.1', db='ontime_meal', user='root', pw='mysql_sesame')
-# print sae.const.MYSQL_PORT
-# print sae.const.MYSQL_HOST
-# print sae.const.MYSQL_DB
-# print sae.const.MYSQL_USER
-# print sae.const.MYSQL_PASS
 
 chinese_weekday = {
     0: '星期一',
@@ -134,7 +128,7 @@ def get_orders(uid, stat):
     #   return db.select('orders',where = 'tel=$uid AND status=$stat',vars=locals())
     return db.query('SELECT orders.id as id, orders.tel as tel, orders.contact as contact, orders.orderdate as orderdate,\
                    orders.cnt as cnt, orders.price as price, offices.Name as officename, offices.Address as officeaddress,\
-                   orders.modifytime as ModTime, orders.pay as PayStat, orders.dispatch as Disp,\
+                   orders.modifytime as ModTime, orders.pay, orders.dispatch,\
                    orders.tminterval, orders.address \
                    FROM orders, offices \
                    WHERE orders.uid=$uid AND orders.status=$stat AND orders.officeid=offices.officeid \

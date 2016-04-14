@@ -21,7 +21,8 @@ $def with (userinfo, order_list)
           $for d_0 in order_list:
                 <div class="swiper-slide blue-slide">
                     <div class="m-order-detail">
-                        <h3 class="tit">1订单详情</h3>
+                        <h3 class="tit">订单详情</h3>
+                        $ total_price = 0.0
                         <div class="ins">
                             <ul>
                                 <li class="list c_f">
@@ -64,11 +65,12 @@ $def with (userinfo, order_list)
                                                 <span class="f_l">$order_list[d_0][d_1]["Name"] $order_list[d_0][d_1]["Count"] 份</span>
                                                 <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
                                             </li>
+                                            $ total_price = total_price + float($order_list[d_0][d_1]["Price"]) * float($order_list[d_0][d_1]["Count"])
                                         </ul>
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单总价</span>
-                                    <span class="txt">¥125</span>
+                                    <span class="txt">¥$total_price</span>
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单状态</span>

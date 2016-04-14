@@ -19,6 +19,7 @@ class receipt:
         #menu_date = web.ctx.session.menudate
         #route_id = web.ctx.session.routeid
         order_list = {}
+
         for oid in shopping_list:
             #i = web.input()
             model.update_order_1(oid,1)

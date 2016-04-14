@@ -49,6 +49,13 @@ $def with (orders_0, orders_1, orders_2)
                         </li>
                         <li class="list">
                             <span class="tit">订单状态</span>
+                            $if int(order.pay) == 0:
+                                <span class="txt red_txt">未支付</span>
+                            $elif int(order.pay) == 1:
+                                $if int(order.dispatch)==1:
+                                    <span class="txt red_txt">配送中</span>
+                                $else
+                                    <span class="txt red_txt">已下单</span>
                             <!--span class="txt red_txt">未支付</span-->
                         </li>
                     </ul>
@@ -79,15 +86,19 @@ $def with (orders_0, orders_1, orders_2)
                         </li>
                         <li class="list">
                             <span class="tit">取餐地点</span>
-                            <span class="txt">莱赛港 A座 飞牛网总部/一楼大堂</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单数量</span>
-                            <span class="txt">5份 (¥125)</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单状态</span>
-                            <span class="txt">订单已确认</span>
+                            $if int(order.pay) == 0:
+                                <span class="txt red_txt">未支付</span>
+                            $elif int(order.pay) == 1:
+                              $if int(order.status)==1:
+                                  <span class="txt red_txt">已完成</span>
                         </li>
                     </ul>
                     </div>
@@ -116,15 +127,23 @@ $def with (orders_0, orders_1, orders_2)
                         </li>
                         <li class="list">
                             <span class="tit">取餐地点</span>
-                            <span class="txt">莱赛港 A座 飞牛网总部/一楼大堂</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单数量</span>
-                            <span class="txt">5份 (¥125)</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
                         </li>
                         <li class="list">
                             <span class="tit">订单状态</span>
-                            <span class="txt">订单已确认</span>
+                            $if int(order.pay) == 0:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">已取消</span>
+                            $elif int(order.pay) == 1:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">待退款</span>
+                            $else:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">已退款</span>
                         </li>
                     </ul>
                     </div>
