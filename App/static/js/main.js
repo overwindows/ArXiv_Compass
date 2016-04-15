@@ -146,17 +146,16 @@ function siteed(){
             pSpan.html(names);
         }
                            
-                           var allUl=$("div[data-conlists]").children("ul");
-                           for(var i=0;i<allUl.length;i++){
-                               if($(allUl[i]).data("level")==level){
-                                   $(allUl[i]).show();
-                               }else{
-                                   $(allUl[i]).hide();
-                               }
-                           }
-                       aBtnMoreShow();
-     }
-
+       var allUl=$("div[data-conlists]").children("ul");
+       for(var i=0;i<allUl.length;i++){
+           if($(allUl[i]).data("level")==level){
+               $(allUl[i]).show();
+           }else{
+               $(allUl[i]).hide();
+           }
+       }
+    aBtnMoreShow();
+    }
  });
 
 //收藏
@@ -387,16 +386,16 @@ function showMark(){
             var btnShowMark =$("a[data-showmarkbox]");
             var markBoxLi =$(".mark_info div[data-markbox]");
             btnShowMark.each(function(){
-                           $(this).click(function(){
+                $(this).click(function(){
                        var thisData =$(this).data("showmarkbox");
                        for(var i=0;i<markBoxLi.length;i++){
                            $(markBoxLi[i]).hide();
-                                   var markBoxLiData =$(markBoxLi[i]).data("markbox");
-                                   if(thisData==markBoxLiData){
-                                                                $(markBoxLi[i]).data("markbox",markBoxLiData).show();
-                                                                $(markBoxLi[i]).data("markbox",markBoxLiData).parents(".mark_info").show();
-                                                   }
-                                        }
+                           var markBoxLiData =$(markBoxLi[i]).data("markbox");
+                           if(thisData==markBoxLiData){
+                               $(markBoxLi[i]).data("markbox",markBoxLiData).show();
+                               $(markBoxLi[i]).data("markbox",markBoxLiData).parents(".mark_info").show();
+                            }
+                        }
         });
             });
 }
