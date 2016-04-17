@@ -73,6 +73,10 @@ $def with (userinfo, shoppingbasket, menucalendar)
                     <span class="f_r">¥0</span>
                 </li>
                 <li class="list">
+                    <span class="tit">运费&nbsp<em class="red_txt">(...)</em></span>
+                    <span class="f_r">¥0</span>
+                </li>
+                <li class="list">
                     <span class="tit">共计<em class="red_txt">$cnt</em>&nbsp份</span>
                     <span class="f_r red_txt">$amount_1</span>
                 </li>
@@ -129,7 +133,6 @@ $$(".btn_agree").click(function(){
 });
 
 $$(".btn_red_wrap").click(function(){
-    
    if($$("#unitaddr").html()==""){
       //alert($$("#tips0").html());
       $$("#tips0").html("请补充取餐地点");
@@ -166,6 +169,7 @@ $$(".btn_red_wrap").click(function(){
     if(param == ""){
       $$("#tips0").html("请选中需要支付的订单");
       $$("#tips1").html("请选中后请重新提交");
+      return;
     }
     location.href = "/defray?param="+param;
     }

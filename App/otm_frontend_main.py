@@ -77,6 +77,7 @@ urls = (
         '/orderinfo', 'orderinfo',
 	'''
         '/carte_detail', 'carte_detail',
+        '/logout', 'logout',
         '/carte_succeed', 'carte_succeed',
         '/register_index', 'register_index',
         '/order_cancel', 'order_cancel',
@@ -84,7 +85,6 @@ urls = (
         '/order_index', 'order_index',
         '/order_list', 'order_list',
         '/success', 'success',
-        '/logout', 'logout',
         '/carte_pay', 'carte_pay',
         '/order_rollback', 'order_rollback',
         '/sms_valid', 'sms_valid',

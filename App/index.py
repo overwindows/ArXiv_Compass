@@ -69,6 +69,9 @@ class index:
         # initialize price
         shopping_cost = {}
         web.ctx.session.shoppingcost = shopping_cost
+
+        # 2016/04/17
+        web.ctx.session.failreason = "pay"
         '''
         i = web.input()
         # CODE from WebChat
