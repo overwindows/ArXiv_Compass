@@ -119,7 +119,7 @@ def ongoing_orders_cnt(uid):
 def get_order(orderid):
     return db.query('Select orders.tel as Tel, orders.contact as Contact, offices.Name as OfficeName, offices.Address as OfficeAddress, \
     orders.orderdate as OrderDate, orders.price as Price, offices.place as OfficePlace, orders.pay, offices.arrivaltime, orders.price, \
-    orders.price0, orders.price1, orders.price2,orders.modifytime, orders.tminterval, orders.address as orderaddr \
+    orders.price0, orders.price1, orders.price2,orders.modifytime, orders.tminterval, orders.address as orderaddr, orders.invoice \
 	From orders,offices \
     Where orders.id=$orderid And orders.officeid=offices.officeid', vars=locals())
 
@@ -129,7 +129,7 @@ def get_orders(uid, stat):
     return db.query('SELECT orders.id as id, orders.tel as tel, orders.contact as contact, orders.orderdate as orderdate,\
                    orders.cnt as cnt, orders.price as price, offices.Name as officename, offices.Address as officeaddress,\
                    orders.modifytime as ModTime, orders.pay, orders.dispatch, orders.status,\
-                   orders.tminterval, orders.address \
+                   orders.tminterval, orders.address\
                    FROM orders, offices \
                    WHERE orders.uid=$uid AND orders.status=$stat AND orders.officeid=offices.officeid \
                    ORDER BY id DESC', \
