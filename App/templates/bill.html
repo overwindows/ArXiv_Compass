@@ -33,7 +33,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
             </li>
             <li class="list bor_b_none">
                 <span class="tit2">取餐地点</span>
-                <span class="txt2">$userinfo["UnitAddr"]</span>
+                <span id="unitaddr" class="txt2">$userinfo["UnitAddr"]</span>
             </li>
         </ul>
     </div>
@@ -101,8 +101,8 @@ $def with (userinfo, shoppingbasket, menucalendar)
                 <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
             </div>
             <div class="ins m_t_1">
-                <p class="txt">当日10:30之后的订单，不可取消</p>
-                <p class="txt">按“确定”继续下单</p>
+                <p id="tips0" class="txt">当日10:30之后的订单，不可取消</p>
+                <p id="tips1" class="txt">按“确定”继续下单</p>
                 <a href="javascript:void(0)" class="btn_red_wrap w_p_80 rel" data-closemarkbox>确定</a>
             </div>
         </div>
@@ -116,22 +116,27 @@ $$(".btn_agree").click(function(){
         price = parseFloat($$(this).parent().parent().parent().children("li").eq(-3).children("span").eq(1).html());
         total_price = parseFloat($$("#total_price").text().substr(1));
         total_price = total_price - price;
-        alert(total_price.toString());
+        //alert(total_price.toString());
         $$("#total_price").html("¥"+total_price.toString());        
-        }
                 
-    }else{
-    
+    }
+    else{
         price = parseFloat($$(this).parent().parent().parent().children("li").eq(-3).children("span").eq(1).html());
         total_price = parseFloat($$("#total_price").text().substr(1));
         total_price = total_price + price;
         $$("#total_price").html("¥"+total_price.toString());        
     }
-
-
 });
 
 $$(".btn_red_wrap").click(function(){
+    
+   if($$("#unitaddr").html()==""){
+      //alert($$("#tips0").html());
+      $$("#tips0").html("world");
+      return;
+   }   
+
+   if ($$(this).hasClass("cur")){ 
     var dict = [];
     param=""
     $$(".time_val").each(function(){
@@ -159,6 +164,7 @@ $$(".btn_red_wrap").click(function(){
         }});
     //alert(param);
     location.href = "/defray?param="+param;
+    }
   });
 </script>
 </html>

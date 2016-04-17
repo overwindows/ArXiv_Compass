@@ -299,7 +299,7 @@ function showAgreeMore(){
 }
 //隐藏需要发票下的更多选项
 function hideAgreeMore(){
-     if($("#btnNeed:not([class='btn_agree on'])")){
+    if($("#btnNeed:not([class='btn_agree on'])")){
         $("#btnNeed").parent("span").parent("div").siblings("div").hide();        
     }
 }
