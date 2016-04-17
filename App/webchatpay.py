@@ -48,7 +48,7 @@ class webchatpay:
         unify_pay.setParameter('out_trade_no', str(web.ctx.session.out_trade_no))
         unify_pay.setParameter('body','准时开饭 套餐')
         unify_pay.setParameter('total_fee','1')
-        unify_pay.setParameter('notify_url','http://m.zhunshikaifan.com/carte_succeed')
+        unify_pay.setParameter('notify_url','http://x.zhunshikaifan.com/')
         unify_pay.setParameter('trade_type','JSAPI')
         unify_pay.setParameter('openid',openid)
         prepay_id = unify_pay.getPrepayId()

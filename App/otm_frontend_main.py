@@ -28,7 +28,7 @@ from delivery import *
 from sign import Sign
 from pay import *
 from orderinfo import *
-
+from orderfail import *
 '''
 from cancelorder import *
 from succeed import *
@@ -36,7 +36,7 @@ from paylunch import *
 from sms import *
 from register import *
 from terms import *
-from orderfail import *
+
 '''
 from env import render
 
@@ -73,7 +73,7 @@ urls = (
         '/webchatpay', 'webchatpay',
         '/member', 'member',
         '/delivery','delivery',
-        '/fail', 'fail',
+        '/orderfail', 'orderfail',
         '/orderinfo', 'orderinfo',
 	'''
         '/carte_detail', 'carte_detail',

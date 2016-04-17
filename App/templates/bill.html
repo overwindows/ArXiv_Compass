@@ -153,8 +153,7 @@ $$(".btn_red_wrap").click(function(){
          else if(tm == "12:40～13:00"){
              dict[oid] = 2;
          }
-         else
-         {
+         else{
              dict[oid] = -1;
          }
     });
@@ -164,6 +163,10 @@ $$(".btn_red_wrap").click(function(){
             param += oid+"_"+dict[oid]+"|";
         }});
     //alert(param);
+    if(param == ""){
+      $$("#tips0").html("请选中需要支付的订单");
+      $$("#tips1").html("请选中后请重新提交");
+    }
     location.href = "/defray?param="+param;
     }
   });

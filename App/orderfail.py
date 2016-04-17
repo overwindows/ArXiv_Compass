@@ -13,11 +13,11 @@ import urllib2
 
 from env import *
 
-class carte_failed:
+class orderfail:
     def GET(self):
         #浏览器回退防御
         if web.ctx.session.failreason=="expired":
-            return render.carte_failed(None,web.ctx.session.failreason)
+            return render.orderfail(None,web.ctx.session.failreason)
         #model.update_order_1(oid,0)
         if web.ctx.session.failreason == "pay" :
             oid = web.ctx.session.pay_oid
@@ -64,6 +64,6 @@ class carte_failed:
             res = urllib2.urlopen(send_url,data=json_data).read()
             # Notice-End
             '''
-            return render.carte_failed(order[0],web.ctx.session.failreason)
+            return render.orderfail(order[0],web.ctx.session.failreason)
         elif web.ctx.session.failreason=="stock":
-            return render.carte_failed(None,web.ctx.session.failreason)
+            return render.orderfail(None,web.ctx.session.failreason)

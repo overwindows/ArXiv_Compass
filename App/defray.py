@@ -65,7 +65,7 @@ class defray:
                             model.del_detail(orderid)
                             for (k,v) in lidict.items():
                                 model.upd_meal_sold(k,_date,-int(v))
-                            return web.seeother('/fail')
+                            return web.seeother('/orderfail')
                         elif ret == 0:
                                 #暂存已更新的库存信息
                             lidict[_lunchid] = cnt
@@ -75,7 +75,7 @@ class defray:
                         model.del_detail(orderid)
                         for (k,v) in lidict.items():
                             model.upd_meal_sold(k,_date,-int(v))
-                        return web.seeother('/fail')
+                        return web.seeother('/orderfail')
         print shopping_list
         web.ctx.session.shoppinglist = shopping_list
         return web.seeother('/webchatpay')

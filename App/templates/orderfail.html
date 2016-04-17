@@ -1,0 +1,58 @@
+$def with (order,failreason)
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+    <title>准时开饭</title>
+    <link href="../static/css/default.css" rel="stylesheet" />
+    <link href="../static/css/index.css?vs=1" rel="stylesheet" />
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/fun.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top">
+            <div class="top_left"></div>
+            <div class="top_center">下单失败</div>
+            <div class="top_right"></div>
+        </div>
+        <div class="succeed_cont">
+            <img class="succeed_img" src="../static/img/faliure_img.png" />                        
+            $if failreason == "stock":
+                <div class="hint">
+                    <p><em>很抱歉，你所预订的套餐库存不足</em></p>
+                    <p>您可尝试减少套餐数量或采用其他套餐，谢谢</p>
+                    <!--p><em>我的订单 - 进行中 - 取消订单</em></p>
+                    <p>超过时间将无法取消，敬请谅解！</p-->
+                </div>
+            $elif failreason == "pay":            
+                <div class="hint">
+                    <p><em>很抱歉，你所预订的套餐支付失败</em></p>
+                    <p>您可前往“我的订单”继续支付行为</p>
+                    <p>订单将为您保留10分钟，您也可以自行取消本次订单，谢谢</p>
+                </div>
+            $elif failreason == "expired":
+                 <div class="hint">
+                    <p><em>很抱歉，页面失效，本次结算出现异常</em></p>
+                    <p>您可前往首页继续订餐</p>
+                    <p>请勿在页面跳转时采用浏览器的返回，谢谢</p>
+                </div>           
+            <span class="succeed_line"></span>
+            <a href="/" class="succeed_ok">返回首页</a>
+        </div>
+        <img class="bottom_img" src="../static/img/bottom.png" />
+    </div>
+</body>
+</html>
+<script>
+    $$(function () {
+        //单选
+        $$(".type_radio").click(function () {
+            $$(".type_radio").removeClass("click");
+            $$(this).addClass("click");
+        })
+    })
+</script>
