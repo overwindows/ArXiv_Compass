@@ -27,6 +27,8 @@ from webchatpay import *
 from delivery import *
 from sign import Sign
 from pay import *
+from orderinfo import *
+
 '''
 from cancelorder import *
 from succeed import *
@@ -34,7 +36,6 @@ from paylunch import *
 from sms import *
 from register import *
 from terms import *
-from order_ongoing import *
 from orderfail import *
 '''
 from env import render
@@ -73,13 +74,12 @@ urls = (
         '/member', 'member',
         '/delivery','delivery',
         '/fail', 'fail',
+        '/orderinfo', 'orderinfo',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
-
         '/register_index', 'register_index',
         '/order_cancel', 'order_cancel',
-        '/order_detail', 'order_detail',
         '/order_over', 'order_over',
         '/order_index', 'order_index',
         '/order_list', 'order_list',
@@ -107,26 +107,6 @@ app.add_processor(web.loadhook(session_hook))
 class icon:
     def GET(self): 
         raise web.seeother("/static/images/favicon.ico")
-
-# Order Detail
-class order_detail:
-    def GET(self):
-        i = web.input()
-        opt = i.get('opt')
-        oid = i.get('oid')
-        ord_details_iter = model.get_detail(oid)
-        ord_details = list(ord_details_iter)
-
-        ord_info_iter = model.get_order(oid)
-        ord_info = list(ord_info_iter)
-        
-        ot_ts = int(time.mktime(time.strptime(str(ord_info[0].OrderDate)+" 10:30:00", "%Y-%m-%d %H:%M:%S")))
-        cur_ts = int(time.time())
-        if cur_ts > ot_ts:
-            OT=True
-        else:
-            OT=False
-        return render.order_detail(int(opt),oid, ord_details, ord_info[0], OT)
 
 #已完成订单
 class order_over:
