@@ -25,11 +25,11 @@ $def with (userinfo, shoppingbasket, menucalendar)
             </li>
             <li class="list">
                 <span class="tit2">手机</span>
-                <a class="txt2 gray_txt" href="#">$userinfo["Tel"]</a>
+                <a id="telephone" class="txt2 gray_txt" href="#">$userinfo["Tel"]</a>
             </li>
             <li class="list">
                 <span class="tit2">送餐地址</span>
-                <span class="txt2">$userinfo["OfficeAddr"]</span>
+                <span id="officeaddr" class="txt2">$userinfo["OfficeAddr"]</span>
             </li>
             <li class="list bor_b_none">
                 <span class="tit2">取餐地点</span>
@@ -132,9 +132,10 @@ $$(".btn_red_wrap").click(function(){
     
    if($$("#unitaddr").html()==""){
       //alert($$("#tips0").html());
-      $$("#tips0").html("world");
+      $$("#tips0").html("请补充取餐地点");
+      $$("#tips1").html("填写完成后请重新提交");
       return;
-   }   
+   }
 
    if ($$(this).hasClass("cur")){ 
     var dict = [];
