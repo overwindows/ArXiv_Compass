@@ -96,7 +96,7 @@ $def with (userinfo, shoppingbasket, menucalendar)
         <hr class="hr_gray">
         <div class="cut_line"></div>
     <div class=" p_b_2">
-        <a href="javascript:void(0)" class="btn_red_wrap cur rel" data-getgray="" data-showmarkbox="txt1">确定下单<span id="total_price" class="txt2">¥$amount_0</span></a>
+        <a id="confirm" href="javascript:void(0)" class="btn_red_wrap cur rel" data-getgray="" data-showmarkbox="txt1">确定下单<span id="total_price" class="txt2">¥$amount_0</span></a>
     </div>
     <div class="mark_info hide z_index_200">
         <div class="con  white_bg" data-markbox="txt1">
@@ -129,6 +129,14 @@ $$(".btn_agree").click(function(){
         total_price = parseFloat($$("#total_price").text().substr(1));
         total_price = total_price + price;
         $$("#total_price").html("¥"+total_price.toString());        
+    }
+    if (total_price < 0.00001){
+        $$("#confirm").addClass("no");
+    }
+    else{
+        if($$("#confirm").hasClass("no")){
+            $$("#confirm").removeClass("no");
+        }
     }
 });
 
@@ -166,10 +174,9 @@ $$(".btn_red_wrap").click(function(){
             param += oid+"_"+dict[oid]+"|";
         }});
     //alert(param);
-    if(param == ""){
-      $$("#tips0").html("请选中需要支付的订单");
-      $$("#tips1").html("请选中后请重新提交");
-      return;
+    if(param != ""){
+      $$("#tips0").html("提交订单中，请稍后...");
+      $$("#tips1").html("请勿重复提交");
     }
     location.href = "/defray?param="+param;
     }

@@ -17,11 +17,11 @@ class orderfail:
     def GET(self):
         #浏览器回退防御
         if web.ctx.session.failreason=="expired":
-            return render.orderfail(None,web.ctx.session.failreason)
+            return render.orderfail(web.ctx.session.failreason)
         #model.update_order_1(oid,0)
         if web.ctx.session.failreason == "pay" :
-            oid = web.ctx.session.pay_oid
-            order = list(model.get_order(oid))
+            #oid = web.ctx.session.pay_oid
+            #order = list(model.get_order(oid))
             '''
             # Notice-Start
             date_time = datetime.datetime.strptime(str(order[0].OrderDate),'%Y-%m-%d')
@@ -64,6 +64,6 @@ class orderfail:
             res = urllib2.urlopen(send_url,data=json_data).read()
             # Notice-End
             '''
-            return render.orderfail(order[0],web.ctx.session.failreason)
+            return render.orderfail(web.ctx.session.failreason)
         elif web.ctx.session.failreason=="stock":
-            return render.orderfail(None,web.ctx.session.failreason)
+            return render.orderfail(web.ctx.session.failreason)

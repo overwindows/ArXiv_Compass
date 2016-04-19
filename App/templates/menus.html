@@ -23,8 +23,8 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
             <a href="#" class="logo imgbox"><img src="../static/images/img_01.png" /></a>
         </div>
     </div>
-    <div id="tips" class="tipbox" data-tips style="display: none;"><span>购物车为空</span></div>
     <div class="g-content">
+    <div id="tips" class="tipbox" data-tips style="display: none;"><span>购物车为空</span></div>
         <!-- <section class="imgbox">
             <img src="images/img_10.png" />
         </section> -->
@@ -72,9 +72,9 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
             </div>
         </div>
         <div class="cooksbox white_bg">
+        $ total_cnt = shopping_count
+        $ total_cost = 0.0
         $for lunch in lunches:
-            $ total_cnt = shopping_count
-            $ total_cost = 0.0
             <section class="item white_bg m_b_cut">
                 <div class="imgbox cookimg rel">
                     <img src="../static/prod_img/$(lunch.ID).jpg" data-cookimg/>
