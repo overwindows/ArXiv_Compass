@@ -104,6 +104,8 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                             <a href="javascript:void(0)" class="btn_minus on" data-minus="" style="display: inline;"></a>
                             <span class="count" data-count="" style="display: inline;">$(lunches_info[lunch.ID]["Count"])</span>
                             <a href="javascript:void(0)" class="btn_add" data-add=""></a> 
+                            $ total_cnt = int(total_cnt) + int(lunches_info[lunch.ID]["Count"])
+                            $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)
                         $else:
                             <a href="javascript:void(0)" class="btn_minus" data-minus=""></a>
                             <span class="count" data-count="">0</span>
