@@ -16,7 +16,7 @@ class menus:
     def GET(self):
         i = web.input()
         office_id = i.get("officeid")        
-        menu_date = i.get("menudate")
+        menu_date = i.get("menudate") # different meaning, NEXT menudate
         route_id  = i.get("routeid")  
 
         if route_id is None:
@@ -28,7 +28,7 @@ class menus:
         shopping_cost = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
         
-        #if parameters
+        #if parameters, load previous menu date
         param = i.get("param")
         if param:
             _menudate = web.ctx.session.menudate
@@ -79,7 +79,6 @@ class menus:
         lunches = model.get_menu(int(route_id), menu_date)
 
         web.ctx.session.officeid = office_id
-        web.ctx.session.menudate = menu_date
 
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
@@ -97,7 +96,7 @@ class menus:
             if shopping_cost[_d].has_key("count"):
                 shopping_count += shopping_cost[_d]["count"]
 
-        #web.ctx.session.menudate = str(menu_date)
+        web.ctx.session.menudate = str(menu_date)
 
         return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''

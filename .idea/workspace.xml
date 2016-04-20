@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="menus.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menus.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/menus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.18461539">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="21" />
+            <state vertical-scroll-proportion="-18.0">
+              <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -41,10 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bill.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bill.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/bill.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.230769">
+            <state vertical-scroll-proportion="-0.34615386">
               <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding />
             </state>
@@ -54,8 +54,8 @@
       <file leaf-file-name="menus.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/templates/menus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.083334">
-              <caret line="136" column="63" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="63" />
+            <state vertical-scroll-proportion="-49.083332">
+              <caret line="138" column="44" selection-start-line="138" selection-start-column="44" selection-end-line="138" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/App/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="86" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="86" />
+              <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -99,8 +99,8 @@
         <option value="$PROJECT_DIR$/App/templates/webchatpay.html" />
         <option value="$PROJECT_DIR$/App/defray.py" />
         <option value="$PROJECT_DIR$/App/templates/orderfail.html" />
-        <option value="$PROJECT_DIR$/App/templates/menus.html" />
         <option value="$PROJECT_DIR$/App/bill.py" />
+        <option value="$PROJECT_DIR$/App/templates/menus.html" />
         <option value="$PROJECT_DIR$/App/menus.py" />
       </list>
     </option>
@@ -747,21 +747,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App/templates/menus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-49.083332">
+          <caret line="138" column="44" selection-start-line="138" selection-start-column="44" selection-end-line="138" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/static/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="86" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="86" />
+          <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/templates/menus.html">
+    <entry file="file://$PROJECT_DIR$/App/menus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.083334">
-          <caret line="136" column="63" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="63" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-18.0">
+          <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -775,16 +783,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/bill.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.230769">
+        <state vertical-scroll-proportion="-0.34615386">
           <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/menus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.18461539">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="21" />
           <folding />
         </state>
       </provider>
