@@ -21,10 +21,9 @@ class bill:
         menu_calendar = web.ctx.session.menucalendar
 
         i = web.input()
-        _menu_date = i.get("menudate")
+        menu_date = i.get("menudate")
         param = i.get("param")
         if param:
-            menu_date = str(_menu_date)
             order_info = {}
             order_list = param.split("|")
             for order in order_list:
