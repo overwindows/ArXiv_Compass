@@ -31,8 +31,10 @@ class menus:
         #if parameters
         param = i.get("param")
         if param:
-            _menudate = web.ctx.session.menudate
+            # _menudate = web.ctx.session.menudate
+            _menudate = menu_date
             order_info = {}
+            # print _menudate 
             
             order_list = param.split("|")
             for order in order_list:
@@ -94,6 +96,8 @@ class menus:
         # calculate shopping counts
         shopping_count = 0
         for _d in shopping_cost:
+            print _d
+            print shopping_cost[_d]["count"]
             if shopping_cost[_d].has_key("count"):
                 shopping_count += shopping_cost[_d]["count"]
 
