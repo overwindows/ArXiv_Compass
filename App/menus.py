@@ -31,10 +31,11 @@ class menus:
         #if parameters
         param = i.get("param")
         if param:
+            print param
             # _menudate = web.ctx.session.menudate
-            _menudate = menu_date
+            _menudate = str(menu_date)
             order_info = {}
-            # print _menudate 
+            print _menudate 
             
             order_list = param.split("|")
             for order in order_list:
@@ -81,7 +82,6 @@ class menus:
         lunches = model.get_menu(int(route_id), menu_date)
 
         web.ctx.session.officeid = office_id
-        web.ctx.session.menudate = menu_date
 
         offices_iter = model.get_office(int(office_id))
         offices = list(offices_iter)
