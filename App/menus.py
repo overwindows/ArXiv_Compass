@@ -101,7 +101,7 @@ class menus:
             if shopping_cost[_d].has_key("count"):
                 shopping_count += shopping_cost[_d]["count"]
 
-        web.ctx.session.menudate = str(menu_date)        
+        #web.ctx.session.menudate = str(menu_date)
 
         return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''

@@ -17,11 +17,11 @@ class bill:
         shopping_basket = web.ctx.session.shoppingbasket
         shopping_cost = web.ctx.session.shoppingcost
         user_info = web.ctx.session.userinfo
-        menu_date = web.ctx.session.menudate
         route_id = web.ctx.session.routeid
         menu_calendar = web.ctx.session.menucalendar
 
         i = web.input()
+        menu_date = i.get("menudate")
         param = i.get("param")
         if param:
             order_info = {}
