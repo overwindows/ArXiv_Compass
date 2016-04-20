@@ -33,7 +33,7 @@ class menus:
         if param:
             _menudate = web.ctx.session.menudate
             order_info = {}
-            
+            print _menudate+":"+param 
             order_list = param.split("|")
             for order in order_list:
                 if order:
@@ -85,8 +85,8 @@ class menus:
         user_info["OfficeAddr"] = offices[0].Name
         user_info["OfficeId"] = office_id
         
-        if shopping_basket.has_key(menu_date):
-            lunches_info = shopping_basket[menu_date]
+        if shopping_basket.has_key(str(menu_date)):
+            lunches_info = shopping_basket[str(menu_date)]
 
         web.ctx.session.userinfo = user_info
 

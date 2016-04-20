@@ -19,11 +19,12 @@ class bill:
         user_info = web.ctx.session.userinfo
         route_id = web.ctx.session.routeid
         menu_calendar = web.ctx.session.menucalendar
+        menu_date = web.ctx.session.menudate
 
         i = web.input()
-        menu_date = i.get("menudate")
         param = i.get("param")
         if param:
+      
             order_info = {}
             order_list = param.split("|")
             for order in order_list:
