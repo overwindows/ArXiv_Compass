@@ -60,9 +60,9 @@ $def with (orders_0, orders_1, orders_2)
                         </li>
                     </ul>
                     $if int(order.pay) == 0:
-                        <a href="javascript:void(0)" class="btn_red_wrap rel" data-showmarkbox="txt1">立即支付</a>
+                        <a href="javascript:void(0)" oid="$order.id" pay="0" class="btn_red_wrap rel" data-showmarkbox="txt1">立即支付</a>
                     $elif int(order.pay) == 1:
-                        <a href="javascript:void(0)" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">取消订单</a>
+                        <a href="javascript:void(0)" oid="$order.id" pay="1" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">取消订单</a>
                     </div>
                     <hr class="hr_gray"/>
                     <div class="cut_line"></div>
@@ -182,19 +182,19 @@ $def with (orders_0, orders_1, orders_2)
                         </div>
                     </li>
                 </ul>
-                <a href="javascript:void(0)" class="btn_red_wrap no rel" data-closemarkbox>确定</a>
+                <a href="#" class="btn_red_wrap no rel" data-closemarkbox id="confirm_cancel">确定</a>
             </div>
         </div>
         <div class="con  white_bg" data-markbox="txt1">
             <div class="hd rel">
-                <span>抱歉...</span>
+                <span>温馨提示</span>
                 <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
             </div>
             <div class="ins m_t_1">
-                <p class="txt">微信支付未成功，请尽快完成支付</p>
+                <p class="txt">微信支付发起中</p>
                 <p class="txt">当日中午10:30前未完成支付，订单将自动取消</p>
                 <p class="txt">敬请谅解</p>
-                <a href="index7.html" class="btn_red_wrap w_p_80 rel" data-closemarkbox>确定</a>
+                <!--a href="index7.html" class="btn_red_wrap w_p_80 rel" data-closemarkbox>确定</a-->
             </div>
         </div>
     </div>
@@ -263,7 +263,14 @@ $def with (orders_0, orders_1, orders_2)
 });
 
 $$(".btn_red_wrap").click(function(){
-
+      pay_status = $$(this).attr("pay");
+      oid = $$(this).attr("oid")
+      if(pay_status=="0"){
+          location.href = "/webchatpay?oids="+oid;
+      }
+      else if(pay_status=="1"){
+          $$('#confirm_cancel').attr("href", "/cancelorder?oid="oid)
+      }
   });
 </script>
 </body>

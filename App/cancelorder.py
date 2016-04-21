@@ -12,7 +12,7 @@ import urllib
 from env import *
 
 #Order Rollback 
-class order_rollback:
+class cancelorder:
     def GET(self):
         i = web.input()
         oid = i.get('oid')
@@ -36,4 +36,4 @@ class order_rollback:
         #res = refund.getResult()
         #print res["return_code"]
         #print res["return_msg"]
-        return web.seeother('/order_index')
+        return web.seeother('/orders')

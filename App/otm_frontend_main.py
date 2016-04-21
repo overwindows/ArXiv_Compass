@@ -75,6 +75,7 @@ urls = (
         '/delivery','delivery',
         '/orderfail', 'orderfail',
         '/orderinfo', 'orderinfo',
+        '/cancelorder', 'cancelorder',
 	'''
         '/carte_detail', 'carte_detail',
         '/logout', 'logout',
@@ -86,7 +87,7 @@ urls = (
         '/order_list', 'order_list',
         '/success', 'success',
         '/carte_pay', 'carte_pay',
-        '/order_rollback', 'order_rollback',
+
         '/sms_valid', 'sms_valid',
         '/terms', 'terms',
 		'''
