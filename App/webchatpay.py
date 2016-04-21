@@ -15,6 +15,9 @@ from sign import Sign
 
 class webchatpay:
     def GET(self):
+        i = web.input()
+        oid_list = i.oids.split("_")
+
         global access_token
         global jsapi_ticket
         global token_timestamp
@@ -27,10 +30,15 @@ class webchatpay:
             jsapi_ticket = sign.get_ticket(access_token)
             token_timestamp = int(time.time())
 
-        #oid = session.pay_oid
-        #print oid
-        #order_it = model.get_order(oid)
-        #order = list(order_it)
+        total_fee = 0.0
+        for oid in oid_list:
+            #oid = session.pay_oid
+            #print oid
+            order_it = model.get_order(oid)
+            order = list(order_it)
+            total_fee += order[0].Price
+
+        out_trade_no = str(int(time.time()))
 
         js_sign = Sign(jsapi_ticket, web.ctx.home+web.ctx.fullpath)
         sign_data = js_sign.sign()
@@ -45,9 +53,9 @@ class webchatpay:
         #print oid
         #print total_fee
         #print openid
-        unify_pay.setParameter('out_trade_no', str(web.ctx.session.out_trade_no))
+        unify_pay.setParameter('out_trade_no', out_trade_no)
         unify_pay.setParameter('body','准时开饭 套餐')
-        unify_pay.setParameter('total_fee','1')
+        unify_pay.setParameter('total_fee',str(total_fee))
         unify_pay.setParameter('notify_url','http://x.zhunshikaifan.com/')
         unify_pay.setParameter('trade_type','JSAPI')
         unify_pay.setParameter('openid',openid)

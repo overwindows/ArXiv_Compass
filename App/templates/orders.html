@@ -59,7 +59,10 @@ $def with (orders_0, orders_1, orders_2)
                             <!--span class="txt red_txt">未支付</span-->
                         </li>
                     </ul>
-                    <!--a href="javascript:void(0)" class="btn_red_wrap rel" data-showmarkbox="txt1">立即支付</a-->
+                    $if int(order.pay) == 0:
+                        <a href="javascript:void(0)" class="btn_red_wrap rel" data-showmarkbox="txt1">立即支付</a>
+                    $elif int(order.pay) == 1:
+                        <a href="javascript:void(0)" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">取消订单</a>
                     </div>
                     <hr class="hr_gray"/>
                     <div class="cut_line"></div>
@@ -258,6 +261,10 @@ $def with (orders_0, orders_1, orders_2)
           return '<span class="' + className + '">' + name + '</span>';
       }
 });
+
+$$(".btn_red_wrap").click(function(){
+
+  });
 </script>
 </body>
 </html>

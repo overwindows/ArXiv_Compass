@@ -19,7 +19,7 @@ class defray:
         shopping_list = web.ctx.session.shoppinglist
         user_info = web.ctx.session.userinfo
         shopping_cost = web.ctx.session.shoppingcost
-        web.ctx.session.out_trade_no = int(time.time())
+        seed_no = int(time.time())
         invoice = user_info["Invoice"]
 
         i = web.input()
@@ -31,7 +31,7 @@ class defray:
             if order:
                 id,tm = order.split("_")
                 order_info[str(id)] = tm
-        print order_info.keys()
+        #print order_info.keys()
 
         id = 0
         for _date in shopping_basket:
@@ -39,7 +39,7 @@ class defray:
             _id = str(id) 
             if order_info.has_key(_id):
                 rand_suffix = random.randint(1000,10000)
-                orderid = web.ctx.session.out_trade_no * 1000 + rand_suffix
+                orderid = seed_no * 1000 + rand_suffix
                 shopping_list.append(orderid)
                 #if failed in next steps, the order should be deleted!!!
                 model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
@@ -76,11 +76,9 @@ class defray:
                         for (k,v) in lidict.items():
                             model.upd_meal_sold(k,_date,-int(v))
                         return web.seeother('/orderfail')
-        print shopping_list
-        web.ctx.session.shoppinglist = shopping_list
-        return web.seeother('/webchatpay')
-        #return web.seeother('/prepay?payid='+str(orderid))
-
+        #print shopping_list
+        oids = "_".join(shopping_list)
+        return web.seeother('/webchatpay?oids=' + oids)
 '''
         # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start
         ot_ts  = int(time.mktime(time.strptime(str(web.ctx.session.menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
