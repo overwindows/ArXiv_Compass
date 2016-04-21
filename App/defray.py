@@ -40,7 +40,7 @@ class defray:
             if order_info.has_key(_id):
                 rand_suffix = random.randint(1000,10000)
                 orderid = seed_no * 1000 + rand_suffix
-                shopping_list.append(orderid)
+                shopping_list.append(str(orderid))
                 #if failed in next steps, the order should be deleted!!!
                 model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
                             float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
