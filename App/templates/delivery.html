@@ -14,6 +14,7 @@ $def with (userinfo)
 </head>
 <body class="bg2">
 	<header class="m-hd rel">
+		<div id="tips" class="tipbox" data-tips style="display: none;"><span></span></div>
 		<a href="/bill" class="btn_prevpage imgbox"><img src="../static/images/img_23.png" /></a>
 		<h3 class="tit">配送信息</h3>
 	</header>
@@ -43,11 +44,11 @@ $def with (userinfo)
 			<li class="list list2">
 				<span class="tit">发票抬头</span>
 				<div class="btns_agree c_f">
-					<!--span class="agree_txt rel f_l cur">
+					<span class="agree_txt rel f_l cur">
 						<a href="javascript:void(0)" class="btn_agree on" data-agreeRadio><span></span></a>
 						不需要
-					</span-->
-					<span class="agree_txt rel f_l cur">
+					</span>
+					<span class="agree_txt rel f_r cur">
 						<a href="javascript:void(0)" class="btn_agree" data-agreeRadio id="btnNeed">
 							<span></span>
 						</a>
@@ -72,12 +73,44 @@ $def with (userinfo)
 		</ul>
 	</div>
 	<div class=" p_b_2">
-		<a href="javascript:void(0)" class="btn_red_wrap no rel w_p_80" data-getgray="">保存</a>
+		<!--a href="javascript:void(0)" class="btn_red_wrap no rel w_p_80" data-getgray="">保存</a-->
+		<a href="javascript:void(0)" class="btn_red_wrap rel w_p_80" data-getgray="">保存</a>
 	</div>
     </form>
 </body>
 <script type="text/javascript">
-$$(".w_p_80").click(function(){
+$$(".btn_red_wrap").click(function(){
+    if($$("input[name=telephone]").val()==""){
+            var len = $$("input[name=telephone]").val().length;
+            var value = $$("input[name=telephone]").val();
+  			var mobile = /^(1+\d{10})$$/;
+            if(len != 11 || ! mobile.test(value))
+            {
+                //alert("请输入有效的手机号码");
+			   $$("#tips").html("请输入有效的手机号码");
+			   $$("#tips").show();
+			   $$("#tips").delay(600).fadeOut(400);
+			   return;
+            }
+
+       $$("#tips").html("请填写电话号码");
+       $$("#tips").show();
+       $$("#tips").delay(600).fadeOut(400);
+       return;
+    }
+    else if($$("input[name=contact]").val()==""){
+       $$("#tips").html("请填写联系人姓名");
+       $$("#tips").show();
+       $$("#tips").delay(600).fadeOut(400);
+       return;
+    }
+    else if($$("input[name=unitaddress]").val()==""){
+       $$("#tips").html("请填写取餐地点");
+       $$("#tips").show();
+       $$("#tips").delay(600).fadeOut(400);
+       return;
+    }
+
     $$("form").submit();
 });
 </script>

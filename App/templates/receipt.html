@@ -58,15 +58,18 @@ $def with (userinfo, order_list)
                                 <li class="list c_f rel arr_down" data-detail>
                                     <span class="icon"></span>
                                     <span class="tit">订单内容</span>
-                                    <span class="txt detail">...</span>
-                                        <ul class="detailbox hide">
-                                        $for d_1 in order_list[d_0]:
-                                            <li class="list3 c_f">
-                                                <span class="f_l">$order_list[d_0][d_1]["Name"] $order_list[d_0][d_1]["Count"] 份</span>
-                                                <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
-                                            </li>
-                                            $ total_price = total_price + float(order_list[d_0][d_1]["Price"]) * float(order_list[d_0][d_1]["Count"])
-                                        </ul>
+                                    $if len(order_list[d_0].keys()) > 1:
+                                        <span class="txt detail">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
+                                            <ul class="detailbox hide">
+                                            $for d_1 in order_list[d_0]:
+                                                <li class="list3 c_f">
+                                                    <span class="f_l">$order_list[d_0][d_1]["Name"] $order_list[d_0][d_1]["Count"] 份</span>
+                                                    <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
+                                                </li>
+                                                $ total_price = total_price + float(order_list[d_0][d_1]["Price"]) * float(order_list[d_0][d_1]["Count"])
+                                            </ul>
+                                    else:
+                                        <span class="f_l">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单总价</span>

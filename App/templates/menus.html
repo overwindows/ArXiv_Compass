@@ -139,10 +139,20 @@ $$(".tab_car").click(function(){
        location.href = "/bill?param="+param;
     }else{
        //alert("hello");
+       $$("#tips").html("购物车为空");
        $$("#tips").show();
        $$("#tips").delay(600).fadeOut(400);
     }
   });
+
+$$(".list").click(fucntion(){
+    if($$(this).hasClass("prev")){
+       type = $$(this).html();
+       $$("#tips").html(type+"已停止预定");
+       $$("#tips").show();
+       $$("#tips").delay(600).fadeOut(400);
+    }
+});
 
   var mySwiper = new Swiper('.swiper-container',{
     	loop: true,
