@@ -263,13 +263,15 @@ $def with (orders_0, orders_1, orders_2)
 });
 
 $$(".btn_red_wrap").click(function(){
+
       pay_status = $$(this).attr("pay");
-      oid = $$(this).attr("oid")
+      oid = $$(this).attr("oid");
+//      alert();
       if(pay_status=="0"){
           location.href = "/webchatpay?oids="+oid;
       }
       else if(pay_status=="1"){
-          $$('#confirm_cancel').attr("href", "/cancelorder?oid="oid)
+          $$('#confirm_cancel').attr("href", "/cancelorder?oid="+oid);
       }
   });
 </script>

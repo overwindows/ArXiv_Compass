@@ -29,8 +29,8 @@ from sign import Sign
 from pay import *
 from orderinfo import *
 from orderfail import *
-'''
 from cancelorder import *
+'''
 from succeed import *
 from paylunch import *
 from sms import *
