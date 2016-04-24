@@ -62,13 +62,14 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                 </ul>
             </div>
             <div class="selecbox f_r break">
-                <a href="javascript:void(0)" class="time_val rel" data-select><span>美味午餐</span><i class="icon"></i></a>
+                <a href="#" class="time_val rel" data-select><span>美味午餐</span></a>
+                <!--a href="javascript:void(0)" class="time_val rel" data-select><span>美味午餐</span><i class="icon"></i></a>
                 <ul>
                     <li class="list prev">营养早餐</li>
                     <li class="list">美味午餐</li>
                     <li class="list prev">下午茶歇</li>
                     <li class="list prev">健康晚餐</li>
-                </ul>
+                </ul-->
             </div>
         </div>
         <div class="cooksbox white_bg">
@@ -83,9 +84,12 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                         <div class="ins white_txt">
                             <h3 class="tit">$lunch.Meal</h3>
                             <div class="txt">
-                                <p><span>主菜:</span>$lunch.entree</p>
-                                <p><span>配菜:</span>$lunch.garnish</p>
-                                <p><span>主食:</span>$lunch.staple</p>
+                                $if lunch.entree:
+                                    <p><span>主菜:</span>$lunch.entree</p>
+                                $if lunch.garnish:
+                                    <p><span>配菜:</span>$lunch.garnish</p>
+                                $if lunch.staple:
+                                    <p><span>主食:</span>$lunch.staple</p>
                             </div>
                         </div>
                     </div>    
@@ -145,7 +149,7 @@ $$(".tab_car").click(function(){
     }
   });
 
-$$(".list").click(fucntion(){
+$$(".list").click(function(){
     if($$(this).hasClass("prev")){
        type = $$(this).html();
        $$("#tips").html(type+"已停止预定");
@@ -194,7 +198,7 @@ $$(window).scroll( function(event) {
 	}else if(cooksBoxTop>46 && $$(".screen_box").hasClass("fixed")){
 		$$(".screen_box").removeClass("fixed");
 	}	
- } );
+ });
 </script>
 </body>
 </html>
