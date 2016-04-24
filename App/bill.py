@@ -54,7 +54,7 @@ class bill:
                 shopping_cost[menu_date] = {}
             shopping_cost[menu_date]["price0"] = _price0
             shopping_cost[menu_date]["price1"] = 0
-            shopping_cost[menu_date]["price2"] = 0
+            shopping_cost[menu_date]["price2"] = 5.0
             shopping_cost[menu_date]["price"] = _price0
             shopping_cost[menu_date]["count"] = _count
 
@@ -62,7 +62,7 @@ class bill:
             web.ctx.session.shoppingcost = shopping_cost
 
         if user_info.has_key("ID"):
-            return render.bill(user_info, shopping_basket, menu_calendar)
+            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost)
         else:
             web.ctx.session.redirecturl = "/bill"
             web.seeother('/login')   

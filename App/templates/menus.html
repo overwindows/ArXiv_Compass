@@ -10,7 +10,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
     <link rel="stylesheet" href="../static/css/swiper.min.css" />
     <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
     <script src="../static/js/swiper.min.js"></script>
-    <script type="text/javascript" src="../static/js/main.js" ></script> 
+    <script type="text/javascript" src="../static/js/main.js?v=1.0" ></script> 
     <!--控制实现页面自适应脚本-->
     <script type="text/javascript" src="../static/js/font_resize.js" ></script>
 </head>
@@ -103,21 +103,21 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                     </p>
                     <h2 class="price"><em>￥</em>$lunch.Price</h2>
                     <hr class="hr_gray"/>
-                    $if lunch.stock > 0:
-                        <div class="num_wrap c_f">
+                    <div class="num_wrap c_f">
+                    $if lunch.Stock > 0:
                             $if lunches_info and lunches_info.has_key(lunch.ID):
                                 <a href="javascript:void(0)" class="btn_minus on" data-minus="" style="display: inline;"></a>
                                 <span class="count" data-count="" style="display: inline;">$(lunches_info[lunch.ID]["Count"])</span>
-                                <a href="javascript:void(0)" class="btn_add" data-add="" stock="$lunch.stock"></a>
+                                <a href="javascript:void(0)" class="btn_add" data-add="" stock="$(lunch.Stock)"></a>
                                 $ total_cnt = int(total_cnt) + int(lunches_info[lunch.ID]["Count"])
                                 $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)
                             $else:
                                 <a href="javascript:void(0)" class="btn_minus" data-minus=""></a>
                                 <span class="count" data-count="">0</span>
-                                <a href="javascript:void(0)" class="btn_add" data-add=""></a>
-                        </div>
+                                <a href="javascript:void(0)" class="btn_add" data-add="" stock="$(lunch.Stock)"></a>
                     $else:
                         <div class="txt"><span>已售罄</span></div>
+                    </div>
                 </div>
             </section>
         </div>
