@@ -70,7 +70,7 @@ $def with (orders_0, orders_1, orders_2)
                 <div class="swiper-slide red-slide">
                 $for order in orders_1:
                     <div class="m-orderlists cur2 rel">
-                    <a href="/receipt" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
+                    <a href="/orderinfo?oid=$order.id" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
                     <ul>
                         <li class="list">
                             <span class="tit">订单编号</span>
@@ -111,7 +111,7 @@ $def with (orders_0, orders_1, orders_2)
                 <div class="swiper-slide orange-slide">
                 $for order in orders_2:
                     <div class="m-orderlists cur2 rel">
-                    <a href="#" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
+                    <a href="/orderinfo?oid=$order.id" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
                     <ul>
                         <li class="list">
                             <span class="tit">订单编号</span>
