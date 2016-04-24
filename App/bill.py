@@ -21,6 +21,9 @@ class bill:
         menu_calendar = web.ctx.session.menucalendar
         menu_date = web.ctx.session.menudate
 
+        ot_ts  = int(time.mktime(time.strptime(str(web.ctx.session.menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
+        cur_ts = int(time.time())
+
         i = web.input()
         param = i.get("param")
         if param:
