@@ -35,6 +35,7 @@ class bill:
 
             _count = 0
             _price0 = 0
+            _price2 = 5.0
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -54,8 +55,8 @@ class bill:
                 shopping_cost[menu_date] = {}
             shopping_cost[menu_date]["price0"] = _price0
             shopping_cost[menu_date]["price1"] = 0
-            shopping_cost[menu_date]["price2"] = 5.0
-            shopping_cost[menu_date]["price"] = _price0
+            shopping_cost[menu_date]["price2"] = _price2
+            shopping_cost[menu_date]["price"] = _price0 + _price2
             shopping_cost[menu_date]["count"] = _count
 
             web.ctx.session.shoppingbasket = shopping_basket

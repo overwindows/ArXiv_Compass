@@ -68,7 +68,7 @@ $def with (userinfo, order_list)
                                                 </li>
                                                 $ total_price = total_price + float(order_list[d_0][d_1]["Price"]) * float(order_list[d_0][d_1]["Count"])
                                             </ul>
-                                    else:
+                                    $else:
                                         <span class="f_l">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
                                 </li>
                                 <li class="list c_f">
