@@ -45,7 +45,7 @@ $def with (userinfo)
 				<span class="tit">发票抬头</span>
 				<div class="btns_agree c_f">
 					<span class="agree_txt rel f_l cur">
-						<a href="javascript:void(0)" class="btn_agree on" data-agreeRadio><span></span></a>不需要
+						<a href="javascript:void(0)" class="btn_agree on" data-agreeRadio id="btnNoNeed"><span></span></a>不需要
 					</span>
 					<span class="agree_txt rel f_r cur">
 						<a href="javascript:void(0)" class="btn_agree" data-agreeRadio id="btnNeed"><span></span></a>需要
@@ -91,9 +91,9 @@ $$(".btn_red_wrap").click(function(){
        {
            //alert("请输入有效的手机号码");
           $$("#tips").html("请输入有效的手机号码");
-	  $$("#tips").show();
-	  $$("#tips").delay(1200).fadeOut(400);
-	  return;
+	      $$("#tips").show();
+	      $$("#tips").delay(1200).fadeOut(400);
+	      return;
        }
 
         if($$("input[name=contact]").val()==""){
@@ -109,10 +109,12 @@ $$(".btn_red_wrap").click(function(){
            return;
         }
         else if($$("input[name=invoice]").val()==""){
-           $$("#tips").html("请填写发票抬头");
-           $$("#tips").show();
-           $$("#tips").delay(1200).fadeOut(400);
-           return;
+           if($$("#btnNeed").hasClass("on")){
+			   $$("#tips").html("请填写发票抬头");
+			   $$("#tips").show();
+			   $$("#tips").delay(1200).fadeOut(400);
+			   return;
+           }
         }
     }
 

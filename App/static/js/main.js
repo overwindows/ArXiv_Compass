@@ -313,6 +313,9 @@ function agreeRadio(){
                 $(this).parent("span").siblings("span").children("a").addClass("on");
             }else{
                 $(this).parent("span").siblings("span").children("a").removeClass("on");
+                if($(this).attr("id") == "btnNoNeed"){
+                    hideAgreeMore();
+                }
             }
         });
     });
