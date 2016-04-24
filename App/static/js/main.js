@@ -170,12 +170,12 @@ function selectOnRed(){
     });    
 }
 //加减数目
-var max = 10;
-function add (numSpan,o){
+//var max = 10;
+function add (numSpan,o,stock){
         numSpan.html(parseInt(numSpan.html())+1);
             o.siblings("a[data-minus]").addClass("on");
             o.siblings().show();
-            if(parseInt(numSpan.html())==max){
+            if(parseInt(numSpan.html())==stock){
                 o.addClass("no");
                 o.unbind("click");
             }    
@@ -184,8 +184,9 @@ function controlCount(){
     
     $("a[data-add]").each(function(){
         $(this).click(function(){    
-            var numSpan = $(this).siblings("span[data-count]");        
-            add(numSpan,$(this));
+            var numSpan = $(this).siblings("span[data-count]");
+            var stock = $(this).attr("stock");
+            add(numSpan,$(this),stock);
 
             $(".news_num").html(parseInt($(".news_num").html())+1);
         });    
