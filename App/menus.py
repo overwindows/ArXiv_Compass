@@ -43,6 +43,7 @@ class menus:
 
             _count = 0
             _price0 = 0.0
+            _price2 = 5.0
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -61,7 +62,9 @@ class menus:
             if not shopping_cost.has_key(_menudate):
                 shopping_cost[_menudate] = {}
             shopping_cost[_menudate]["price0"] = _price0
-            shopping_cost[_menudate]["price"] = _price0
+            shopping_cost[_menudate]["price"] = _price0 + _price2
+            shopping_cost[_menudate]["price2"] = _price2
+            shopping_cost[_menudate]["price1"] = 0
             shopping_cost[_menudate]["count"] = _count
 
             web.ctx.session.shoppingbasket = shopping_basket

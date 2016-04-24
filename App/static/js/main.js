@@ -270,7 +270,7 @@ function btnUnbind(){
         $(this).click(function(){
             $(this).addClass('no');
             $(this).children("span").show();
-            $(this).unbind("click");
+            //$(this).unbind("click");
         });
     });
 }
@@ -388,6 +388,9 @@ function showMark(){
             var markBoxLi =$(".mark_info div[data-markbox]");
             btnShowMark.each(function(){
                 $(this).click(function(){
+                       if(btnShowMark.hasClass("no")){
+                           return;
+                       }
                        var thisData =$(this).data("showmarkbox");
                        for(var i=0;i<markBoxLi.length;i++){
                            $(markBoxLi[i]).hide();

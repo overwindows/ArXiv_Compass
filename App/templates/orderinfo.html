@@ -52,9 +52,9 @@ $def with (info)
                                     <span class="txt">$info["i"].invoice</span>
                                 </li>
                                 <li class="list c_f rel arr_down" data-detail>
-                                    <span class="icon"></span>
-                                    <span class="tit">订单内容</span>
                                     $if len(info["d"]) > 1:
+                                        <span class="icon"></span>
+                                        <span class="tit">订单内容</span>
                                         <span class="txt detail">$info["d"][0].Name $info["d"][0].Num 份</span>
                                             <ul class="detailbox hide">
                                             $for d in info["d"]:
@@ -64,8 +64,9 @@ $def with (info)
                                                 </li>
                                                 $ total_price = total_price + float(d.Price) * float(d.Num)
                                             </ul>
-                                    $else
-                                       <span class="f_l">$info["d"][0].Name $info["d"][0].Num 份</span>
+                                    $else:
+                                        <span class="tit">订单内容</span>
+                                        <span class="f_l">$info["d"][0].Name $info["d"][0].Num 份</span>
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单总价</span>
