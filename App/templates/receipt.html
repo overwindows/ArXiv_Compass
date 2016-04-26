@@ -56,9 +56,9 @@ $def with (userinfo, order_list)
                                     <span class="txt">$userinfo["Invoice"]</span>
                                 </li>
                                 <li class="list c_f rel arr_down" data-detail>
-                                    <span class="icon"></span>
-                                    <span class="tit">订单内容</span>
                                     $if len(order_list[d_0].keys()) > 1:
+                                        <span class="icon"></span>
+                                        <span class="tit">订单内容</span>
                                         <span class="txt detail">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
                                             <ul class="detailbox hide">
                                             $for d_1 in order_list[d_0]:
@@ -69,7 +69,9 @@ $def with (userinfo, order_list)
                                                 $ total_price = total_price + float(order_list[d_0][d_1]["Price"]) * float(order_list[d_0][d_1]["Count"])
                                             </ul>
                                     $else:
+                                        <span class="tit">订单内容</span>
                                         <span class="f_l">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
+                                        $ total_price = total_price + float(order_list[d_0][order_list[d_0].keys()[0]]["Price"]) * float(order_list[d_0][order_list[d_0].keys()[0]]["Count"])
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单总价</span>

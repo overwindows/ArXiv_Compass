@@ -67,6 +67,7 @@ $def with (info)
                                     $else:
                                         <span class="tit">订单内容</span>
                                         <span class="f_l">$info["d"][0].Name $info["d"][0].Num 份</span>
+                                        $ total_price = float(info["d"][0].Price) * float(info["d"][0].Num)
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">订单总价</span>
