@@ -19,6 +19,7 @@ class receipt:
         #menu_date = web.ctx.session.menudate
         #route_id = web.ctx.session.routeid
         order_list = {}
+        order_cost = {}        
 
         for oid in shopping_list:
             #i = web.input()
@@ -28,6 +29,7 @@ class receipt:
             date_time = datetime.datetime.strptime(str(order[0].OrderDate), '%Y-%m-%d')
             _date_time = str(order[0].OrderDate)
             order_list[_date_time] = {}
+            order_cost[_date_time] = order[0].price
             weekday = model.get_chinese_weekday(date_time.weekday())
             # Notice-Start
             lunch_info = list(model.get_details_1(oid))
@@ -88,6 +90,6 @@ class receipt:
         if web.ctx.session.shoppinglist:
             del web.ctx.session.shoppinglist[:]
 
-        return render.receipt(user_info, order_list)
+        return render.receipt(user_info, order_list, order_cost)
         # Notice-End
         # return render.carte_succeed(order[0], weekday)

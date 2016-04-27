@@ -41,10 +41,13 @@ class defray:
                 rand_suffix = random.randint(1000,10000)
                 orderid = seed_no * 1000 + rand_suffix
                 shopping_list.append(str(orderid))
+                allcnt = 0
+                for item in shopping_basket[_date]:
+                    allcnt += int(shopping_basket[_date][item]["Count"])
                 #if failed in next steps, the order should be deleted!!!
                 model.new_order(orderid,user_info["Tel"], user_info["Contact"], user_info["OfficeId"], _date, \
                             float(shopping_cost[_date]["price"]), float(shopping_cost[_date]["price0"]),float(shopping_cost[_date]["price1"]),\
-                            float(shopping_cost[_date]["price2"]), len(shopping_basket[_date]) , time.strftime('%Y-%m-%d %X', time.localtime()),\
+                            float(shopping_cost[_date]["price2"]), allcnt , time.strftime('%Y-%m-%d %X', time.localtime()),\
                             time.strftime('%Y-%m-%d %X', time.localtime()),user_info["ID"],\
                             invoice, user_info["UnitAddr"], order_info[_id])
                 lidict = {}
