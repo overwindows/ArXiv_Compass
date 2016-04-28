@@ -20,9 +20,12 @@ class bill:
         route_id = web.ctx.session.routeid
         menu_calendar = web.ctx.session.menucalendar
         menu_date = web.ctx.session.menudate
+        ot_flag = 0 
 
         ot_ts  = int(time.mktime(time.strptime(str(menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
+        if cur_ts > ot_ts:
+            ot_flag = 1
 
         i = web.input()
         param = i.get("param")
@@ -38,7 +41,7 @@ class bill:
 
             _count = 0
             _price0 = 0
-            _price2 = 5.0
+            _price2 = 0 
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -66,7 +69,7 @@ class bill:
             web.ctx.session.shoppingcost = shopping_cost
 
         if user_info.has_key("ID"):
-            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost)
+            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag)
         else:
             web.ctx.session.redirecturl = "/bill"
             web.seeother('/login')   

@@ -1,4 +1,4 @@
-$def with (userinfo, shoppingbasket, menucalendar, shoppingcost)
+$def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,15 +184,27 @@ $$(".btn_red_wrap").click(function(){
         }});
      
     if(param!=""){
-       $$("#tips0").html("提交订单中，请稍后...");
-       $$("#tips1").html("请勿重复提交");
-       location.href="/defray?param="+param;
+       if($otflag=="1"){
+           $$("#tips0").html("10:30以后下单不能取消");
+           $$("#tips1").html("");
+       }
+       else
+       {
+           $$("#tips0").html("提交订单中，请稍后...");
+           $$("#tips1").html("请勿重复提交");
+           location.href="/defray?param="+param;
+       }
      }
      else{
+
      }
     
     }
-
+    else{
+        if($otflag=="1"){
+            location.href="/defray?param="+param;
+        }
+    }
   });
 
 </script>

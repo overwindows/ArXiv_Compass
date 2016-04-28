@@ -55,7 +55,7 @@ class webchatpay:
         #print openid
         unify_pay.setParameter('out_trade_no', out_trade_no)
         unify_pay.setParameter('body','准时开饭 套餐')
-        unify_pay.setParameter('total_fee',str(int(total_fee)))
+        unify_pay.setParameter('total_fee',str(int(total_fee)*100))
         unify_pay.setParameter('notify_url','http://x.zhunshikaifan.com/')
         unify_pay.setParameter('trade_type','JSAPI')
         unify_pay.setParameter('openid',openid)
