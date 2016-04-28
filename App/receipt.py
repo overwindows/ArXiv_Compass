@@ -90,6 +90,7 @@ class receipt:
         if web.ctx.session.shoppinglist:
             del web.ctx.session.shoppinglist[:]
 
+        web.ctx.session.webpage="receipt"
         return render.receipt(user_info, order_list, order_cost)
         # Notice-End
         # return render.carte_succeed(order[0], weekday)

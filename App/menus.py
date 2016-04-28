@@ -14,6 +14,9 @@ from env import *
 #菜单
 class menus:
     def GET(self):
+        if web.ctx.session.webpage=="bill":
+            return web.seeother("\menus")
+
         i = web.input()
         office_id = i.get("officeid")        
         menu_date = i.get("menudate") # different meaning, NEXT menudate
@@ -100,7 +103,7 @@ class menus:
                 shopping_count += shopping_cost[_d]["count"]
 
         web.ctx.session.menudate = str(menu_date)
-
+        web.ctx.session.webpage = "menus"
         return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''
         #backstep = int(web.cookies().get('backstep')) 

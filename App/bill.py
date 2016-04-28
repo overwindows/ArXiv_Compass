@@ -68,6 +68,8 @@ class bill:
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost = shopping_cost
 
+        web.ctx.session.webpage = "bill"
+
         if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag)
         else:

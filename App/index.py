@@ -72,6 +72,10 @@ class index:
 
         # 2016/04/17
         web.ctx.session.failreason = "pay"
+
+        # 2016/04/29
+        web.ctx.session.webpage = "index"
+        #
         '''
         i = web.input()
         # CODE from WebChat

@@ -15,6 +15,8 @@ from sign import Sign
 
 class webchatpay:
     def GET(self):
+        if web.ctx.session.webpage=="receipt":
+            return web.seeother("\menus")
         i = web.input()
         oid_list = i.oids.split("_")
 
@@ -65,4 +67,5 @@ class webchatpay:
         js_api.setPrepayId(prepay_id)
         pay_data = js_api.getParameters()
 
+        web.ctx.session.webpage="webchatpay"
         return render.webchatpay(signature,nonceStr,timestamp,json.loads(pay_data))
