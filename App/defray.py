@@ -81,6 +81,13 @@ class defray:
                         return web.seeother('/orderfail')
         #print shopping_list
         oids = "_".join(shopping_list)
+
+        # clear shopping_basket and shopping cost
+        if web.ctx.session.shoppingbasket:
+            web.ctx.session.shoppingbasket.clear()
+        if web.ctx.session.shoppingcost:
+            web.ctx.session.shoppingcost.clear()
+
         return web.seeother('/webchatpay?oids=' + oids)
 '''
         # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start

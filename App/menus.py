@@ -14,8 +14,11 @@ from env import *
 #菜单
 class menus:
     def GET(self):
+       
+        # 2016/04/29 guard code.  
         if web.ctx.session.webpage=="bill":
-            return web.seeother("\menus")
+            web.ctx.session.webpage="menus"
+            return web.seeother("menus")
 
         i = web.input()
         office_id = i.get("officeid")        
