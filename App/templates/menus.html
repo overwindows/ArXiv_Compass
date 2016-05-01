@@ -25,9 +25,9 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
     </div>
     <div class="g-content">
     <div id="tips" class="tipbox" data-tips style="display: none;"><span>购物车为空</span></div>
-        <section class="imgbox">
-            <img src="images/img_10.png" />
-        </section>
+        <div class="imgbox">
+            <img src="../static/images/img_10.png" />
+        </div>
         <!--div class="swiper-container">
               <div class="swiper-wrapper">
                     <div class="swiper-slide blue-slide imgbox">
@@ -84,11 +84,11 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                             <h3 class="tit">$lunch.Meal</h3>
                             <div class="txt">
                                 $if lunch.entree:
-                                    <p><span>主菜:</span>$lunch.entree</p>
+                                    <p><!--span>主菜:</span-->$lunch.entree</p>
                                 $if lunch.garnish:
-                                    <p><span>配菜:</span>$lunch.garnish</p>
+                                    <p><!--span>配菜:</span-->$lunch.garnish</p>
                                 $if lunch.staple:
-                                    <p><span>主食:</span>$lunch.staple</p>
+                                    <p><!--span>主食:</span-->$lunch.staple</p>
                             </div>
                         </div>
                     </div>    
@@ -144,8 +144,12 @@ $$(".tab_car").click(function(){
        location.href = "/bill?param="+param;
     }else{
        //alert("hello");
+       var left = ($$(window).width() - $$("#tips").width())/2;   
+       var scrollTop = $$(document).scrollTop();   
+       var scrollLeft = $$(document).scrollLeft();   
        $$("#tips").html("购物车为空");
-       $$("#tips").show();
+       //$$("#tips").show();
+       $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show(); 
        $$("#tips").delay(600).fadeOut(400);
     }
   });
