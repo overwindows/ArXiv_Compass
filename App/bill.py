@@ -74,7 +74,7 @@ class bill:
             return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag)
         else:
             web.ctx.session.redirecturl = "/bill"
-            web.seeother('/login')   
+            web.seeother('/delivery')
 	'''
         #浏览器回退防御
         if web.ctx.session.webbrowser_backstep == "danger":

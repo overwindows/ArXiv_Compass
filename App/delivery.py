@@ -22,8 +22,10 @@ class delivery:
         contact = i.get('contact')
         unitaddress = i.get('unitaddress')
         invoice = i.get('invoice')
-
-        model.update_username(user_info["ID"], contact, web.ctx.session.officeid, unitaddress, tel)
+        if user_info.has_key("ID"):
+            model.update_username(user_info["ID"], contact, web.ctx.session.officeid, unitaddress, tel)
+        else:
+            model.new_user(tel,web.ctx.session.nickname,web.ctx.session.openid,contact,web.ctx.session.officeid, unitaddress,time.strftime('%Y-%m-%d %X', time.localtime()))
         user_info["Contact"] = contact
         user_info["Tel"] = tel
         user_info["Invoice"] = invoice

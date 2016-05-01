@@ -18,10 +18,12 @@ class member:
         nick_name = web.ctx.session.nickname
         headimg_url = web.ctx.session.headimgurl
 
-        if user_info.has_key("ID"):
-            return render.member(user_info, nick_name, headimg_url)
-        else:
-            return web.seeother('/anonymous')
+        return render.member(user_info, nick_name, headimg_url)
+
+        #if user_info.has_key("ID"):
+        #    return render.member(user_info, nick_name, headimg_url)
+        #else:
+        #    return web.seeother('/anonymous')
 	'''	
     def POST(self):
         msg = None

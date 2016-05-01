@@ -62,8 +62,8 @@ def get_lunch(lunch_id):
     return db.select('lunches', where='ID=$lunch_id', vars=locals())
 
 
-def new_user(telephone, name, pwd, opid, regtm):
-    return db.insert('users', id=telephone, username=name, password=pwd, openid=opid, regtime=regtm)
+def new_user(telephone, uname, opid, contact, offid, unitaddr, regtm):
+    return db.insert('users', id=telephone, contactname=contact, username=uname, officeid=offid,  unitaddress=unitaddr, tel=telephone, openid=opid, regtime=regtm)
 
 
 # 更新订餐联系人
