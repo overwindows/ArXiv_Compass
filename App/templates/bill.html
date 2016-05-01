@@ -12,6 +12,7 @@ $def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag)
 </head>
 <body>
     <header class="m-hd rel">
+        <div id="tips" class="tipbox" data-tips style="display: none;"><span></span></div>
         <a href="/menus" class="btn_prevpage imgbox"><img src="../static/images/img_23.png" /></a>
         <h3 class="tit">订单确认</h3>
     </header>
@@ -21,7 +22,7 @@ $def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag)
                 <span class="icon imgbox"><img src="../static/images/img_06_2.png"></span>
                 <a href="/delivery" class="btn_edit imgbox"><img src="../static/images/img_04.png" /></a>
                 <span class="tit2">姓名</span>
-                <span class="txt2">$userinfo["Contact"]</span>
+                <span id="name" class="txt2">$userinfo["Contact"]</span>
             </li>
             <li class="list">
                 <span class="tit2">手机</span>
@@ -149,32 +150,41 @@ $$(".btn_red_wrap").click(function(){
 
    if($$("#unitaddr").html()==""){
       //alert($$("#tips0").html());
-      $$("#tips0").html("请补充取餐地点");
-      $$("#tips1").html("填写完成后请重新提交");
+      //$$("#tips0").html("请补充取餐地点");
+      //$$("#tips1").html("填写完成后请重新提交");
+      $$("#tips").html("请填写取餐地点");
+      $$("#tips").show();
+	  $$("#tips").delay(1200).fadeOut(400);
+      return;
+   }
+
+   if($$("#name").html()==""){
+      $$("#tips").html("请填写取餐联系人");
+      $$("#tips").show();
+	  $$("#tips").delay(1200).fadeOut(400);
       return;
    }
 
    if ($$(this).hasClass("cur")){
-     
-    var dict = [];
-    param=""
-    
-    $$(".time_val").each(function(){
-         tm = $$(this).children("span").html();
-         oid = $$(this).children("span").attr("oid");
-         //alert(oid);
-         if (tm == "12:00～12:20"){
-             dict[oid] = 0;
-         }
-         else if(tm == "12:20～12:40"){
-             dict[oid] = 1;
-         }
-         else if(tm == "12:40～13:00"){
-             dict[oid] = 2;
-         }
-         else{
-             dict[oid] = -1;
-         }
+        var dict = [];
+        param=""
+
+        $$(".time_val").each(function(){
+             tm = $$(this).children("span").html();
+             oid = $$(this).children("span").attr("oid");
+             //alert(oid);
+             if (tm == "12:00～12:20"){
+                 dict[oid] = 0;
+             }
+             else if(tm == "12:20～12:40"){
+                 dict[oid] = 1;
+             }
+             else if(tm == "12:40～13:00"){
+                 dict[oid] = 2;
+             }
+             else{
+                 dict[oid] = -1;
+             }
     });
     
     $$(".agree_txt").each(function(){
