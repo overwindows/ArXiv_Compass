@@ -76,9 +76,14 @@ $def with (userinfo)
 </body>
 <script type="text/javascript">
 $$(".btn_red_wrap").click(function(){
+
+   var left = ($$(window).width() - $$("#tips").width())/2;
+   var scrollTop = $$(document).scrollTop();
+   var scrollLeft = $$(document).scrollLeft();
+
     if($$("input[name=telephone]").val()==""){
        $$("#tips").html("请填写电话号码");
-       $$("#tips").show();
+       $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show();
        $$("#tips").delay(1200).fadeOut(400);
        return;
     }
@@ -91,27 +96,27 @@ $$(".btn_red_wrap").click(function(){
        {
            //alert("请输入有效的手机号码");
           $$("#tips").html("请输入有效的手机号码");
-	      $$("#tips").show();
-	      $$("#tips").delay(1200).fadeOut(400);
+          $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show();
+          $$("#tips").delay(1200).fadeOut(400);
 	      return;
        }
 
         if($$("input[name=contact]").val()==""){
            $$("#tips").html("请填写联系人姓名");
-           $$("#tips").show();
+           $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show();
            $$("#tips").delay(1200).fadeOut(400);
            return;
         }
         else if($$("input[name=unitaddress]").val()==""){
            $$("#tips").html("请填写取餐地点");
-           $$("#tips").show();
+           $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show();
            $$("#tips").delay(1200).fadeOut(400);
            return;
         }
         else if($$("input[name=invoice]").val()==""){
            if($$("#btnNeed").hasClass("on")){
 			   $$("#tips").html("请填写发票抬头");
-			   $$("#tips").show();
+			   $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show();
 			   $$("#tips").delay(1200).fadeOut(400);
 			   return;
            }
