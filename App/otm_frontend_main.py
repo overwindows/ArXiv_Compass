@@ -30,6 +30,7 @@ from pay import *
 from orderinfo import *
 from orderfail import *
 from cancelorder import *
+from logout import *
 '''
 from succeed import *
 from paylunch import *
@@ -76,9 +77,9 @@ urls = (
         '/orderfail', 'orderfail',
         '/orderinfo', 'orderinfo',
         '/cancelorder', 'cancelorder',
+        '/logout', 'logout',
 	'''
         '/carte_detail', 'carte_detail',
-        '/logout', 'logout',
         '/carte_succeed', 'carte_succeed',
         '/register_index', 'register_index',
         '/order_cancel', 'order_cancel',
@@ -87,7 +88,6 @@ urls = (
         '/order_list', 'order_list',
         '/success', 'success',
         '/carte_pay', 'carte_pay',
-
         '/sms_valid', 'sms_valid',
         '/terms', 'terms',
 		'''
@@ -134,19 +134,5 @@ class order_cancel:
         orders_2 = model.get_orders(int(userid),2)
         return render.order_cancel(userid,orders_2, session.headimgurl, session.nickname, msgs)   
 
-#退出当前账户
-class logout:
-    def GET(self):
-        web.setcookie('username', '', expires=-1) 
-        web.setcookie('userid', '', expires=-1)         
-        try:
-            #web.setcookie('weixin_nickname',session.nickname, 3600)
-            #web.setcookie('weixin_headimgurl',session.headimgurl, 3600)            
-            session.kill()
-            session.logged_in = False            
-        except AttributeError:
-            pass
-        return web.seeother('/index?code=Fake')
-        
 if __name__ == '__main__':
     app.run()
