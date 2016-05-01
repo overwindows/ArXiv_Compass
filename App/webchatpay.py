@@ -15,8 +15,10 @@ from sign import Sign
 
 class webchatpay:
     def GET(self):
+        # guard code, back step
         if web.ctx.session.webpage=="receipt":
             return web.seeother("\menus")
+
         i = web.input()
         oid_list = i.oids.split("_")
 
