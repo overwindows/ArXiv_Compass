@@ -148,20 +148,26 @@ $$(".btn_red_wrap").click(function(){
         return;
    }  
 
+   var left = ($$(window).width() - $$("#tips").width())/2;   
+   var scrollTop = $$(document).scrollTop();   
+   var scrollLeft = $$(document).scrollLeft();   
+
    if($$("#unitaddr").html()==""){
       //alert($$("#tips0").html());
       //$$("#tips0").html("请补充取餐地点");
       //$$("#tips1").html("填写完成后请重新提交");
       $$("#tips").html("请填写取餐地点");
-      $$("#tips").show();
-	  $$("#tips").delay(1200).fadeOut(400);
+      $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show(); 
+      //$$("#tips").show();
+      $$("#tips").delay(1200).fadeOut(400);
       return;
    }
 
    if($$("#name").html()==""){
       $$("#tips").html("请填写取餐联系人");
-      $$("#tips").show();
-	  $$("#tips").delay(1200).fadeOut(400);
+        $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show(); 
+      //$$("#tips").show();
+      $$("#tips").delay(1200).fadeOut(400);
       return;
    }
 
