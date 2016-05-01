@@ -14,6 +14,10 @@ from env import *
 #退出当前账户
 class logout:
     def GET(self):
+        #print web.ctx.session.openid
+        #print web.ctx.session.nickname
+        #print web.ctx.session.headimgurl
+        param = urllib.urlencode({'openid':web.ctx.session.openid,'nickname':web.ctx.session.nickname.encode("utf8"),'headimgurl':web.ctx.session.headimgurl})
         web.setcookie('username', '', expires=-1)
         web.setcookie('userid', '', expires=-1)
         try:
@@ -24,5 +28,4 @@ class logout:
         except AttributeError:
             pass
 
-        param = urllib.urlencode({'openid':web.ctx.session.openid,'nickname':web.ctx.session.nickname,'headimgurl':web.ctx.session.headimgurl})
-        return web.seeother('index/'+param)
+        return web.seeother("http://x.zhunshikaifan.com/?"+param)
