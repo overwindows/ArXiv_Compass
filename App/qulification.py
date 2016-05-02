@@ -11,8 +11,8 @@ import urllib
 
 from env import *
 
-#Login Page
-class anonymous:
+# Qulification Page
+class qulification:
     def GET(self):
         msg = None
-        return render.anonymous()
+        return render.qulification()

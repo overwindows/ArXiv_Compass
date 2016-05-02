@@ -15,7 +15,7 @@ from index import *
 from sites import *
 from menus import *
 from member import *
-from anonymous import *
+from qulification import *
 from bill import *
 from login import *
 from orders import *
@@ -64,7 +64,7 @@ urls = (
         '/menus', 'menus',
         '/defray', 'defray',
         '/member', 'member',
-        '/anonymous', 'anonymous',
+        '/qulification', 'qulification',
         '/bill', 'bill',
         '/login', 'login',
         '/orders', 'orders',
