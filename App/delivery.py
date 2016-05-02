@@ -30,6 +30,7 @@ class delivery:
         user_info["Tel"] = tel
         user_info["Invoice"] = invoice
         user_info["UnitAddr"] = unitaddress
+        user_info["ID"] = tel
         web.ctx.session.userinfo = user_info
 
         return web.seeother('/bill')

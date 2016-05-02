@@ -73,7 +73,6 @@ class bill:
         if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag)
         else:
-            web.ctx.session.redirecturl = "/bill"
             web.seeother('/delivery')
 	'''
         #浏览器回退防御
