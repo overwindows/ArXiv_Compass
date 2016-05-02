@@ -36,9 +36,10 @@ $def with (districts, zones, plazas, offices)
                 $if zone.district_id == district.id:
                     <li class="list" data-p="2_$zone.id" data-second>$zone.name</li>
             </ul>
-           
-        $for zone in zones:    
-            <ul class="location hide" data-p="2_$zone.id"  data-level="3">
+        $ m = 0   
+        $for zone in zones:
+            $ m = m + 1    
+            <ul class="location hide" data-p="2_$zone.id"  data-level="3_$m">
             $for plaza in plazas:
                 $if plaza.zone_id == zone.id:
                     <li class="list" data-p="3_$plaza.id">$plaza.name</li>
@@ -46,10 +47,11 @@ $def with (districts, zones, plazas, offices)
                 $if office.zoneid == zone.id and office.plazaid == 0:
                     <li class="list" data-p="3_$office.officeid" data-link="/menus?officeid=$office.officeid" >$office.officename<span>$office.officeaddr</span></li>
             </ul>
-            
+        $ n = 0    
         $for plaza in plazas:
-            $if plaza.id > 0:                 
-                <ul class="location hide" data-p="3_$plaza.id"  data-level="4">
+            $if plaza.id > 0:
+                $ n = n + 1                 
+                <ul class="location hide" data-p="3_$plaza.id"  data-level="4_$n">
                 $for office in offices:
                     $if office.plazaid == plaza.id:
                         <li class="list" data-link="/menus?officeid=$(office.officeid)" >$office.officename<span>$office.officeaddr</span></li>
