@@ -18,13 +18,13 @@ $def with (failreason)
     <div class="tipbox" data-tips><span>下单失败！</span></div>
     <div class="m-order-txtbox p_b_2">
     $if failreason == "stock":
-        <img src="../static/images/stock.png" />
+        <div class="imgbox"><img src="../static/images/stock.png" /></div>
         <p class="txt">很抱歉，你所预订的套餐库存不足</p>
         <p class="txt">您可尝试减少套餐数量或采用其他套餐，谢谢</p>
             <!--p><em>我的订单 - 进行中 - 取消订单</em></p>
             <p>超过时间将无法取消，敬请谅解！</p-->
     $elif failreason == "pay":
-        <img src="../static/images/pay.png" />
+        <div class="imgbox"><img src="../static/images/pay.png" /></div>
         <p class="txt">很抱歉，你所预订的套餐支付失败</p>
         <p class="txt">您可前往“我的订单”继续支付行为</p>
     $elif failreason == "expired":
