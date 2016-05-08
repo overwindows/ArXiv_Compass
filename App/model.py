@@ -77,7 +77,7 @@ def get_user(userid, password):
 
 # weixin openid -> user
 def get_user_1(open_id):
-    return db.select('users', where='openid=$open_id', vars=locals())
+    return db.select('users', where='openid=$open_id', order="regtime DESC", vars=locals())
 
 
 def new_pass(uid, pswd):
