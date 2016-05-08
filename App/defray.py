@@ -38,7 +38,7 @@ class defray:
             id = id + 1
             _id = str(id) 
             if order_info.has_key(_id):
-                rand_suffix = random.randint(1000,10000)
+                rand_suffix = random.randint(100,1000)
                 orderid = seed_no * 1000 + rand_suffix
                 shopping_list.append(str(orderid))
                 allcnt = 0
