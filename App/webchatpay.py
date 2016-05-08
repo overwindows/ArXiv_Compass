@@ -22,6 +22,8 @@ class webchatpay:
         i = web.input()
         oid_list = i.oids.split("_")
 
+        shopping_list=[]
+
         global access_token
         global jsapi_ticket
         global token_timestamp
@@ -41,6 +43,7 @@ class webchatpay:
             order_it = model.get_order(oid)
             order = list(order_it)
             total_fee += order[0].Price
+            shopping_list.append(oid)
 
         out_trade_no = str(int(time.time()))
 
@@ -68,6 +71,9 @@ class webchatpay:
 
         js_api.setPrepayId(prepay_id)
         pay_data = js_api.getParameters()
+
+        if not web.ctx.session.shoppinglist:
+             web.ctx.session.shoppinglist = shopping_list
 
         web.ctx.session.webpage="webchatpay"
         return render.webchatpay(signature,nonceStr,timestamp,json.loads(pay_data))
