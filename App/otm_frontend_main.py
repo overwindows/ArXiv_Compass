@@ -79,11 +79,10 @@ urls = (
         '/orderinfo', 'orderinfo',
         '/cancelorder', 'cancelorder',
         '/logout', 'logout',
-         '/terms', 'terms',
+        '/terms', 'terms',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
-        '/register_index', 'register_index',
         '/order_cancel', 'order_cancel',
         '/order_over', 'order_over',
         '/order_index', 'order_index',

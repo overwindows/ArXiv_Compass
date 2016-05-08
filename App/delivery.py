@@ -8,6 +8,7 @@ import datetime
 import json
 import sign
 import urllib
+import uuid
 
 from env import *
 
@@ -25,7 +26,11 @@ class delivery:
         if user_info.has_key("ID"):
             model.update_username(user_info["ID"], contact, web.ctx.session.officeid, unitaddress, tel)
         else:
-            model.new_user(tel,web.ctx.session.nickname,web.ctx.session.openid,contact,web.ctx.session.officeid, unitaddress,time.strftime('%Y-%m-%d %X', time.localtime()))
+            dup_usr = list(model.reg_dup_check(tel))
+            if dup_usr:
+                model.new_user(uuid.uuid1(),web.ctx.session.nickname,web.ctx.session.openid,contact,web.ctx.session.officeid, unitaddress,time.strftime('%Y-%m-%d %X', time.localtime()))
+            else:
+                model.new_user(tel,web.ctx.session.nickname,web.ctx.session.openid,contact,web.ctx.session.officeid, unitaddress,time.strftime('%Y-%m-%d %X', time.localtime()))
         user_info["Contact"] = contact
         user_info["Tel"] = tel
         user_info["Invoice"] = invoice
@@ -34,3 +39,4 @@ class delivery:
         web.ctx.session.userinfo = user_info
 
         return web.seeother('/bill')
+
