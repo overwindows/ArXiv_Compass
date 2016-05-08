@@ -31,14 +31,15 @@ from orderinfo import *
 from orderfail import *
 from cancelorder import *
 from logout import *
+from terms import *
+
 '''
 from succeed import *
 from paylunch import *
 from sms import *
 from register import *
-from terms import *
-
 '''
+
 from env import render
 
 class MemCacheStore(web.session.Store):
@@ -78,6 +79,7 @@ urls = (
         '/orderinfo', 'orderinfo',
         '/cancelorder', 'cancelorder',
         '/logout', 'logout',
+         '/terms', 'terms',
 	'''
         '/carte_detail', 'carte_detail',
         '/carte_succeed', 'carte_succeed',
@@ -89,8 +91,7 @@ urls = (
         '/success', 'success',
         '/carte_pay', 'carte_pay',
         '/sms_valid', 'sms_valid',
-        '/terms', 'terms',
-		'''
+	'''
         )
 
 app = web.application(urls, globals())

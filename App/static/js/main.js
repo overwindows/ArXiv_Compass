@@ -196,14 +196,14 @@ function controlCount(){
         $(this).click(function(){
             var numSpan = $(this).siblings("span[data-count]");    
             numSpan.html(parseInt(numSpan.html())-1);
-
+            var stock = $(this).attr("stock");
             $(".news_num").html(parseInt($(".news_num").html())-1);
 
             if(numSpan.html()==0){
                 numSpan.html("0");
                 $(this).hide();
                 $(this).next("span").hide();
-            }else if(parseInt(numSpan.html())==max-1){
+            }else if(parseInt(numSpan.html())==stock-1){
                 $(this).siblings("a[data-add]").removeClass("no");
                 $(this).siblings("a[data-add]").bind("click",function(){
                     add(numSpan,$(this));

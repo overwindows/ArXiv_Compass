@@ -79,14 +79,26 @@ $def with (userinfo)
 				</div>
 			</li>
 		</ul>
+		<div class="agree_txt rel">
+				<a href="javascript:void(0)" class="btn_agree on" id="terms_agree">	<span></span></a>我已阅读并同意<a href="terms">《用户注册协议》</a>
+		</div>
 	</div>
 	<div class=" p_b_2">
 		<!--a href="javascript:void(0)" class="btn_red_wrap no rel w_p_80" data-getgray="">保存</a-->
-		<a href="javascript:void(0)" class="btn_red_wrap rel w_p_80">保存</a>
+		<a href="javascript:void(0)" class="btn_red_wrap rel w_p_80" id="save_info">保存</a>
 	</div>
     </form>
 </body>
-<script type="text/javascript">
+<script type="text/javascript">'
+$$("#terms_agree").click(function(){
+    if($$("#terms_agree").hasClass("on")){
+        $$("#save_info").addClass("no");
+    }
+    else{
+        $$("#save_info").removeClass("no");
+    }
+});
+
 $$(".btn_red_wrap").click(function(){
 
    var left = ($$(window).width() - $$("#tips").width())/2;
