@@ -25,23 +25,23 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
     </div>
     <div class="g-content">
     <div id="tips" class="tipbox" data-tips style="display: none;"><span>购物车为空</span></div>
-        <div class="imgbox">
+        <!--div class="imgbox">
             <img src="../static/images/img_10.png" />
-        </div>
-        <!--div class="swiper-container">
+        </div-->
+        <div class="swiper-container">
               <div class="swiper-wrapper">
                     <div class="swiper-slide blue-slide imgbox">
-                        <img src="../static/images/img_10.png" />
+                        <img src="../static/rest_img/3.jpg" />
                     </div>
                     <div class="swiper-slide red-slide imgbox">
-                        <img src="../static/images/img_10.png" />
+                        <img src="../static/rest_img/4.jpg" />
                     </div>
                     <div class="swiper-slide orange-slide imgbox">
-                        <img src="../static/images/img_10.png" />
+                        <img src="../static/rest_img/12.jpg" />
                     </div>
               </div>
               <div class="swiper-pagination my-pagination-point"></div>
-        </div-->
+        </div>
         <div class="screen_box c_f">
             <div class="selecbox f_l">
                 <a href="javascript:void(0)" class="time_val rel" data-select >
@@ -110,7 +110,7 @@ $def with (menu_calendar, lunches, office, menu_date, lunches_info, shopping_cou
                                 <a href="javascript:void(0)" class="btn_add" data-add="" stock="$(lunch.Stock)"></a>
                                 $ total_cost = float(lunch.Price) * int(lunches_info[lunch.ID]["Count"]) + float(total_cost)
                             $else:
-                                <a href="javascript:void(0)" class="btn_minus" data-minus=""></a>
+                                <a href="javascript:void(0)" class="btn_minus" data-minus="" stock="$(lunch.Stock)"></a>
                                 <span class="count" data-count="">0</span>
                                 <a href="javascript:void(0)" class="btn_add" data-add="" stock="$(lunch.Stock)"></a>
                     $else:

@@ -49,7 +49,7 @@ class menus:
 
             _count = 0
             _price0 = 0.0
-            _price2 = 5.0
+            _price2 = 0.0
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -64,6 +64,9 @@ class menus:
 
                     _price0 += float(lunch.Price) * float(cnt)
                     _count  += int(cnt)
+                else:
+                    if shopping_basket.has_key(_menudate) and shopping_basket[_menudate].has_key(lunch.ID):
+                        del shopping_basket[_menudate][lunch.ID]
 
             if not shopping_cost.has_key(_menudate):
                 shopping_cost[_menudate] = {}

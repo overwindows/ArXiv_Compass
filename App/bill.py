@@ -53,9 +53,11 @@ class bill:
                     shopping_basket[menu_date][lunch.ID]["Count"] = cnt
                     shopping_basket[menu_date][lunch.ID]["Price"] = lunch.Price
                     shopping_basket[menu_date][lunch.ID]["Name"] = lunch.Meal
-
                     _price0 += float(lunch.Price) * float(cnt)
                     _count += int(cnt)
+                else:
+                    if shopping_basket.has_key(menu_date) and shopping_basket[menu_date].has_key(lunch.ID):
+                        del shopping_basket[menu_date][lunch.ID]
 
             if not shopping_cost.has_key(menu_date):
                 shopping_cost[menu_date] = {}
