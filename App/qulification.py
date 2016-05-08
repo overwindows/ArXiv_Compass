@@ -14,5 +14,5 @@ from env import *
 # Qulification Page
 class qulification:
     def GET(self):
-        msg = None
-        return render.qulification()
+        rest_id = 0
+        return render.qulification(rest_id)
