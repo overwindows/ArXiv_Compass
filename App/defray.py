@@ -87,8 +87,6 @@ class defray:
             web.ctx.session.shoppingbasket.clear()
         if web.ctx.session.shoppingcost:
             web.ctx.session.shoppingcost.clear()
-        if web.ctx.session.shoppinglist:
-            del web.ctx.session.shoppinglist[:]
         
         return web.seeother('/webchatpay?oids=' + oids)
 '''

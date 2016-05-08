@@ -15,6 +15,9 @@ from env import *
 
 class orderfail:
     def GET(self):
+        if web.ctx.session.shoppinglist:
+            del web.ctx.session.shoppinglist[:]
+
         #浏览器回退防御
         if web.ctx.session.failreason=="expired":
             return render.orderfail(web.ctx.session.failreason)
