@@ -49,7 +49,7 @@ class menus:
 
             _count = 0
             _price0 = 0.0
-            _price2 = 0.0
+            _price2 = 5.0
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
