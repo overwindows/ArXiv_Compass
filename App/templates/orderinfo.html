@@ -45,7 +45,14 @@ $def with (info)
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">到餐时间</span>
-                                    <span class="txt">12:00～12:20</span>
+                                    <span class="txt">
+                                    $if int(info["i"].tminterval) == 0:
+                                        12:00-12:20
+                                    $elif int(info["i"].tminterval) == 1:
+                                        12:20-12:40
+                                    $else:
+                                        12:40-13:00
+                                    </span>
                                 </li>
                                 <li class="list c_f">
                                     <span class="tit">发票</span>
