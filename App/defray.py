@@ -24,14 +24,14 @@ class defray:
 
         i = web.input()
         param = i.get("param")
-        print param
+        # print param
         order_info = {}
         order_list = param.split("|")
         for order in order_list:
             if order:
                 id,tm = order.split("_")
                 order_info[str(id)] = tm
-        #print order_info.keys()
+        # print order_info.keys()
 
         id = 0
         for _date in shopping_basket:

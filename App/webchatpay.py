@@ -45,7 +45,7 @@ class webchatpay:
             total_fee += order[0].Price
             shopping_list.append(oid)
 
-        out_trade_no = str(int(time.time()))
+        out_trade_no = str(int(oid_list[0])/1000)
 
         js_sign = Sign(jsapi_ticket, web.ctx.home+web.ctx.fullpath)
         sign_data = js_sign.sign()
