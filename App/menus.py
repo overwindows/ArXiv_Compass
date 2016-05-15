@@ -32,6 +32,7 @@ class menus:
         menu_calendar = web.ctx.session.menucalendar
         shopping_basket = web.ctx.session.shoppingbasket
         shopping_cost = web.ctx.session.shoppingcost
+        shopping_discount = web.ctx.session.shoppingdiscount
         user_info = web.ctx.session.userinfo
         
         #if parameters, load previous menu date
@@ -50,6 +51,9 @@ class menus:
             _count = 0
             _price0 = 0.0
             _price2 = 5.0
+
+            if menu_date != str(datetime.date.today()):
+                shopping_discount[menu_date] = 1 #早鸟计划
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -78,6 +82,7 @@ class menus:
 
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost   = shopping_cost
+            web.ctx.session.shoppingdiscount = shopping_discount
 
         # guard code
         menu_calender_sorted = sorted(menu_calendar.items(), key=lambda menu_calendar:menu_calendar[0])

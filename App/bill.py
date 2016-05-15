@@ -24,7 +24,6 @@ class bill:
         menu_date = web.ctx.session.menudate
         ot_flag = 0
 
-
         ot_ts  = int(time.mktime(time.strptime(str(menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
         if cur_ts > ot_ts:
@@ -74,6 +73,7 @@ class bill:
 
             web.ctx.session.shoppingbasket = shopping_basket
             web.ctx.session.shoppingcost = shopping_cost
+            web.ctx.session.shoppingdiscount = shopping_discount
 
         web.ctx.session.webpage = "bill"
 
