@@ -144,7 +144,7 @@ $def with (orders_0, orders_1, orders_2)
                                     <span class="txt red_txt">已取消</span>
                             $elif int(order.pay) == 1:
                                 $if int(order.status)==2:
-                                    <span class="txt red_txt">待退款</span>
+                                    <span class="txt red_txt">退款中</span>
                             $else:
                                 $if int(order.status)==2:
                                     <span class="txt red_txt">已退款</span>
