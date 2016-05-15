@@ -20,7 +20,8 @@ class bill:
         route_id = web.ctx.session.routeid
         menu_calendar = web.ctx.session.menucalendar
         menu_date = web.ctx.session.menudate
-        ot_flag = 0 
+        ot_flag = 0
+
 
         ot_ts  = int(time.mktime(time.strptime(str(menu_date)+" 10:32:00", "%Y-%m-%d %H:%M:%S")))
         cur_ts = int(time.time())
@@ -30,7 +31,6 @@ class bill:
         i = web.input()
         param = i.get("param")
         if param:
-      
             order_info = {}
             order_list = param.split("|")
             for order in order_list:
@@ -42,6 +42,10 @@ class bill:
             _count = 0
             _price0 = 0
             _price2 = 5.0
+            discount = {}
+
+            if menu_date != web.ctx.session.today:
+                discount[menu_date] = 1 #早鸟计划
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):
@@ -73,7 +77,7 @@ class bill:
         web.ctx.session.webpage = "bill"
 
         if user_info.has_key("ID"):
-            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag)
+            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag, discount)
         else:
             web.seeother('/delivery')
 	'''

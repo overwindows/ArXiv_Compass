@@ -1,4 +1,4 @@
-$def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag)
+$def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag, discount)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +64,11 @@ $def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag)
                     </li>
                     $ amount_1 = amount_1 + float(shoppingbasket[d_0][d_1]["Price"])*int(shoppingbasket[d_0][d_1]["Count"])
                     $ cnt = cnt + int(shoppingbasket[d_0][d_1]["Count"])
+                $if discount[d_0] == 1:
+                    <li class="list">
+                        <span class="tit">泰式龙虾片（早鸟计划）</span>
+                        <span class="f_r">0<em class="grey_txt">X1</em></span>
+                    </li>
                 <li class="list bor_b_bold">
                     <span class="tit">合计</span>
                     <span class="f_r">¥$amount_1</span>
