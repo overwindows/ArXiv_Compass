@@ -16,6 +16,8 @@ class bill:
     def GET(self):
         shopping_basket = web.ctx.session.shoppingbasket
         shopping_cost = web.ctx.session.shoppingcost
+        shopping_discount = web.ctx.session.shoppingdiscount
+
         user_info = web.ctx.session.userinfo
         route_id = web.ctx.session.routeid
         menu_calendar = web.ctx.session.menucalendar
@@ -42,10 +44,9 @@ class bill:
             _count = 0
             _price0 = 0
             _price2 = 5.0
-            discount = {}
 
-            if menu_date != web.ctx.session.today:
-                discount[menu_date] = 1 #早鸟计划
+            if menu_date != str(datetime.date.today()):
+                shopping_discount[menu_date] = 1 #早鸟计划
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):

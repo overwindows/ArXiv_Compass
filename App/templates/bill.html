@@ -67,7 +67,7 @@ $def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag, discoun
                 $if discount[d_0] == 1:
                     <li class="list">
                         <span class="tit">泰式龙虾片（早鸟计划）</span>
-                        <span class="f_r">0<em class="grey_txt">X1</em></span>
+                        <span class="f_r">¥0.0<em class="grey_txt">X1</em></span>
                     </li>
                 <li class="list bor_b_bold">
                     <span class="tit">合计</span>
@@ -170,6 +170,14 @@ $$(".btn_red_wrap").click(function(){
 
    if($$("#name").html()==""){
       $$("#tips").html("请填写取餐联系人");
+        $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show(); 
+      //$$("#tips").show();
+      $$("#tips").delay(1200).fadeOut(400);
+      return;
+   }
+
+   if($$("#telephone").html()==""){
+      $$("#tips").html("请填写联系方式");
         $$("#tips").css( { position : 'absolute', 'top' : scrollTop, 'left' : left + scrollLeft, 'z-index' : 5555 } ).show(); 
       //$$("#tips").show();
       $$("#tips").delay(1200).fadeOut(400);

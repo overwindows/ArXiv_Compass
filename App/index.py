@@ -53,6 +53,9 @@ class index:
         shopping_list = []
         web.ctx.session.shoppinglist = shopping_list
 
+        shopping_discount = {}
+        web.ctx.session.shoppingdiscount = shopping_discount
+
         web.ctx.session.redirecturl = None
 
         # initialize user info
