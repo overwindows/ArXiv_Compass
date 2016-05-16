@@ -40,7 +40,7 @@ class menus:
         if param:
             _menudate = web.ctx.session.menudate
             order_info = {}
-            print _menudate+":"+param 
+            # print _menudate+":"+param 
             order_list = param.split("|")
             for order in order_list:
                 if order:
@@ -52,8 +52,8 @@ class menus:
             _price0 = 0.0
             _price2 = 5.0
 
-            if menu_date != str(datetime.date.today()):
-                shopping_discount[menu_date] = 1 #早鸟计划
+            if _menudate != str(datetime.date.today()):
+                shopping_discount[_menudate] = 1 #早鸟计划
 
             for lunch in lunches:
                 if order_info.has_key(lunch.ID):

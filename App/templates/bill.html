@@ -64,7 +64,7 @@ $def with (userinfo, shoppingbasket, menucalendar, shoppingcost, otflag, discoun
                     </li>
                     $ amount_1 = amount_1 + float(shoppingbasket[d_0][d_1]["Price"])*int(shoppingbasket[d_0][d_1]["Count"])
                     $ cnt = cnt + int(shoppingbasket[d_0][d_1]["Count"])
-                $if discount[d_0] == 1:
+                $if discount.has_key(d_0) and discount[d_0] == 1:
                     <li class="list">
                         <span class="tit">泰式龙虾片（早鸟计划）</span>
                         <span class="f_r">¥0.0<em class="grey_txt">X1</em></span>

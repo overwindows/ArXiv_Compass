@@ -78,7 +78,7 @@ class bill:
         web.ctx.session.webpage = "bill"
 
         if user_info.has_key("ID"):
-            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag, discount)
+            return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag, shopping_discount)
         else:
             web.seeother('/delivery')
 	'''
