@@ -27,6 +27,8 @@ class sites:
             web.ctx.session.shoppingbasket.clear()
         if web.ctx.session.shoppingcost:
             web.ctx.session.shoppingcost.clear()
-           
+
+        logging.info("[office][uid:%s]", web.ctx.session.openid)
+
         return render.sites(districts, zones, plazas, offices)
         #return render.index(offices,uid,msgs,islogin,web.ctx.session.nickname,web.ctx.session.headimgurl)
