@@ -87,7 +87,8 @@ class defray:
             web.ctx.session.shoppingbasket.clear()
         if web.ctx.session.shoppingcost:
             web.ctx.session.shoppingcost.clear()
-        
+
+        logging.info("[pay][uid:%s]", str(web.ctx.session.openid))
         return web.seeother('/webchatpay?oids=' + oids)
 '''
         # 超时无法下单（判断当日套餐的支付时间是否超过10:32）Start

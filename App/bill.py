@@ -77,6 +77,7 @@ class bill:
 
         web.ctx.session.webpage = "bill"
 
+        logging.info("[bill][uid:%s]", web.ctx.session.openid)
         if user_info.has_key("ID"):
             return render.bill(user_info, shopping_basket, menu_calendar, shopping_cost, ot_flag, shopping_discount)
         else:

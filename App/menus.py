@@ -115,6 +115,8 @@ class menus:
 
         web.ctx.session.menudate = str(menu_date)
         web.ctx.session.webpage = "menus"
+
+        logging.info("[menu][uid:%s]", web.ctx.session.openid)
         return render.menus(menu_calender_sorted, lunches, offices[0], menu_date, lunches_info, shopping_count)
 	'''
         #backstep = int(web.cookies().get('backstep')) 
