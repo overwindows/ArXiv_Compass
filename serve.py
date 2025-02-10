@@ -24,7 +24,7 @@ from flask_limiter import Limiter
 from werkzeug.security import check_password_hash, generate_password_hash
 import pymongo
 
-from utils import safe_pickle_dump, strip_version, isvalidid, Config, encode_json
+from utils import safe_pickle_dump, strip_version, isvalidid, Config
 
 # various globals
 # -----------------------------------------------------------------------------
@@ -60,6 +60,10 @@ TAGS = [
     'troll',
     'spam'
 ]
+
+# Add at the top with other globals, after app initialization
+args = argparse.Namespace()
+args.num_results = DEFAULT_NUM_RESULTS
 
 # -----------------------------------------------------------------------------
 # utilities for database interactions 
@@ -226,7 +230,7 @@ def encode_json(ps, n=10, send_images=True, send_abstracts=True):
     struct['originally_published_time'] = '%s/%s/%s' % (timestruct.month, timestruct.day, timestruct.year)
 
     # fetch amount of discussion on this paper
-    struct['num_discussion'] = comments.count({ 'pid': p['_rawid'] })
+    # struct['num_discussion'] = comments.count({ 'pid': p['_rawid'] })
 
     # arxiv comments from the authors (when they submit the paper)
     cc = p.get('arxiv_comment', '')
@@ -764,6 +768,7 @@ def filter_papers_by_time(papers: List[Dict[str, Any]], days: int) -> List[Dict[
 
 def main() -> None:
     """Main function to start the server."""
+    global args  # Add global declaration
     parser = argparse.ArgumentParser(description='ArXiv Compass Server')
     parser.add_argument('-p', '--prod', action='store_true',
                        help='run in production mode')
