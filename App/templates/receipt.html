@@ -1,0 +1,111 @@
+$def with (userinfo, order_list, ordercost, disptm)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="UTF-8">
+    <title>准时开饭</title>
+    <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/swiper.min.css" />
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
+    <script src="../static/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js" ></script>
+    <!--控制实现页面自适应脚本-->
+    <script type="text/javascript" src="../static/js/font_resize.js" ></script>
+</head>
+<body class="bg2 white_txt">
+    <div class="tipbox" data-tips><span>下单成功！</span></div>
+    <div class="swiper-container">
+          <div class="swiper-wrapper">
+          $for d_0 in order_list:
+                <div class="swiper-slide blue-slide">
+                    <div class="m-order-detail">
+                        <h3 class="tit">订单详情</h3>
+                        $ total_price = 0.0
+                        <div class="ins">
+                            <ul>
+                                <li class="list c_f">
+                                    <span class="tit">姓名</span>
+                                    <span class="txt">$userinfo["Contact"]</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">手机</span>
+                                    <span class="txt">$userinfo["Tel"]</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">送餐地址</span>
+                                    <span class="txt">$userinfo["OfficeAddr"]</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">取餐地点</span>
+                                    <span class="txt">$userinfo["UnitAddr"]</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">到餐日期</span>
+                                    $ d = d_0.split('-')
+                                    $ t_d = d[1]+"月"+d[2]+"日"
+                                    <span class="txt">$t_d</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">期望到餐时间</span>
+                                    <span class="txt">$disptm</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">发票</span>
+                                    <span class="txt">$userinfo["Invoice"]</span>
+                                </li>
+                                <li class="list c_f rel arr_down" data-detail>
+                                    $if len(order_list[d_0].keys()) > 1:
+                                        <span class="icon"></span>
+                                        <span class="tit">订单内容</span>
+                                        <span class="txt detail">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
+                                            <ul class="detailbox hide">
+                                            $for d_1 in order_list[d_0]:
+                                                <li class="list3 c_f">
+                                                    <span class="f_l">$order_list[d_0][d_1]["Name"] $order_list[d_0][d_1]["Count"] 份</span>
+                                                    <span class="f_r">¥$order_list[d_0][d_1]["Price"]</span>
+                                                </li>
+                                                $ total_price = total_price + float(order_list[d_0][d_1]["Price"]) * float(order_list[d_0][d_1]["Count"])
+                                            </ul>
+                                    $else:
+                                        <span class="tit">订单内容</span>
+                                        <span class="f_l">$order_list[d_0][order_list[d_0].keys()[0]]["Name"] $order_list[d_0][order_list[d_0].keys()[0]]["Count"] 份</span>
+                                        $ total_price = total_price + float(order_list[d_0][order_list[d_0].keys()[0]]["Price"]) * float(order_list[d_0][order_list[d_0].keys()[0]]["Count"])
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">订单总价</span>
+                                    <span class="txt">¥$ordercost[d_0]</span>
+                                </li>
+                                <li class="list c_f">
+                                    <span class="tit">订单状态</span>
+                                    <span class="txt">订单已确认- 待配送</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <!-- 如果需要分页器 -->
+          <div class="swiper-pagination my-pagination-point"></div>
+    </div>
+    <div class="m-order-txtbox p_b_2">
+        <p class="txt">你的订单已被确认！</p>
+        <!-- <p class="txt m_b_cut">我们将安排专人配送，为你准时开饭！</p> -->
+        <p class="txt">如有变动，请于当日10:30 前操作</p>
+        <p class="txt">超时订单将无法取消，敬请谅解！</p>
+        <div class="m_t_1">
+            <a href="/menus" class="btn_red_wrap" data-getgray>确定</a>
+        </div>
+    </div>
+<script type="text/javascript">
+  var mySwiper = new Swiper('.swiper-container',{
+        loop: false,
+    /*autoplay: 3000,*/
+    pagination: '.swiper-pagination',
+    paginationClickable :true,
+  });
+</script>
+</body>
+</html>

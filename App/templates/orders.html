@@ -1,0 +1,280 @@
+$def with (orders_0, orders_1, orders_2)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>准时开饭</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/swiper.min.css" />
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
+    <script src="../static/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js" ></script>
+    <!--控制实现页面自适应脚本-->
+    <script type="text/javascript" src="../static/js/font_resize.js" ></script>
+</head>
+<body>
+    <div class="swiper-container">
+        <!-- 如果需要分页器 -->
+          <div class="my-pagination"></div>
+          <div class="swiper-wrapper my-swiper-wrapper">
+                <div class="swiper-slide blue-slide">
+                $for order in orders_0:
+                    <div class="m-orderlists cur2 rel">
+                    <a href="/orderinfo?oid=$order.id" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
+                    <ul>
+                        <li class="list">
+                            <span class="tit">订单编号</span>
+                            <span class="txt">$order.id</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">到餐时间</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">取餐地点</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单数量</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单状态</span>
+                            $if int(order.pay) == 0:
+                                <span class="txt red_txt">未支付</span>
+                            $elif int(order.pay) == 1:
+                                $if int(order.dispatch)==1:
+                                    <span class="txt red_txt">配送中</span>
+                                $else:
+                                    <span class="txt red_txt">已下单</span>
+                            <!--span class="txt red_txt">未支付</span-->
+                        </li>
+                    </ul>
+                    $if int(order.pay) == 0:
+                        <a href="javascript:void(0)" oid="$order.id" pay="0" class="btn_red_wrap rel" data-showmarkbox="txt1">立即支付</a>
+                    $elif int(order.pay) == 1:
+                        <a href="javascript:void(0)" oid="$order.id" pay="1" class="btn_red_wrap rel"  data-showmarkbox="btnsAgree">取消订单</a>
+                    </div>
+                    <hr class="hr_gray"/>
+                    <div class="cut_line"></div>
+                </div>
+                <div class="swiper-slide red-slide">
+                $for order in orders_1:
+                    <div class="m-orderlists cur2 rel">
+                    <a href="/orderinfo?oid=$order.id" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
+                    <ul>
+                        <li class="list">
+                            <span class="tit">订单编号</span>
+                            <span class="txt">$order.id</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">到餐时间</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">取餐地点</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单数量</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单状态</span>
+                            $if int(order.pay) == 0:
+                                <span class="txt red_txt">未支付</span>
+                            $elif int(order.pay) == 1:
+                              $if int(order.status)==1:
+                                  <span class="txt red_txt">已完成</span>
+                        </li>
+                    </ul>
+                    </div>
+                    <hr class="hr_gray"/>
+                    <div class="cut_line"></div>
+                </div>
+                <div class="swiper-slide orange-slide">
+                $for order in orders_2:
+                    <div class="m-orderlists cur2 rel">
+                    <a href="/orderinfo?oid=$order.id" class="btn_info imgbox"><img src="../static/images/img_44.png" /></a>
+                    <ul>
+                        <li class="list">
+                            <span class="tit">订单编号</span>
+                            <span class="txt_">$order.id</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">到餐时间</span>
+                            <span class="txt">$order.orderdate
+                            $if int(order.tminterval) == 0:
+                                12:00-12:20
+                            $elif int(order.tminterval) == 1:
+                                12:20-12:40
+                            $else:
+                                12:40-13:00
+                            </span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">取餐地点</span>
+                            <span class="txt">$order.officename $order.officeaddress</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单数量</span>
+                            <span class="txt">$order.cnt份 (¥$order.price)</span>
+                        </li>
+                        <li class="list">
+                            <span class="tit">订单状态</span>
+                            $if int(order.pay) == 0:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">已取消</span>
+                            $elif int(order.pay) == 1:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">退款中</span>
+                            $else:
+                                $if int(order.status)==2:
+                                    <span class="txt red_txt">已退款</span>
+                        </li>
+                    </ul>
+                    </div>
+                    <hr class="hr_gray"/>
+                    <div class="cut_line"></div>
+                </div>
+          </div>
+    </div>
+    <div class="mark_info hide z_index_200">
+        <div class="con white_bg hide" data-markbox="btnsAgree">
+            <div class="hd rel">
+                <span>确定要取消此订单</span>
+                <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
+            </div>
+            <div class="m-orderlists rel">
+                <ul>
+                    <li class="list">
+                        <div class="agree_txt rel">
+                            <a href="javascript:void(0)" class="btn_agree"><span></span></a>
+                            订单信息输错/重新下单
+                        </div>
+                    </li>
+                    <li class="list">
+                        <div class="agree_txt rel">
+                            <a href="javascript:void(0)" class="btn_agree"><span></span></a>
+                            改变午餐计划
+                        </div>
+                    </li>
+                    <li class="list">
+                        <div class="agree_txt rel">
+                            <a href="javascript:void(0)" class="btn_agree"><span></span></a>
+                            其他
+                        </div>
+                    </li>
+                </ul>
+                <a href="#" class="btn_red_wrap no rel" data-closemarkbox id="confirm_cancel">确定</a>
+            </div>
+        </div>
+        <div class="con  white_bg" data-markbox="txt1">
+            <div class="hd rel">
+                <span>温馨提示</span>
+                <a href="javascript:void(0)" class="btn_cancel imgbox" data-closemarkbox><img src="../static/images/img_47.png"></a>
+            </div>
+            <div class="ins m_t_1">
+                <p class="txt">微信支付发起中</p>
+                <p class="txt">当日中午10:30前未完成支付，订单将自动取消</p>
+                <p class="txt">敬请谅解</p>
+                <!--a href="index7.html" class="btn_red_wrap w_p_80 rel" data-closemarkbox>确定</a-->
+            </div>
+        </div>
+    </div>
+    <!--底部固定菜单-->
+    <a class="foot_tabs tab_me" href="/member">
+        <img src="../static/images/img_18.png" />
+    </a>
+<script type="text/javascript">
+/*兼容pc & mobile滚动事件*/
+    var hastouch = "ontouchstart" in window?true:false,
+        tapstart = hastouch?"touchstart":"mousedown",
+        tapmove  = hastouch?"touchmove":"mousemove",
+        tapend   = hastouch?"touchend":"mouseup";
+        var a = document.getElementById('a');
+        var body = document.getElementsByTagName('body')[0];
+        var xSlide = 0;
+        var yBody = 0;
+        /*body*/
+        body.addEventListener(tapstart,tapdownBody);
+        function tapdownBody(event){
+            yBody = hastouch?event.targetTouches[0].pageY:event.pageY;
+            body.addEventListener(tapmove,tapmoveBody);
+            body.addEventListener(tapend,tapendBody);
+        }
+
+        var td = false;
+        function tapmoveBody(event){
+            event.preventDefault(); //阻止默认事件
+            var y = hastouch?event.targetTouches[0].pageY:event.pageY;
+            var _y = yBody - y;
+            var _scroll = $$(window).scrollTop();
+            $$('html,body').scrollTop(_scroll + _y);
+             
+    td = window.setTimeout(function(){ 
+        $$(".foot_tabs").fadeOut(100,function(){
+                   $$("this").hide();
+        });        
+    },50);
+          
+        }
+        function tapendBody(event){
+            body.removeEventListener(tapmove,tapmoveBody);
+
+    td = window.setTimeout(function(){             
+                  $$(".foot_tabs").fadeIn(100,function(){
+               console.info(2);
+               $$("this").show();
+                 
+        });        
+    },1900);
+
+        }
+
+  var swiper = new Swiper('.swiper-container', {
+  pagination: '.my-pagination',
+  paginationClickable: true,
+  paginationBulletRender: function (index, className) {
+    switch (index) {
+      case 0: name='进行中订单';break;
+      case 1: name='已完成订单';break;
+      case 2: name='已取消订单';break;
+      default: name='';
+    }
+          return '<span class="' + className + '">' + name + '</span>';
+      }
+});
+
+$$(".btn_red_wrap").click(function(){
+
+      pay_status = $$(this).attr("pay");
+      oid = $$(this).attr("oid");
+//      alert();
+      if(pay_status=="0"){
+          location.href = "/webchatpay?oids="+oid;
+      }
+      else if(pay_status=="1"){
+          $$('#confirm_cancel').attr("href", "/cancelorder?oid="+oid);
+      }
+  });
+</script>
+</body>
+</html>

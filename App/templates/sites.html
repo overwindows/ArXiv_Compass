@@ -1,0 +1,95 @@
+$def with (districts, zones, plazas, offices)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>准时开饭</title>
+    <meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <!--控制实现页面自适应脚本-->
+    <script type="text/javascript" src="../static/js/font_resize.js" ></script>
+</head>
+<body class="bg_img1">
+    <section class="sitebox">
+        <div class="selecbox rel">
+            <p href="javascript:void(0)" class="location_val rel" data-select>
+            <span class="val">请选择送餐区域</span>
+                <a href="#" class="btn_return hide" data-btnreturn></a>
+            </p>
+        <!--a href="javascript:void(0)" class="btn_search imgbox" data-sitesearch><img src="../static/images/img_61.png" /></a-->
+            <div class="inputbox hide" data-inputbox>
+                <div class="iptbor rel">
+                    <input class="ipt" type="text" placeholder="输入搜索关键字，如大楼名，路名..." value="" />
+                    <a href="javascript:void(0)" class="btn_cancel imgbox" data-clearval><img src="../static/images/img_47.png" /></a>
+                </div>
+            </div>
+        <div class="con_lists rel" data-conlists>
+        <ul class="location" data-location  data-level="1">
+        $for district in districts:
+            <li class="list" data-p="1_$district.id">$district.name</li>
+        </ul>
+        
+        $for district in districts:
+            <ul class="location hide" data-p="1_$district.id"  data-level="2">
+            $for zone in zones:
+                $if zone.district_id == district.id:
+                    <li class="list" data-p="2_$zone.id" data-second>$zone.name</li>
+            </ul>
+        $ m = 0   
+        $for zone in zones:
+            $ m = m + 1    
+            <ul class="location hide" data-p="2_$zone.id"  data-level="3_$m">
+            $for plaza in plazas:
+                $if plaza.zone_id == zone.id:
+                    <li class="list" data-p="3_$plaza.id">$plaza.name</li>
+            $for office in offices:
+                $if office.zoneid == zone.id and office.plazaid == 0:
+                    <li class="list" data-p="3_$office.officeid" data-link="/menus?officeid=$office.officeid" >$office.officename<span>$office.officeaddr</span></li>
+            </ul>
+        $ n = 0    
+        $for plaza in plazas:
+            $if plaza.id > 0:
+                $ n = n + 1                 
+                <ul class="location hide" data-p="3_$plaza.id"  data-level="4_$n">
+                $for office in offices:
+                    $if office.plazaid == plaza.id:
+                        <li class="list" data-link="/menus?officeid=$(office.officeid)" >$office.officename<span>$office.officeaddr</span></li>
+                </ul>
+        
+        <!--ul class="keyword" data-keyword>
+            <li class="list"><em>莱</em>赛港</li>
+            <li class="list"><em>莱</em>赛港B座</li>
+            <li class="list"><em>莱</em>赛港C座<span>江场西路125号</span></li>
+            <li class="list"><em>莱</em>茵大厦1号楼<span>江场西路125号</span></li>
+            <li class="list"><em>莱</em>茵大厦2号楼<span>江场西路125号</span></li>
+        </ul-->
+            </div>
+            
+        </div>
+    </section>
+    <a href="javascript:void(0)" class="logo_white imgbox"><img src="../static/images/img_09.png" /></a>
+</body>
+<script type="text/javascript" src="../static/js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="../static/js/main.js" ></script>
+<script type="text/javascript">
+//当定位区域滚动到最底部小箭头消失返回有显示
+$$("[data-conlists] ul").scroll(function(){
+    //获取定位滚动区域内容的总高度
+    var allHei=$$(this).children().height()*$$(this).children("li").length;
+    //获取定位滚动区域容器的高度
+    var parentHei=$$("[data-conlists]").height();
+    console.log($$(this).scrollTop());
+    if($$(this).scrollTop()>=allHei-parentHei-20){
+        $$("[data-btnmore]").hide();
+        $$("[data-btnmoretop]").show();
+    }else if($$(this).scrollTop()==0){
+        $$("[data-btnmore]").show();
+        $$("[data-btnmoretop]").hide();
+    }else if($$(this).scrollTop()>0&&$$(this).scrollTop()<allHei-parentHei-20){
+        $$("[data-btnmore]").show();
+        $$("[data-btnmoretop]").show();
+    }    
+});
+</script>
+</html>
