@@ -31,7 +31,7 @@ brew install imagemagick poppler
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/arxiv-compass.git
+git clone https://github.com/overwindows/arxiv-compass.git
 cd arxiv-compass
 ```
 
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 1. **Fetch Papers**
    ```bash
-   python3 fetch_papers.py --start-date 2024-01-01 --end-date 2024-03-20
+   python3 fetch_papers.py --start-date 2025-01-01 --end-date 2025-02-10
    ```
 
 2. **Download PDFs**
@@ -133,5 +133,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - All contributors to the project
 
 ---
-
-*Built with ❤️ by the research community, for the research community*
