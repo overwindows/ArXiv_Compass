@@ -50,30 +50,30 @@ pip install -r requirements.txt
 
 1. **Fetch Papers**
    ```bash
-   python fetch_papers.py --start-date 2024-01-01 --end-date 2024-03-20
+   python3 fetch_papers.py --start-date 2024-01-01 --end-date 2024-03-20
    ```
 
 2. **Download PDFs**
    ```bash
-   python download_pdfs.py
+   python3 download_pdfs.py
    ```
 
 3. **Process Papers**
    ```bash
-   python parse_pdf_to_text.py  # Extract text from PDFs
-   python thumb_pdf.py          # Generate thumbnails
-   python analyze.py            # Compute paper vectors
+   python3 parse_pdf_to_text.py  # Extract text from PDFs
+   python3 thumb_pdf.py          # Generate thumbnails
+   python3 analyze.py            # Compute paper vectors
    ```
 
 4. **Initialize Database**
    ```bash
    sqlite3 as.db < schema.sql   # First time only
-   python make_cache.py
+   python3 make_cache.py
    ```
 
 5. **Start Server**
    ```bash
-   python serve.py
+   python3 serve.py
    ```
 
 Visit `http://localhost:5000` to start exploring papers! 🎉
