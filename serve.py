@@ -1,3 +1,9 @@
+"""
+Flask server for ArXiv Compass.
+Provides web interface and API endpoints for paper search, recommendations,
+and user management.
+"""
+
 import os
 import json
 import time
@@ -5,6 +11,9 @@ import pickle
 import argparse
 import dateutil.parser
 from random import shuffle, randrange, uniform
+import logging
+from typing import Dict, List, Any, Optional, Tuple
+from pathlib import Path
 
 import numpy as np
 from sqlite3 import dbapi2 as sqlite3
@@ -15,7 +24,7 @@ from flask_limiter import Limiter
 from werkzeug.security import check_password_hash, generate_password_hash
 import pymongo
 
-from utils import safe_pickle_dump, strip_version, isvalidid, Config
+from utils import safe_pickle_dump, strip_version, isvalidid, Config, encode_json
 
 # various globals
 # -----------------------------------------------------------------------------
@@ -28,6 +37,29 @@ else:
 app = Flask(__name__)
 app.config.from_object(__name__)
 limiter = Limiter(app, default_limits =["100 per hour", "20 per minute"])
+
+# Constants
+DEFAULT_NUM_RESULTS = 200
+DEFAULT_PORT = 5000
+MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
+SECRET_KEY_FILE = 'secret_key.txt'
+VALID_TIME_FILTERS = {
+    'day': 1,
+    '3days': 3,
+    'week': 7,
+    'month': 30,
+    'year': 365,
+    'alltime': 10000
+}
+TAGS = [
+    'insightful!',
+    'thank you',
+    'agree',
+    'disagree',
+    'not constructive',
+    'troll',
+    'spam'
+]
 
 # -----------------------------------------------------------------------------
 # utilities for database interactions 
@@ -640,75 +672,142 @@ def logout():
 # -----------------------------------------------------------------------------
 # int main
 # -----------------------------------------------------------------------------
+def setup_logging() -> None:
+    """Configure logging for the application."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
+def load_secret_key() -> None:
+    """Load or generate secret key for Flask sessions."""
+    try:
+        if os.path.exists(SECRET_KEY_FILE):
+            with open(SECRET_KEY_FILE, 'r') as f:
+                app.secret_key = f.read()
+        else:
+            import secrets
+            app.secret_key = secrets.token_hex(32)
+            with open(SECRET_KEY_FILE, 'w') as f:
+                f.write(app.secret_key)
+    except Exception as e:
+        logging.error(f"Error handling secret key: {e}")
+        raise
+
+def connect_mongodb() -> pymongo.MongoClient:
+    """Connect to MongoDB and initialize collections."""
+    try:
+        client = pymongo.MongoClient(MONGODB_URI)
+        db = client.arxiv
+        return {
+            'tweets_top1': db.tweets_top1,
+            'tweets_top7': db.tweets_top7,
+            'tweets_top30': db.tweets_top30,
+            'comments': db.comments,
+            'tags': db.tags,
+            'goaway': db.goaway,
+            'follow': db.follow
+        }
+    except Exception as e:
+        logging.error(f"MongoDB connection failed: {e}")
+        raise
+
+def load_paper_data() -> Tuple[Dict, Dict, Dict, Dict, List, List, Dict]:
+    """Load all required paper data and caches."""
+    try:
+        # Load main paper database
+        with open(Config.db_serve_path, 'rb') as f:
+            db = pickle.load(f)
+        
+        # Load TF-IDF metadata
+        with open(Config.meta_path, 'rb') as f:
+            meta = pickle.load(f)
+            
+        # Load paper similarities
+        with open(Config.sim_path, 'rb') as f:
+            sim_dict = pickle.load(f)
+            
+        # Load user recommendations if available
+        user_sim = {}
+        if os.path.exists(Config.user_sim_path):
+            with open(Config.user_sim_path, 'rb') as f:
+                user_sim = pickle.load(f)
+                
+        # Load serve cache
+        with open(Config.serve_cache_path, 'rb') as f:
+            cache = pickle.load(f)
+            
+        return (
+            db,
+            meta['vocab'],
+            meta['idf'],
+            sim_dict,
+            cache['date_sorted_pids'],
+            cache['top_sorted_pids'],
+            cache['search_dict']
+        )
+    except Exception as e:
+        logging.error(f"Error loading paper data: {e}")
+        raise
+
+def get_time_filter_days(time_filter: str) -> int:
+    """Convert time filter string to number of days."""
+    return VALID_TIME_FILTERS.get(time_filter, 7)
+
+def filter_papers_by_time(papers: List[Dict[str, Any]], days: int) -> List[Dict[str, Any]]:
+    """Filter papers by publication time."""
+    if days >= 10000:  # "alltime" filter
+        return papers
+        
+    cutoff_time = time.time() - (days * 24 * 60 * 60)
+    return [p for p in papers if p['time_published'] > cutoff_time]
+
+def main() -> None:
+    """Main function to start the server."""
+    parser = argparse.ArgumentParser(description='ArXiv Compass Server')
+    parser.add_argument('-p', '--prod', action='store_true',
+                       help='run in production mode')
+    parser.add_argument('-r', '--num-results', type=int,
+                       default=DEFAULT_NUM_RESULTS,
+                       help='number of results per query')
+    parser.add_argument('--port', type=int,
+                       default=DEFAULT_PORT,
+                       help='port to serve on')
+    args = parser.parse_args()
+    
+    setup_logging()
+    logging.info(f"Starting server with args: {args}")
+    
+    try:
+        # Initialize database if needed
+        if not os.path.exists(Config.database_path):
+            logging.info('Creating empty database from schema...')
+            os.system('sqlite3 as.db < schema.sql')
+        
+        # Load all required data
+        global db, vocab, idf, sim_dict, DATE_SORTED_PIDS, TOP_SORTED_PIDS, SEARCH_DICT
+        (
+            db, vocab, idf, sim_dict,
+            DATE_SORTED_PIDS, TOP_SORTED_PIDS, SEARCH_DICT
+        ) = load_paper_data()
+        
+        # Connect to MongoDB
+        global mongo_collections
+        mongo_collections = connect_mongodb()
+        
+        # Load secret key
+        load_secret_key()
+        
+        # Start server
+        app.run(
+            debug=not args.prod,
+            port=args.port,
+            host='0.0.0.0' if args.prod else 'localhost'
+        )
+        
+    except Exception as e:
+        logging.error(f"Server startup failed: {e}")
+        raise
+
 if __name__ == "__main__":
-   
-  parser = argparse.ArgumentParser()
-  parser.add_argument('-p', '--prod', dest='prod', action='store_true', help='run in prod?')
-  parser.add_argument('-r', '--num_results', dest='num_results', type=int, default=200, help='number of results to return per query')
-  parser.add_argument('--port', dest='port', type=int, default=5000, help='port to serve on')
-  args = parser.parse_args()
-  print(args)
-
-  if not os.path.isfile(Config.database_path):
-    print('did not find as.db, trying to create an empty database from schema.sql...')
-    print('this needs sqlite3 to be installed!')
-    os.system('sqlite3 as.db < schema.sql')
-
-  print('loading the paper database', Config.db_serve_path)
-  db = pickle.load(open(Config.db_serve_path, 'rb'))
-  
-  print('loading tfidf_meta', Config.meta_path)
-  meta = pickle.load(open(Config.meta_path, "rb"))
-  vocab = meta['vocab']
-  idf = meta['idf']
-
-  print('loading paper similarities', Config.sim_path)
-  sim_dict = pickle.load(open(Config.sim_path, "rb"))
-
-  print('loading user recommendations', Config.user_sim_path)
-  user_sim = {}
-  if os.path.isfile(Config.user_sim_path):
-    user_sim = pickle.load(open(Config.user_sim_path, 'rb'))
-  
-  print('loading serve cache...', Config.serve_cache_path)
-  cache = pickle.load(open(Config.serve_cache_path, "rb"))
-  DATE_SORTED_PIDS = cache['date_sorted_pids']
-  TOP_SORTED_PIDS = cache['top_sorted_pids']
-  SEARCH_DICT = cache['search_dict']
-
-  print('connecting to mongodb...')
-  client = pymongo.MongoClient()
-  mdb = client.arxiv
-  tweets_top1 = mdb.tweets_top1
-  tweets_top7 = mdb.tweets_top7
-  tweets_top30 = mdb.tweets_top30
-  comments = mdb.comments
-  tags_collection = mdb.tags
-  goaway_collection = mdb.goaway
-  follow_collection = mdb.follow
-  print('mongodb tweets_top1 collection size:', tweets_top1.count())
-  print('mongodb tweets_top7 collection size:', tweets_top7.count())
-  print('mongodb tweets_top30 collection size:', tweets_top30.count())
-  print('mongodb comments collection size:', comments.count())
-  print('mongodb tags collection size:', tags_collection.count())
-  print('mongodb goaway collection size:', goaway_collection.count())
-  print('mongodb follow collection size:', follow_collection.count())
-  
-  TAGS = ['insightful!', 'thank you', 'agree', 'disagree', 'not constructive', 'troll', 'spam']
-
-  # start
-  if args.prod:
-    # run on Tornado instead, since running raw Flask in prod is not recommended
-    print('starting tornado!')
-    from tornado.wsgi import WSGIContainer
-    from tornado.httpserver import HTTPServer
-    from tornado.ioloop import IOLoop
-    from tornado.log import enable_pretty_logging
-    enable_pretty_logging()
-    http_server = HTTPServer(WSGIContainer(app))
-    http_server.listen(args.port)
-    IOLoop.instance().start()
-  else:
-    print('starting flask!')
-    app.debug = False
-    app.run(port=args.port, host='0.0.0.0')
+    main()
