@@ -7,8 +7,8 @@ ArXiv Compass is a modern, intelligent interface for exploring and managing acad
 ## ✨ Features
 
 - 🔍 **Smart Search**: Find papers using natural language or advanced queries
-- 🎯 **Intellignet Analysis**: Analyze papers including abstract, authors, and citations
-- 📚 **Key Insights Generation**: Get key insights from papers with LLM
+- 🔬 **Intelligent Analysis**: Analyze papers including abstract, authors, and citations
+- 💡 **Key Insights Generation**: Get key insights from papers with LLM
 - 📈 **Trending Papers**: See what's gaining attention in your field
 - 📅 **Daily Updates**: Stay current with the latest publications
 
