@@ -153,6 +153,13 @@ function addPapers(num, dynamic) {
       }
     }
 
+    if(typeof p.review !== 'undefined') {
+      var reviewdiv = div.append('span').classed('rv', true).html(p.review);
+      if(dynamic) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,reviewdiv[0]]); //typeset the added paper
+      }
+    }
+
     // in friends tab, list users who the user follows who had these papers in libary
     if(render_format === 'friends') {
       if(pid_to_users.hasOwnProperty(p.rawpid)) {

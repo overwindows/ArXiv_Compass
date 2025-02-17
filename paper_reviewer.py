@@ -1,8 +1,12 @@
 import openai
+import logging
 import os
 from typing import Dict, List
 import json
-
+from utils import Config, safe_pickle_dump
+from tqdm import tqdm   
+from analyze import get_paper_text_path, read_paper_text, load_database, setup_logging
+    
 class PaperReviewer:
     def __init__(self):
         # Initialize OpenAI client
@@ -94,17 +98,46 @@ class PaperReviewer:
 
 # Example usage
 if __name__ == "__main__":
-    reviewer = PaperReviewer()
+    reviewer = PaperReviewer()      
+    setup_logging()  
     
-    # Example paper text (you would replace this with actual paper content)
-    sample_paper = """
-    Hello world
-    """
+    db = load_database()  
+
+    # load all papers for review and save to db
+    db_review = {}
+    for i, (pid, paper_data) in enumerate(tqdm(db.items(), desc="Reading papers")):
+        txt_path = get_paper_text_path(paper_data)
+        
+        if not os.path.isfile(txt_path):
+            logging.warning(f"Text file not found: {txt_path}")
+            continue
+            
+        paper_text = read_paper_text(txt_path)
+        db_review[pid] = {}
+        # print(paper_text)
+        review_result = reviewer.review_paper(paper_text[:16384])
+        # print(review_result)
+        db_review[pid]['review'] = review_result['review']
+        # print(f"Reviewing paper {pid}")
+        # print(review_result)
+        # db[pid]['review'] = review_result['review']
+        # methodology_feedback = reviewer.get_specific_feedback(paper_text, "methodology")
+        # print(methodology_feedback)
+        # if i > 10:
+        #     break   
     
-    # Get general review
-    review_result = reviewer.review_paper(sample_paper)
-    print("General Review:", json.dumps(review_result, indent=2))
+    # save db
+    safe_pickle_dump(db_review, Config.review_path)
     
-    # Get specific feedback on methodology
-    methodology_feedback = reviewer.get_specific_feedback(sample_paper, "methodology")
-    print("Methodology Feedback:", json.dumps(methodology_feedback, indent=2)) 
+    # # Example paper text (you would replace this with actual paper content)
+    # sample_paper = """
+    #     How to build a paper review system
+    # """
+   
+    # # Get general review
+    # review_result = reviewer.review_paper(sample_paper)
+    # print("General Review:", json.dumps(review_result, indent=2))
+    
+    # # Get specific feedback on methodology
+    # methodology_feedback = reviewer.get_specific_feedback(sample_paper, "methodology")
+    # print("Methodology Feedback:", json.dumps(methodology_feedback, indent=2)) 

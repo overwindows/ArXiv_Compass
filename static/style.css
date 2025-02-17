@@ -53,6 +53,15 @@ body {
 	border-radius: 5px;
 	text-align: justify;
 }
+.rv {
+	color: #000;
+	background-color: rgb(238, 245, 255);
+	font-size: 14px;
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: justify;
+}
 .spid {
 	font-size: 14px;
 	margin-right: 5px;
