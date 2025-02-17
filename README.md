@@ -2,14 +2,13 @@
 
 > Your intelligent navigator through the sea of academic papers
 
-ArXiv Compass is a modern, intelligent interface for exploring and managing academic papers from ArXiv. It helps researchers cut through information overload by providing smart search, personalized recommendations, and an intuitive paper management system.
+ArXiv Compass is a modern, intelligent interface for exploring and managing academic papers from ArXiv. It helps researchers cut through information overload by providing smart search, recommendations, and an intuitive paper management system.
 
 ## ✨ Features
 
 - 🔍 **Smart Search**: Find papers using natural language or advanced queries
-- 🎯 **Personalized Recommendations**: Get paper suggestions based on your interests
-- 📚 **Personal Library**: Save and organize papers that matter to you
-- 🔄 **Similar Paper Discovery**: Find related papers based on content similarity
+- 🎯 **Intellignet Analysis**: Analyze papers including abstract, authors, and citations
+- 📚 **Key Insights Generation**: Get key insights from papers with LLM
 - 📈 **Trending Papers**: See what's gaining attention in your field
 - 📅 **Daily Updates**: Stay current with the latest publications
 
@@ -63,6 +62,7 @@ pip install -r requirements.txt
    python3 parse_pdf_to_text.py  # Extract text from PDFs
    python3 thumb_pdf.py          # Generate thumbnails
    python3 analyze.py            # Compute paper vectors
+   python3 paper_reviewer.py     # Review papers  
    ```
 
 4. **Initialize Database**

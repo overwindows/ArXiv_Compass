@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Arxiv Sanity Preserver</title>
+<title>Arxiv Compass</title>
 
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
@@ -165,10 +165,10 @@ $(document).ready(function(){
 
 <body>
 
-<div id ="titdiv">
+<div id ="titdiv" style="background-color: navy;">
 
   <!-- User account information on top right -->
-  <div id="userinfo">
+  <!-- <div id="userinfo">
     {% if not g.user %}
     <form action="{{ url_for('login') }}" method="post">
       User:
@@ -181,12 +181,12 @@ $(document).ready(function(){
     <a href="{{ url_for('account') }}">{{ g.user.username }}</a>
     <a href="{{ url_for('logout') }}">log out</a>
     {% endif %}
-  </div>
+  </div> -->
 
   <!-- Site information/banner on top left -->
   <a href="/">
   <div id="tittxt">
-    <h1>ArXiv Paper Explorer</h1>
+    <h1>ArXiv Compass</h1>
     A tool for exploring and discovering research papers.<br>
     Serving last {{ totpapers }} papers from cs.[CV|CL|LG|AI|NE]/stat.ML
   </div>
@@ -205,12 +205,12 @@ $(document).ready(function(){
 {% endwith %}
 </div>
 
-{% if render_format == "recent" and g.user.username is not defined %}
+<!-- {% if render_format == "recent" and g.user.username is not defined %}
 <div id="banner">
   <div style="float:right;cursor:pointer;" id="xbanner">X</div>
   New to arxiv-sanity? Check out the <a href="https://youtu.be/S2GY3gh6qC8" target="_blank">introduction video</a>.
 </div>
-{% endif %}
+{% endif %} -->
 
 <div id="sbox">
   <form action="/search" method="get">
@@ -219,7 +219,7 @@ $(document).ready(function(){
   <div id="search_hint"></div>
 </div>
 
-{% if show_prompt == "yes" %}
+<!-- {% if show_prompt == "yes" %}
 <div id="prompt" style="background-color:#f6ff7a; padding:10px; width:980px; margin-left:auto; margin-right:auto; font-size:14px;">
 Hey there {{ g.user.username }}, sorry to interrupt. Arxiv-sanity costs a non-negligible amount of money to host. 
 If you love the site, please consider pitching in:
@@ -231,7 +231,7 @@ If you love the site, please consider pitching in:
   </form>
 To nuke this message away for a long time click <span id="goaway" style="text-decoration: underline;cursor: pointer;">here</span>.
 </div>
-{% endif %}
+{% endif %} -->
 
 <div id="pagebar">
   <div class="pagelink" id="tabrecent"><a href="/">Recent</a></div>
@@ -249,6 +249,13 @@ To nuke this message away for a long time click <span id="goaway" style="text-de
 <div id="maindiv">
 
 <div id="rtable"></div>
+<style>
+  .paper-separator {
+    border-top: 2px dotted #ccc;
+    margin: 20px 0;
+    width: 100%;
+  }
+</style>
 
 <div id="loadmore">
   <button id="loadmorebtn">Load more</button>

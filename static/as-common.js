@@ -138,37 +138,7 @@ function addPapers(num, dynamic) {
       return function() { window.location.replace('/' + pid); }
     }(p.pid)); // closer over the paper id
 
-    // var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;').append('a').attr('href', 'http://www.shortscience.org/paper?bibtexKey='+p.pid).html('review');
-    var discuss_text = p.num_discussion === 0 ? 'discuss' : 'discuss [' + p.num_discussion + ']';
-    var discuss_color = p.num_discussion === 0 ? 'black' : 'red';
-    var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;')
-                      .append('a').attr('href', 'discuss?id='+strip_version(p.pid)).attr('style', 'color:'+discuss_color).html(discuss_text);
     ldiv.append('br');
-
-    var lib_state_img = p.in_library === 1 ? 'static/saved.png' : 'static/save.png';
-    var saveimg = ldiv.append('img').attr('src', lib_state_img)
-                    .classed('save-icon', true)
-                    .attr('title', 'toggle save paper to library (requires login)')
-                    .attr('id', 'lib'+p.pid);
-    // attach a handler for in-library toggle
-    saveimg.on('click', function(pid, elt){
-      return function() {
-        if(username !== '') {
-          // issue the post request to the server
-          $.post("/libtoggle", {pid: pid})
-           .done(function(data){
-              // toggle state of the image to reflect the state of the server, as reported by response
-              if(data === 'ON') {
-                elt.attr('src', 'static/saved.png');
-              } else if(data === 'OFF') {
-                elt.attr('src', 'static/save.png');
-              }
-           });
-        } else {
-          alert('you must be logged in to save papers to library.')
-        }
-      }
-    }(p.pid, saveimg)); // close over the pid and handle to the image
 
     div.append('div').attr('style', 'clear:both');
 

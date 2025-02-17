@@ -75,6 +75,7 @@ def generate_page_thumbnails(pdf_path: str) -> bool:
         cmd = [
             'convert',
             f'{pdf_path}[0-{MAX_PAGES-1}]',
+            '-strip',
             '-thumbnail',
             f'x{THUMB_HEIGHT}',
             str(Path(Config.tmp_dir) / 'thumb.png')
